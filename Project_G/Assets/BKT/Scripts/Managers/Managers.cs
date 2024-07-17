@@ -1,0 +1,42 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Resources;
+using System.Runtime.Serialization;
+using UnityEditor.EditorTools;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class Managers : MonoBehaviour
+{
+    public static bool Initialized { get; set; } = false;
+
+    private static Managers s_instance;
+    private static Managers Instance { get { Init(); return s_instance; } }
+
+    private GameManager _game = new GameManager();
+    private ResourceManager _resource = new ResourceManager();
+    private MapManager _map = new MapManager();
+
+    public static GameManager Game { get { return Instance?._game; } }
+    public static ResourceManager Resource { get { return Instance?._resource; } }
+    public static MapManager Map { get { return Instance?._map; } }
+
+    public static void Init()
+    {
+        if (s_instance == null && Initialized == false)
+        {
+            Initialized = true;
+
+            GameObject go = GameObject.Find("@Managers");
+            if (go == null)
+            {
+                go = new GameObject { name = "@Managers" };
+                go.AddComponent<Managers>();
+            }
+
+            DontDestroyOnLoad(go);
+
+            s_instance = go.GetComponent<Managers>();
+        }
+    }
+}
