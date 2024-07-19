@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Enemy : Creature
 {
-    // Start is called before the first frame update
-    void Start()
+    public override bool Init()
     {
-        
-    }
+        if (base.Init() == false)
+            return false;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        CreatureType = Define.ECreatureType.Enemy;
+        CreatureState = Define.ECreatureState.Idle;
+
+        return true;
     }
 }

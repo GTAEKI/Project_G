@@ -13,12 +13,14 @@ public class Managers : MonoBehaviour
     private static Managers s_instance;
     private static Managers Instance { get { Init(); return s_instance; } }
 
-    private GameManager _game = new GameManager();
     private ResourceManager _resource = new ResourceManager();
+    private GameManager _game = new GameManager();
+    private ObjectManager _obj = new ObjectManager();
     private MapManager _map = new MapManager();
 
-    public static GameManager Game { get { return Instance?._game; } }
     public static ResourceManager Resource { get { return Instance?._resource; } }
+    public static GameManager Game { get { return Instance?._game; } }
+    public static ObjectManager Obj { get { return Instance?._obj; } }
     public static MapManager Map { get { return Instance?._map; } }
 
     public static void Init()
