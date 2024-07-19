@@ -13,7 +13,7 @@ public class MapManager
     public Grid CellGrid { get; private set; }
 
     // (CellPos, BaseObject) 셀 위치에 따른 BaseObject
-    Dictionary<Vector3Int, BaseObject> _cells = new Dictionary<Vector3Int, BaseObject>();
+    private Dictionary<Vector3Int, BaseObject> _cells = new Dictionary<Vector3Int, BaseObject>();
 
     private int MinX;
     private int MaxX;
@@ -22,9 +22,9 @@ public class MapManager
 
     // 셀 좌표는 float가아닌 Int로 관리
     public Vector3Int World2Cell(Vector3 worldPos) { return CellGrid.WorldToCell(worldPos); }
-    public Vector3 Cell2World(Vector3Int cellPos) { return CellGrid.CellToWorld(cellPos); }
+    public Vector3 Cell2World(Vector3Int cellPos) { return CellGrid.CellToWorld(new Vector3Int(cellPos.x,cellPos.z,cellPos.y)); }
 
-    ECellCollisionType[,] _collision;
+    private ECellCollisionType[,] _collision;
 
     public void LoadMap(string mapName)
     {
@@ -113,7 +113,7 @@ public class MapManager
     {
         BaseObject prev = GetObject(obj.CellPos);
 
-        // 처음 신청했으면 해당 CellPos의 오브젝트가 본인이 아닐 수도 있음
+        // 해당 Cell위치에 본인이 아닌 obj가 있다면 false
         if (prev != obj)
             return false;
 
@@ -121,6 +121,7 @@ public class MapManager
         return true;
     }
 
+    // 해당 셀 위치에 자신을 추가 
     public bool AddObject(BaseObject obj, Vector3Int cellPos)
     {
         if (CanGo(cellPos) == false)
