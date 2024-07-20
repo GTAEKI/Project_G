@@ -12,8 +12,8 @@ public class MapManager
     public GameObject Map { get; private set; }
     public Grid CellGrid { get; private set; }
 
-    // (CellPos, BaseObject) 셀 위치에 따른 BaseObject
-    private Dictionary<Vector3Int, BaseObject> _cells = new Dictionary<Vector3Int, BaseObject>();
+    // (CellPos, Creature) 셀 위치에 따른 Creature
+    private Dictionary<Vector3Int, Creature> _cells = new Dictionary<Vector3Int, Creature>();
 
     private int MinX;
     private int MaxX;
@@ -77,8 +77,10 @@ public class MapManager
 
     public bool MoveTo(Creature obj, Vector3Int cellPos, bool forceMove = false)
     {
-        if (CanGo(cellPos) == false)
+        if (CanGo(cellPos) == false) 
+        {
             return false;
+        }
 
         // 기존 좌표에 있던 오브젝트를 밀어준다.
         // (단, 처음 신청했으면 해당 CellPos의 오브젝트가 본인이 아닐 수도 있음)
@@ -96,22 +98,22 @@ public class MapManager
     }
 
     #region Helpers
-    public BaseObject GetObject(Vector3Int cellPos)
+    public Creature GetObject(Vector3Int cellPos)
     {
         // 없으면 null
-        _cells.TryGetValue(cellPos, out BaseObject value);
+        _cells.TryGetValue(cellPos, out Creature value);
         return value;
     }
 
-    public BaseObject GetObject(Vector3 worldPos)
+    public Creature GetObject(Vector3 worldPos)
     {
         Vector3Int cellPos = World2Cell(worldPos);
         return GetObject(cellPos);
     }
 
-    public bool RemoveObject(BaseObject obj)
+    public bool RemoveObject(Creature obj)
     {
-        BaseObject prev = GetObject(obj.CellPos);
+        Creature prev = GetObject(obj.CellPos);
 
         // 해당 Cell위치에 본인이 아닌 obj가 있다면 false
         if (prev != obj)
@@ -122,7 +124,7 @@ public class MapManager
     }
 
     // 해당 셀 위치에 자신을 추가 
-    public bool AddObject(BaseObject obj, Vector3Int cellPos)
+    public bool AddObject(Creature obj, Vector3Int cellPos)
     {
         if (CanGo(cellPos) == false)
         {
@@ -130,7 +132,7 @@ public class MapManager
             return false;
         }
 
-        BaseObject prev = GetObject(cellPos);
+        Creature prev = GetObject(cellPos);
         if (prev != null)
         {
             Debug.LogWarning($"AddObject Failed");
@@ -155,7 +157,7 @@ public class MapManager
 
         if (ignoreObjects == false)
         {
-            BaseObject obj = GetObject(cellPos);
+            Creature obj = GetObject(cellPos);
             if (obj != null)
                 return false;
         }

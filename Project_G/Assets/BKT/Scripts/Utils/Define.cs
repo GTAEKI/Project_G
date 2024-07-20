@@ -4,21 +4,22 @@ using UnityEngine;
 
 public static class Define
 {
-    public enum EObjectType 
+    #region Enum
+    public enum EObjectType
     {
         None,
         Creature,
-        Construction,
+        Building,
     }
 
-    public enum ECreatureType 
+    public enum ECreatureType
     {
         None,
         Hero,
         Enemy,
     }
 
-    public enum ECreatureState 
+    public enum ECreatureState
     {
         None,
         Idle,
@@ -26,23 +27,36 @@ public static class Define
         Die,
     }
 
-	public enum EScene
-	{
+    public enum EScene
+    {
         TitleScene,
-		BaseScene,
+        BaseScene,
         BattleScene,
-	}
+    }
 
-    public enum ECellCollisionType 
+    public enum ECellCollisionType
     {
         None,
         Wall,
     }
 
-	// 하드코딩
-	public const char MAP_TOOL_WALL = '0';
-	public const char MAP_TOOL_NONE = '1';
+    public enum EFindPathResult
+    {
+        Fail_LerpCell,
+        Fail_NoPath,
+        Fail_MoveTo,
+        Success,
+    } 
+    #endregion
+
+    #region Hard Coding
+    public const char MAP_TOOL_WALL = '0';
+    public const char MAP_TOOL_NONE = '1';
 
     public const string HeroRespawn = "HeroRespawn";
     public const string EnemyRespawn = "EnemyRespawn";
+    public const string TargetBuilding = "TargetBuilding";
+
+    public const float UpdateStateTick = 0.02f;
+    #endregion
 }
