@@ -10,6 +10,9 @@ public class GameInput : MonoBehaviour
 
     private PlayerInputActions playerInputActions;
 
+    private Vector3 lastMousePosition;
+
+    private const string placementLayermask = "Placement";
     private void Awake()
     {
         playerInputActions = new PlayerInputActions();
@@ -21,14 +24,36 @@ public class GameInput : MonoBehaviour
     private void Fire(InputAction.CallbackContext obj)
     {
         OnFireAction?.Invoke(this, EventArgs.Empty);        
-        Debug.Log("Click");
+        Debug.Log("LeftMouse Click");
+    }
+
+
+    public Vector2 GetMovementVectorNormailized()
+    {
+        Vector2 inputVector = playerInputActions.Player.MoveView.ReadValue<Vector2>();
+
+        inputVector = inputVector.normalized;
+
+        return inputVector;
     }
 
     public Vector3 GetMousePosition()
     {
-        Vector2 mousePosition = playerInputActions.Player.MousePosition.ReadValue<Vector2>();
-        Debug.Log(mousePosition);
-        return mousePosition;
+        
+        Vector3 mousePosition = playerInputActions.Player.MousePosition.ReadValue<Vector2>();
+        mousePosition.z = Camera.main.nearClipPlane;
+        
+        Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+        RaycastHit hit;      
+        
+
+        if(Physics.Raycast(ray, out hit, 100, LayerMask.NameToLayer("placementLayermask")))
+        {
+            lastMousePosition = hit.point;
+        }
+
+
+        return lastMousePosition;
     }
 
 
