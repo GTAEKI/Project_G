@@ -11,8 +11,8 @@ public class GameInput : MonoBehaviour
     private PlayerInputActions playerInputActions;
 
     private Vector3 lastMousePosition;
-
-    private const string placementLayermask = "Placement";
+    [SerializeField]
+    private LayerMask placementLayermask;
     private void Awake()
     {
         playerInputActions = new PlayerInputActions();
@@ -47,7 +47,7 @@ public class GameInput : MonoBehaviour
         RaycastHit hit;      
         
 
-        if(Physics.Raycast(ray, out hit, 100, LayerMask.NameToLayer("placementLayermask")))
+        if(Physics.Raycast(ray, out hit, 100, placementLayermask))
         {
             lastMousePosition = hit.point;
         }
