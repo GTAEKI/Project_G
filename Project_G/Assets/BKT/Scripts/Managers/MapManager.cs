@@ -5,7 +5,6 @@ using System.IO;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using static Define;
 
 public class MapManager
 {
@@ -22,9 +21,9 @@ public class MapManager
 
     // 셀 좌표는 float가아닌 Int로 관리
     public Vector3Int World2Cell(Vector3 worldPos) { return CellGrid.WorldToCell(worldPos); }
-    public Vector3 Cell2World(Vector3Int cellPos) { return CellGrid.CellToWorld(new Vector3Int(cellPos.x,cellPos.z,cellPos.y)); }
+    public Vector3 Cell2World(Vector3Int cellPos) { return CellGrid.CellToWorld(cellPos); }
 
-    private ECellCollisionType[,] _collision;
+    private Define.ECellCollisionType[,] _collision;
 
     public void LoadMap(string mapName)
     {
@@ -53,7 +52,7 @@ public class MapManager
 
         int xCount = MaxX - MinX + 1;
         int yCount = MaxY - MinY + 1;
-        _collision = new ECellCollisionType[xCount, yCount];
+        _collision = new Define.ECellCollisionType[xCount, yCount];
 
         for (int y = 0; y < yCount; y++)
         {
@@ -63,17 +62,16 @@ public class MapManager
                 switch (line[x])
                 {
                     case Define.MAP_TOOL_WALL:
-                        _collision[x, y] = ECellCollisionType.Wall;
+                        _collision[x, y] = Define.ECellCollisionType.Wall;
                         break;
                     case Define.MAP_TOOL_NONE:
-                        _collision[x, y] = ECellCollisionType.None;
+                        _collision[x, y] = Define.ECellCollisionType.None;
                         break;
                 }
                 // Debug.Log(_collision[x , y]);
             }
         }
     }
-
 
     public bool MoveTo(Creature obj, Vector3Int cellPos, bool forceMove = false)
     {
@@ -98,22 +96,22 @@ public class MapManager
     }
 
     #region Helpers
-    public Creature GetObject(Vector3Int cellPos)
+    public Creature TryGetCreature(Vector3Int cellPos)
     {
         // 없으면 null
         _cells.TryGetValue(cellPos, out Creature value);
         return value;
     }
 
-    public Creature GetObject(Vector3 worldPos)
+    public Creature TryGetCreature(Vector3 worldPos)
     {
         Vector3Int cellPos = World2Cell(worldPos);
-        return GetObject(cellPos);
+        return TryGetCreature(cellPos);
     }
 
     public bool RemoveObject(Creature obj)
     {
-        Creature prev = GetObject(obj.CellPos);
+        Creature prev = TryGetCreature(obj.CellPos);
 
         // 해당 Cell위치에 본인이 아닌 obj가 있다면 false
         if (prev != obj)
@@ -132,7 +130,7 @@ public class MapManager
             return false;
         }
 
-        Creature prev = GetObject(cellPos);
+        Creature prev = TryGetCreature(cellPos);
         if (prev != null)
         {
             Debug.LogWarning($"AddObject Failed");
@@ -143,29 +141,27 @@ public class MapManager
         return true;
     }
 
-    public bool CanGo(Vector3 worldPos, bool ignoreObjects = false)
+    public bool CanGo(Vector3 worldPos)
     {
-        return CanGo(World2Cell(worldPos), ignoreObjects);
+        return CanGo(World2Cell(worldPos));
     }
 
-    public bool CanGo(Vector3Int cellPos, bool ignoreObjects = false)
+    public bool CanGo(Vector3Int cellPos)
     {
         if (cellPos.x < MinX || cellPos.x > MaxX)
             return false;
         if (cellPos.y < MinY || cellPos.y > MaxY)
             return false;
-
-        if (ignoreObjects == false)
-        {
-            Creature obj = GetObject(cellPos);
-            if (obj != null)
-                return false;
-        }
-
+        
+        Creature obj = TryGetCreature(cellPos);
+        if (obj != null)
+            return false;
+        
         int x = cellPos.x - MinX;
         int y = MaxY - cellPos.y;
-        ECellCollisionType type = _collision[x, y];
-        if (type == ECellCollisionType.None)
+
+        Define.ECellCollisionType type = _collision[x, y];
+        if (type == Define.ECellCollisionType.None)
             return true;
 
         return false;
@@ -174,6 +170,127 @@ public class MapManager
     public void ClearObjects()
     {
         _cells.Clear();
+    }
+
+    #endregion
+
+    #region A* Algorithm
+    public struct PQNode : IComparable<PQNode>
+    {
+        public int H; // 휴리스틱
+        public Vector3Int CellPos;
+        public int Depth;
+
+        public int CompareTo(PQNode other)
+        {
+            if (H == other.H)
+                return 0;
+            return H < other.H ? 1 : -1;
+        }
+    }
+
+    // cell 이동방향
+    List<Vector3Int> _cellDir = new List<Vector3Int>()
+    {
+        new Vector3Int(0, 1, 0),
+		new Vector3Int(1, 1, 0),
+		new Vector3Int(1, 0, 0),
+		new Vector3Int(1, -1, 0),
+		new Vector3Int(0, -1, 0),
+		new Vector3Int(-1, -1, 0),
+		new Vector3Int(-1, 0, 0),
+		new Vector3Int(-1, 1, 0),
+	};
+
+    public List<Vector3Int> FindPath(Vector3Int startCellPos, Vector3Int destCellPos, int maxDepth = 20)
+    {
+        Dictionary<Vector3Int, int> best = new Dictionary<Vector3Int, int>();
+        Dictionary<Vector3Int, Vector3Int> parent = new Dictionary<Vector3Int, Vector3Int>();
+
+        PriorityQueue<PQNode> pq = new PriorityQueue<PQNode>(); // 후보군
+
+        Vector3Int pos = startCellPos;
+        Vector3Int dest = destCellPos;
+
+        // destCellPos에 도착 못하더라도 제일 가까운 애로.
+        Vector3Int closestCellPos = startCellPos;
+        int closestH = (dest - pos).sqrMagnitude;
+
+        // 첫 노드
+        {
+            int h = (dest - pos).sqrMagnitude;
+            pq.Push(new PQNode() { H = h, CellPos = pos, Depth = 1 });
+            parent[pos] = pos;
+            best[pos] = h;
+        }
+
+        while (pq.Count > 0)
+        {
+            PQNode node = pq.Pop();
+            pos = node.CellPos;
+
+            if (pos == dest)
+                break;
+
+            // 무한으로 깊이 들어가진 않음.
+            if (node.Depth >= maxDepth)
+                break;
+
+            // 이동 가능 여부 확인
+            foreach (Vector3Int dir in _cellDir)
+            {
+                Vector3Int next = pos + dir;
+
+                if (CanGo(next) == false)
+                    continue;
+
+                int h = (dest - next).sqrMagnitude;
+
+                if (best.ContainsKey(next) == false)
+                    best[next] = int.MaxValue;
+
+                if (best[next] <= h)
+                    continue;
+
+                best[next] = h;
+
+                pq.Push(new PQNode() { H = h, CellPos = next, Depth = node.Depth + 1 });
+                parent[next] = pos;
+
+                if (closestH > h)
+                {
+                    closestH = h;
+                    closestCellPos = next;
+                }
+            }
+        }
+
+        // 목적지에 도달할수 없을경우 가장 나은 경로
+        if (parent.ContainsKey(dest) == false)
+            return CalcCellPathFromParent(parent, closestCellPos);
+
+        return CalcCellPathFromParent(parent, dest);
+    }
+
+    List<Vector3Int> CalcCellPathFromParent(Dictionary<Vector3Int, Vector3Int> parent, Vector3Int dest)
+    {
+        List<Vector3Int> cells = new List<Vector3Int>();
+
+        if (parent.ContainsKey(dest) == false)
+            return cells;
+
+        Vector3Int now = dest;
+
+        while (parent[now] != now)
+        {
+            cells.Add(now);
+            now = parent[now];
+        }
+
+        cells.Add(now);
+        cells.Reverse();
+
+        return cells;
     }
 
     #endregion

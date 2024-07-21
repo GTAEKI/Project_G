@@ -27,12 +27,11 @@ public class Hero : Creature
 
     protected override void UpdateIdle()
     {
-        base.UpdateIdle();
+        Building building = FindClosestObject(Managers.Obj.Buildings) as Building;
 
-        TargetBuiding = FindClosestObject(Managers.Obj.Buildings) as Building;
-
-        if (TargetBuiding != null) 
+        if (building != null) 
         {
+            TargetBuiding = building;
             CreatureState = Define.ECreatureState.Move;
         }
     }
@@ -40,14 +39,27 @@ public class Hero : Creature
     protected override void UpdateMove()
     {
         base.UpdateMove();
-        Debug.Log($"{this.name} UpdateMove");
+
         if (TargetBuiding == null)
         {
             CreatureState = Define.ECreatureState.Idle;
         }
         else 
         {
-            FindPathAndMoveToCellPos(TargetBuiding.transform.position);
+            Define.EFindPathResult result = FindPathAndMoveToCellPos(TargetBuiding.transform.position);
+            switch (result)
+            {
+                case Define.EFindPathResult.Success:
+                    break;
+                case Define.EFindPathResult.Fail_NoPath:
+                    break;
+                case Define.EFindPathResult.Fail_LerpCell:
+                    break;
+                case Define.EFindPathResult.Fail_MoveTo:
+                    break;
+            }
+
+            //Debug.Log(result);
         }
     }
 }

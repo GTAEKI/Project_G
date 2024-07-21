@@ -26,12 +26,11 @@ public class Enemy : Creature
 
     protected override void UpdateIdle()
     {
-        base.UpdateIdle();
+        Hero hero = FindClosestObject(Managers.Obj.Heroes) as Hero;
 
-        TargetHero = FindClosestObject(Managers.Obj.Heroes) as Hero;
-
-        if (TargetHero != null)
+        if (hero != null)
         {
+            TargetHero = hero;
             CreatureState = Define.ECreatureState.Move;
         }
     }
@@ -39,14 +38,27 @@ public class Enemy : Creature
     protected override void UpdateMove()
     {
         base.UpdateMove();
-        Debug.Log($"{this.name} UpdateMove");
+
         if (TargetHero == null)
         {
             CreatureState = Define.ECreatureState.Idle;
         }
         else
         {
-            FindPathAndMoveToCellPos(TargetHero.transform.position);
+            Define.EFindPathResult result = FindPathAndMoveToCellPos(TargetHero.transform.position);
+            switch (result)
+            {
+                case Define.EFindPathResult.Success:
+                    break;
+                case Define.EFindPathResult.Fail_NoPath:
+                    break;
+                case Define.EFindPathResult.Fail_LerpCell:
+                    break;
+                case Define.EFindPathResult.Fail_MoveTo:
+                    break;
+            }
+
+            //Debug.Log(result);
         }
     }
 }

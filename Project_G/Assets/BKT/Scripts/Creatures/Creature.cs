@@ -37,7 +37,7 @@ public class Creature : BaseObject
 
     public virtual void SetInfo() 
     {
-        Speed = 1.0f;
+        Speed = 10.0f;
         Hp = 100.0f;
 
         // 상태에 따른 동작 시작
@@ -74,7 +74,7 @@ public class Creature : BaseObject
     }
 
     protected virtual void UpdateIdle() { }
-    protected virtual void UpdateMove() { }
+    protected virtual void UpdateMove() {/*Debug.Log($"{this.name} UpdateMove");*/}
     protected virtual void UpdateDie() { }
     #endregion
 
@@ -156,21 +156,18 @@ public class Creature : BaseObject
         if (LerpCellPosCompleted == false)
             return Define.EFindPathResult.Fail_LerpCell;
 
-        Vector3Int dirCellPos = destCellPos - CellPos;
+        // A*
+        List<Vector3Int> path = Managers.Map.FindPath(CellPos, destCellPos);
+        if (path.Count < 2)
+            return Define.EFindPathResult.Fail_NoPath;
+
+        Vector3Int dirCellPos = path[1] - CellPos;
         Vector3Int nextPos = CellPos + dirCellPos;
 
         if (Managers.Map.MoveTo(this, nextPos) == false)
             return Define.EFindPathResult.Fail_MoveTo;
 
         return Define.EFindPathResult.Success;
-    }
-
-    public bool MoveToCellPos(Vector3Int destCellPos, int maxDepth, bool forceMoveCloser = false)
-    {
-        if (LerpCellPosCompleted == false)
-            return false;
-
-        return Managers.Map.MoveTo(this, destCellPos);
     }
 
     protected IEnumerator CoLerpToCellPos()
