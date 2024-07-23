@@ -46,7 +46,13 @@ public static class Define
         Fail_NoPath,
         Fail_MoveTo,
         Success,
-    } 
+    }
+
+    public enum EVirtualCamera 
+    {
+        TopViewCamera,
+        GameViewCamera
+    }
     #endregion
 
     #region Hard Coding
@@ -56,6 +62,9 @@ public static class Define
     public const string HeroRespawn = "HeroRespawn";
     public const string EnemyRespawn = "EnemyRespawn";
     public const string TargetBuilding = "TargetBuilding";
+    public const string RespawnPoint = "RespawnPoint";
+    //public const string TopViewCamera = "TopViewCamera";
+    //public const string GameViewCamera = "GameViewCamera";
 
     public const float UpdateStateTick = 0.02f;
     #endregion

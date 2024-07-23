@@ -42,7 +42,7 @@ public class MapManager
             collision.SetActive(false);
 
         // 갈 수 있는 지역 읽어오기
-        TextAsset txt = Managers.Resource.LoadFromResources<TextAsset>($"{tilemap}Collision");
+        TextAsset txt = Managers.Resource.LoadFromResources<TextAsset>($"Data/{tilemap}Collision");
         StringReader reader = new StringReader(txt.text);
 
         MinX = int.Parse(reader.ReadLine());
