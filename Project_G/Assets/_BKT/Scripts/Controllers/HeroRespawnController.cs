@@ -34,6 +34,7 @@ public class HeroRespawnController : InitBase,IController
                 SelectedRespawnPoint = hit.collider.gameObject;
                 Debug.DrawLine(transform.position, hit.point, Color.red,0.2f);
                 Managers.Controller.Get<CinemachineController>().ChangeCamera(Define.EVirtualCamera.GameViewCamera);
+                Managers.Game.SelectHeroRespawnPoint(hit.collider.transform);
             }
             else 
             {

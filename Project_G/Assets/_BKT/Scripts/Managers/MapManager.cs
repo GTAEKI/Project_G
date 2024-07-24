@@ -202,7 +202,7 @@ public class MapManager
 		new Vector3Int(-1, 1, 0),
 	};
 
-    public List<Vector3Int> FindPath(Vector3Int startCellPos, Vector3Int destCellPos, int maxDepth = 20)
+    public List<Vector3Int> FindPath(Vector3Int startCellPos, Vector3Int destCellPos, int maxDepth = 30)
     {
         Dictionary<Vector3Int, int> best = new Dictionary<Vector3Int, int>();
         Dictionary<Vector3Int, Vector3Int> parent = new Dictionary<Vector3Int, Vector3Int>();
