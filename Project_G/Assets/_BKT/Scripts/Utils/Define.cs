@@ -19,6 +19,13 @@ public static class Define
         Enemy,
     }
 
+    public enum EBuildingType 
+    {
+        None,
+        TargetBuilding,
+        EnemyBuilding,
+    }
+
     public enum ECreatureState
     {
         None,

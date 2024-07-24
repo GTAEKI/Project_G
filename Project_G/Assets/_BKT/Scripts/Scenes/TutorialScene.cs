@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class TutorialScene : InitBase
 {
-    //public GameObject[] HeroRespawnPoints { get; private set; }
-    public GameObject[] EnemyRespawnPoints { get; private set; }
-    public GameObject[] TargetBuildings { get; private set; }
-
     public override bool Init()
     {
         if (base.Init() == false)
@@ -15,12 +11,22 @@ public class TutorialScene : InitBase
 
         Managers.Map.LoadMap("TutorialMap");
 
-        //HeroRespawnPoints = GameObject.FindGameObjectsWithTag(Define.HeroRespawn);
-        EnemyRespawnPoints = GameObject.FindGameObjectsWithTag(Define.EnemyRespawn);
-        TargetBuildings = GameObject.FindGameObjectsWithTag(Define.TargetBuilding);
+        #region Register Buildings
+        GameObject[] EnemyRespawnPoints = GameObject.FindGameObjectsWithTag(Define.EnemyRespawn);
+        GameObject[] TargetBuildings = GameObject.FindGameObjectsWithTag(Define.TargetBuilding);
 
-        Building targetBuilding = TargetBuildings[0].GetOrAddComponent<Building>();
-        Managers.Obj.Register(targetBuilding);
+        foreach (var target in TargetBuildings)
+        {
+            TargetBuilding targetBuilding = target.GetOrAddComponent<TargetBuilding>();
+            Managers.Obj.Register(targetBuilding);
+        }
+
+        foreach (var enemyPoint in EnemyRespawnPoints)
+        {
+            EnemyBuilding enemyBuilding = enemyPoint.GetOrAddComponent<EnemyBuilding>();
+            Managers.Obj.Register(enemyBuilding);
+        } 
+        #endregion
 
         Managers.Game.OnSelectHeroRespawnPoint += StartGame;
 
@@ -32,10 +38,9 @@ public class TutorialScene : InitBase
         Hero hero = Managers.Obj.Spawn<Hero>(transform.position);
         Managers.Map.MoveTo(hero, Managers.Map.World2Cell(hero.transform.position), true);
 
-        foreach (var enemyRespawn in EnemyRespawnPoints)
+        foreach (var enemyBuilding in Managers.Obj.EnemyBuildings) 
         {
-            Enemy enemy = Managers.Obj.Spawn<Enemy>(enemyRespawn.transform.position);
-            Managers.Map.MoveTo(enemy, Managers.Map.World2Cell(enemy.transform.position), true);
+            enemyBuilding.CreateEnemy();
         }
     }
 }
