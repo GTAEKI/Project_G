@@ -21,6 +21,7 @@ public class Enemy : Creature
     {
         base.SetInfo();
 
+        Speed = 6f;
         CreatureState = Define.ECreatureState.Idle;
     }
 

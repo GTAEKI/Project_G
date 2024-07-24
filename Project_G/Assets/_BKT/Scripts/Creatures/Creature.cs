@@ -37,7 +37,6 @@ public class Creature : BaseObject
 
     public virtual void SetInfo() 
     {
-        Speed = 10.0f;
         Hp = 100.0f;
 
         // 상태에 따른 동작 시작
@@ -133,6 +132,7 @@ public class Creature : BaseObject
 
         Vector3 destPos = Managers.Map.Cell2World(CellPos);
         Vector3 dir = destPos - transform.position;
+        Quaternion targetRotation = Quaternion.LookRotation(dir);
 
         if (dir.magnitude < 0.01f)
         {
@@ -143,6 +143,11 @@ public class Creature : BaseObject
 
         float moveDist = Mathf.Min(dir.magnitude, moveSpeed * Time.deltaTime);
         transform.position += dir.normalized * moveDist;
+
+        if (dir != Vector3.zero)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, moveSpeed * Time.deltaTime);
+        }
     }
 
     public Define.EFindPathResult FindPathAndMoveToCellPos(Vector3 destWorldPos)
