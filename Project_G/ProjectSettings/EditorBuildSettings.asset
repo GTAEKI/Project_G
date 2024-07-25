@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dev_BKT.unity
     guid: 6a631c48131ea084b883dd3bb7528e89
+  - enabled: 1
+    path: Assets/Scenes/TitleScene.unity
+    guid: 586c08a2fe83d6f409e588bfe4d81362
+  - enabled: 1
+    path: Assets/Scenes/TutorialScene.unity
+    guid: bdfb51d796ee68b41b36df4deb102a7b
   m_configObjects: {}

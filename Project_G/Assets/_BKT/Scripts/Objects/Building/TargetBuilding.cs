@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class TargetBuilding : Building
 {
+    private UI_MissionProgressBar _progressBar;
+
     public override bool Init()
     {
         if (base.Init() == false)
             return false;
 
         BuildingType = Define.EBuildingType.TargetBuilding;
+        _progressBar = GameObject.FindObjectOfType<UI_MissionProgressBar>();
 
         return true;
     }

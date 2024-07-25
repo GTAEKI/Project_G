@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UI_StartImage : InitBase
+public class UI_StartImage : UI_Base
 {
     private UI_EventHandler _EventHandler;
 

@@ -11,6 +11,4 @@ public class TitleScene : InitBase
 
         return true;
     }
-
-
 }
