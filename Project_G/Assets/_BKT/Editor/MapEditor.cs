@@ -21,7 +21,7 @@ public class MapEditor : MonoBehaviour
         {
             Tilemap tm = Util.FindChild<Tilemap>(go, "TileMap_MovableArea", true);
 
-            using (var writer = File.CreateText($"Assets/BKT/Resources/{go.name}Collision.txt"))
+            using (var writer = File.CreateText($"Assets/Resources/Data/{go.name}Collision.txt"))
             {
                 writer.WriteLine(tm.cellBounds.xMin);
                 writer.WriteLine(tm.cellBounds.xMax);

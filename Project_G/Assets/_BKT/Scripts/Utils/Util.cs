@@ -2,10 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public static class Util
 {
+    public static void LoadScene(Define.EScene sceneType) 
+    {
+        SceneManager.LoadScene(sceneType.ToString());
+    }
+
 	public static GameObject FindChild(GameObject go, string name = null, bool recursive = false)
 	{
 		Transform transform = FindChild<Transform>(go, name, recursive);

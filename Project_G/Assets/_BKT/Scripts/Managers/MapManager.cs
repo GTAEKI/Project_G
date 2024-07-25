@@ -42,7 +42,7 @@ public class MapManager
             collision.SetActive(false);
 
         // 갈 수 있는 지역 읽어오기
-        TextAsset txt = Managers.Resource.LoadFromResources<TextAsset>($"{tilemap}Collision");
+        TextAsset txt = Managers.Resource.LoadFromResources<TextAsset>($"Data/{tilemap}Collision");
         StringReader reader = new StringReader(txt.text);
 
         MinX = int.Parse(reader.ReadLine());
@@ -202,7 +202,7 @@ public class MapManager
 		new Vector3Int(-1, 1, 0),
 	};
 
-    public List<Vector3Int> FindPath(Vector3Int startCellPos, Vector3Int destCellPos, int maxDepth = 20)
+    public List<Vector3Int> FindPath(Vector3Int startCellPos, Vector3Int destCellPos, int maxDepth = 30)
     {
         Dictionary<Vector3Int, int> best = new Dictionary<Vector3Int, int>();
         Dictionary<Vector3Int, Vector3Int> parent = new Dictionary<Vector3Int, Vector3Int>();

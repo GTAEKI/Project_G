@@ -7,8 +7,6 @@ using Object = UnityEngine.Object;
 
 public class ResourceManager
 {
-    private Dictionary<string, UnityEngine.Object> _resources = new Dictionary<string, UnityEngine.Object>();
-
     // Resources 폴더에서 읽어오기
     public T LoadFromResources<T>(string key) where T : Object
     {

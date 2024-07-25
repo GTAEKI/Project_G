@@ -7,7 +7,8 @@ public class ObjectManager
 {
     public HashSet<Hero> Heroes { get; } = new HashSet<Hero>();
     public HashSet<Enemy> Enemies { get; } = new HashSet<Enemy>();
-    public HashSet<Building> Buildings { get; } = new HashSet<Building>();
+    public HashSet<TargetBuilding> TargetBuildings { get; } = new HashSet<TargetBuilding>();
+    public HashSet<EnemyBuilding> EnemyBuildings { get; } = new HashSet<EnemyBuilding> { };
 
     #region Make Root
     public Transform GetRootTransform(string name)
@@ -21,7 +22,8 @@ public class ObjectManager
 
     public Transform HeroRoot { get { return GetRootTransform("@Heroes"); } }
     public Transform EnemyRoot { get { return GetRootTransform("@Enemies"); } }
-    public Transform BuildingRoot { get { return GetRootTransform("@BuildingRoot"); } }
+    public Transform TargetBuildingRoot { get { return GetRootTransform("@TargetBuildingRoot"); }  }
+    public Transform EnemyBuildingRoot { get { return GetRootTransform("@EnemyBuildingRoot"); } }
     #endregion
 
     // 등록
@@ -49,12 +51,20 @@ public class ObjectManager
         }
         else if (obj.ObjectType == Define.EObjectType.Building)
         {
-            Building construction = obj as Building;
-            Buildings.Add(construction);
-        }
-        else
-        {
-            return false;
+            Building building = obj as Building;
+            switch (building.BuildingType) 
+            {
+                case Define.EBuildingType.TargetBuilding:
+                    obj.transform.parent = TargetBuildingRoot;
+                    TargetBuilding targetBuilding = building as TargetBuilding;
+                    TargetBuildings.Add(targetBuilding);
+                    break;
+                case Define.EBuildingType.EnemyBuilding:
+                    obj.transform.parent = EnemyBuildingRoot;
+                    EnemyBuilding enemyBuilding = building as EnemyBuilding;
+                    EnemyBuildings.Add(enemyBuilding);
+                    break;
+            }
         }
 
         return true;
@@ -91,12 +101,10 @@ public class ObjectManager
             switch (creature.CreatureType)
             {
                 case Define.ECreatureType.Hero:
-                    obj.transform.parent = HeroRoot;
                     Hero hero = creature as Hero;
                     Heroes.Remove(hero);
                     break;
                 case Define.ECreatureType.Enemy:
-                    obj.transform.parent = EnemyRoot;
                     Enemy enemy = creature as Enemy;
                     Enemies.Remove(enemy);
                     break;
@@ -104,8 +112,18 @@ public class ObjectManager
         }
         else if (obj.ObjectType == Define.EObjectType.Building)
         {
-            Building construction = obj as Building;
-            Buildings.Remove(construction);
+            Building building = obj as Building;
+            switch (building.BuildingType)
+            {
+                case Define.EBuildingType.TargetBuilding:
+                    TargetBuilding targetBuilding = building as TargetBuilding;
+                    TargetBuildings.Remove(targetBuilding);
+                    break;
+                case Define.EBuildingType.EnemyBuilding:
+                    EnemyBuilding enemyBuilding = building as EnemyBuilding;
+                    EnemyBuildings.Remove(enemyBuilding);
+                    break;
+            }
         }
 
         Managers.Resource.Destroy(obj.gameObject);

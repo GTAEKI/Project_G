@@ -5,6 +5,17 @@ using UnityEngine;
 public static class Define
 {
     #region Enum
+    public enum EScene
+    {
+        TitleScene,
+        TutorialScene,
+        BaseScene,
+        BattleScene,
+        Dev_BKT,
+        Test_BaseScene_HSJ,
+        TestScene_HSJ,
+    }
+
     public enum EObjectType
     {
         None,
@@ -19,19 +30,19 @@ public static class Define
         Enemy,
     }
 
+    public enum EBuildingType 
+    {
+        None,
+        TargetBuilding,
+        EnemyBuilding,
+    }
+
     public enum ECreatureState
     {
         None,
         Idle,
         Move,
         Die,
-    }
-
-    public enum EScene
-    {
-        TitleScene,
-        BaseScene,
-        BattleScene,
     }
 
     public enum ECellCollisionType
@@ -46,7 +57,13 @@ public static class Define
         Fail_NoPath,
         Fail_MoveTo,
         Success,
-    } 
+    }
+
+    public enum EVirtualCamera 
+    {
+        TopViewCamera,
+        GameViewCamera
+    }
     #endregion
 
     #region Hard Coding
@@ -56,6 +73,9 @@ public static class Define
     public const string HeroRespawn = "HeroRespawn";
     public const string EnemyRespawn = "EnemyRespawn";
     public const string TargetBuilding = "TargetBuilding";
+    public const string RespawnPoint = "RespawnPoint";
+    //public const string TopViewCamera = "TopViewCamera";
+    //public const string GameViewCamera = "GameViewCamera";
 
     public const float UpdateStateTick = 0.02f;
     #endregion
