@@ -8,7 +8,7 @@ public class GunshipMovement : MonoBehaviour
     GameInput gameInput;
     [SerializeField]
     Camera gameCamera;
-    private float moveSpeed = 7f;
+    private float moveSpeed = 4f;
     
         
     void Start()
@@ -19,7 +19,6 @@ public class GunshipMovement : MonoBehaviour
     void Update()
     {
         Handle_Movement();
-        Debug.Log(gameInput.GetMousePosition());
     }
 
     void Handle_Movement()

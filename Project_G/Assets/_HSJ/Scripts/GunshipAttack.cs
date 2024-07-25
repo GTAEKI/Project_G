@@ -2,15 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class GunshipAttack : MonoBehaviour
 {
+
+    #region SerializedField
     [SerializeField]
     private Camera gameCamera;
     [SerializeField]
-    private GameObject sphere;
-    [SerializeField]
     private GameInput gameInput;
+    [SerializeField]
+    private ParticleSystem flashParticle;
+    #endregion
 
+    private ResourceManager resource;
+    private GameObject bullet;
     private Vector3 bottomLeftScreen;
     private Vector3 bottomLeftWorld;
 
@@ -18,7 +24,19 @@ public class GunshipAttack : MonoBehaviour
 
     void Start()
     {
+        Init();
         gameInput.OnFireAction += GameInput_Fire;
+    }
+
+    void Init()
+    {
+        // resource 추가
+        // 위치를 옮기는게 나은가?
+        resource = Managers.Resource;
+        bullet = resource.LoadFromResources<Object>("Bullet") as GameObject;
+
+        bullet.transform.rotation = gameCamera.transform.rotation;
+        
     }
 
     void Update()
@@ -26,14 +44,17 @@ public class GunshipAttack : MonoBehaviour
         transform.position = GetScreenToWorldPosition();
     }
 
+
     void GameInput_Fire(object sender, System.EventArgs e)
     {
+        flashParticle.Play();
+
         Vector3 dir = gameCamera.transform.forward;
         
         Debug.DrawRay(transform.position, dir * 100f, Color.red, 1.0f);
 
         // 추후 다른 형태로 변경
-        GameObject obj = Instantiate(sphere, this.transform.position, Quaternion.identity);
+        GameObject obj = Instantiate(bullet, transform.position, gameCamera.transform.rotation);
         obj.GetComponent<Rigidbody>().AddForce(dir * bulletSpeed, ForceMode.VelocityChange);
     }
 
