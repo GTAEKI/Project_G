@@ -5,6 +5,17 @@ using UnityEngine;
 public static class Define
 {
     #region Enum
+    public enum EScene
+    {
+        TitleScene,
+        TutorialScene,
+        BaseScene,
+        BattleScene,
+        Dev_BKT,
+        Test_BaseScene_HSJ,
+        TestScene_HSJ,
+    }
+
     public enum EObjectType
     {
         None,
@@ -32,13 +43,6 @@ public static class Define
         Idle,
         Move,
         Die,
-    }
-
-    public enum EScene
-    {
-        TitleScene,
-        BaseScene,
-        BattleScene,
     }
 
     public enum ECellCollisionType

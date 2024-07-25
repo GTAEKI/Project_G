@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TutorialScene : InitBase
 {
+    Coroutine coEnemyRespawn;
+
     public override bool Init()
     {
         if (base.Init() == false)
@@ -37,10 +39,30 @@ public class TutorialScene : InitBase
     {
         Hero hero = Managers.Obj.Spawn<Hero>(transform.position);
         Managers.Map.MoveTo(hero, Managers.Map.World2Cell(hero.transform.position), true);
+        coEnemyRespawn = StartCoroutine(CoCreateEnemy());
+        
+    }
 
-        foreach (var enemyBuilding in Managers.Obj.EnemyBuildings) 
+    IEnumerator CoCreateEnemy() 
+    {
+        while (true) 
         {
-            enemyBuilding.CreateEnemy();
+            foreach (var enemyBuilding in Managers.Obj.EnemyBuildings)
+            {
+                int spawnChance = Random.Range(0, 10);
+                float spawnTime = Random.Range(0, 3);
+
+                if (spawnChance < 2)
+                    yield return new WaitForSeconds(spawnTime);
+
+                enemyBuilding.CreateEnemy();
+                yield return new WaitForSeconds(spawnTime);
+            }
         }
+    }
+
+    public void EndGame()
+    {
+        StopCoroutine(coEnemyRespawn);
     }
 }

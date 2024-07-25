@@ -13,4 +13,17 @@ public class TargetBuilding : Building
 
         return true;
     }
+
+    private void OnTrigger(Collider other)
+    {
+        if (other.tag == "Player") 
+        {
+            Debug.Log("플레이어");
+        }
+    }
+
+    private void Update()
+    {
+
+    }
 }
