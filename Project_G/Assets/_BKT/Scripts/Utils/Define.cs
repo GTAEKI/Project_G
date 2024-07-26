@@ -72,6 +72,11 @@ public static class Define
         White,
         Yellow,
     }
+
+    public enum EUIName 
+    {
+        MissionProgressBar,
+    }
     #endregion
 
     #region Hard Coding

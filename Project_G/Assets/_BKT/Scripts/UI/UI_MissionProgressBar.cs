@@ -13,8 +13,14 @@ public class UI_MissionProgressBar : UI_Base
             return false;
 
         _progressBar = GetComponent<Slider>();
+        Managers.UI.Register(this);
+        Debug.Log(this.name);
 
         return true;
     }
 
+    public void ReflectValue(float value) 
+    {
+        _progressBar.value = value;
+    }
 }

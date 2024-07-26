@@ -5,6 +5,9 @@ using UnityEngine;
 public class TargetBuilding : Building
 {
     private UI_MissionProgressBar _progressBar;
+    //private bool _isDestroy = false;
+    public float Hp { get; private set; } = 100f;
+    private float _missionProgress = 0f;
 
     public override bool Init()
     {
@@ -12,21 +15,28 @@ public class TargetBuilding : Building
             return false;
 
         BuildingType = Define.EBuildingType.TargetBuilding;
-        _progressBar = GameObject.FindObjectOfType<UI_MissionProgressBar>();
 
         return true;
     }
 
-    private void OnTrigger(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player") 
+        if (other.tag == "Player")
         {
-            Debug.Log("플레이어");
+            Debug.Log("Hero입장");
+            StartCoroutine(FillMissionProgress());
         }
     }
 
-    private void Update()
+    IEnumerator FillMissionProgress()
     {
-
+        while (_missionProgress <= 100) 
+        {
+            _missionProgress += Time.deltaTime;
+            Managers.UI.Get<UI_MissionProgressBar>().ReflectValue(_missionProgress);
+            yield return null;
+            //yield return new WaitForSeconds(0.1f);
+        }
+        Debug.Log("완료");
     }
 }
