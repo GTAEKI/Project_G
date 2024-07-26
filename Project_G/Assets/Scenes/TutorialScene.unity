@@ -700,8 +700,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066516221}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1, y: 150, z: 9.5}
+  m_LocalRotation: {x: -0.5528746, y: -0.15096173, z: 0.10319109, w: -0.8129526}
+  m_LocalPosition: {x: -34.961628, y: 132.7517, z: -52.53044}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1366,10 +1366,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3210787725041288523, guid: 9f95f52df7b8abc43854e44be0a25a42,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4906501459804603167, guid: 9f95f52df7b8abc43854e44be0a25a42,
         type: 3}
       propertyPath: m_Name
       value: TutorialMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 4906501459804603167, guid: 9f95f52df7b8abc43854e44be0a25a42,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

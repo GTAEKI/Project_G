@@ -22,8 +22,9 @@ public class Hero : Creature
     {
         base.SetInfo();
 
-        Speed = 4f;
         CreatureState = Define.ECreatureState.Idle;
+        Speed = 3f;
+        Hp = 100f;
 
     }
 
