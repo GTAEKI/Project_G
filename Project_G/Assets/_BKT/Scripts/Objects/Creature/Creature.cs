@@ -7,6 +7,7 @@ public class Creature : BaseObject
 {
     #region Stat
     public float Speed { get; protected set; } = 1.0f;
+    public float TurnSpeed { get; protected set; } = 2.0f;
     public float Hp { get; protected set; } = 100.0f; 
     #endregion
 
@@ -33,8 +34,6 @@ public class Creature : BaseObject
 
     public virtual void SetInfo() 
     {
-        Hp = 100.0f;
-
         // 상태에 따른 동작 시작
         StartCoroutine(CoUpdateState());
         // 셀 좌표 이동 시작
@@ -121,7 +120,7 @@ public class Creature : BaseObject
         }
     }
 
-    public void LerpToCellPos(float moveSpeed)
+    public void LerpToCellPos(float moveSpeed, float turnSpeed)
     {
         if (LerpCellPosCompleted)
             return;
@@ -142,7 +141,7 @@ public class Creature : BaseObject
         if (dir != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(dir);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, moveSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
         }
     }
 
@@ -175,7 +174,7 @@ public class Creature : BaseObject
     {
         while (true)
         {
-            LerpToCellPos(Speed);
+            LerpToCellPos(Speed,TurnSpeed);
 
             yield return null;
         }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Define;
 
 public class EnemyBuilding : Building
 {
@@ -16,7 +17,22 @@ public class EnemyBuilding : Building
 
     public void CreateEnemy() 
     {
-        Enemy enemy = Managers.Obj.Spawn<Enemy>(transform.position);
+        EColorType randColor = (EColorType)Random.Range(1,4);
+        Enemy enemy = null;
+
+        switch (randColor) 
+        {
+            case EColorType.White:
+                enemy = Managers.Obj.Spawn<Enemy_White>(transform.position);
+                break;
+            case EColorType.Red:
+                enemy = Managers.Obj.Spawn<Enemy_Red>(transform.position);
+                break;
+            case EColorType.Yellow:
+                enemy = Managers.Obj.Spawn<Enemy_Yellow>(transform.position);
+                break;
+        }
+
         Managers.Map.MoveTo(enemy, Managers.Map.World2Cell(enemy.transform.position), true);
     }
 }

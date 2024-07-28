@@ -18,12 +18,14 @@ public class Managers : MonoBehaviour
     private ObjectManager _obj = new ObjectManager();
     private MapManager _map = new MapManager();
     private ControllerManager _controller = new ControllerManager();
+    private UIManager _ui = new UIManager();
 
     public static ResourceManager Resource { get { return Instance?._resource; } }
     public static GameManager Game { get { return Instance?._game; } }
     public static ObjectManager Obj { get { return Instance?._obj; } }
     public static MapManager Map { get { return Instance?._map; } }
     public static ControllerManager Controller { get { return Instance?._controller; } }
+    public static UIManager UI { get { return Instance?._ui; } }
 
     public static void Init()
     {

@@ -6,6 +6,8 @@ using UnityEngine;
 public class Enemy : Creature
 {
     public Hero TargetHero { get; private set; }
+    public int Power { get; protected set; }
+    public Define.EColorType ColorType { get; protected set; }
 
     public override bool Init()
     {
@@ -20,8 +22,6 @@ public class Enemy : Creature
     public override void SetInfo()
     {
         base.SetInfo();
-
-        Speed = 6f;
         CreatureState = Define.ECreatureState.Idle;
     }
 
@@ -61,5 +61,12 @@ public class Enemy : Creature
 
             //Debug.Log(result);
         }
+    }
+
+    public void CalDamage(GunshipBullet bullet) 
+    {
+        //TODO
+        // 불렛의 색깔 비교
+        // 불렛 데미지에 대해 HP - 처리
     }
 }

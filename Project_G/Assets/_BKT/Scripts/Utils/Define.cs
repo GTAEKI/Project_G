@@ -30,7 +30,7 @@ public static class Define
         Enemy,
     }
 
-    public enum EBuildingType 
+    public enum EBuildingType
     {
         None,
         TargetBuilding,
@@ -59,10 +59,23 @@ public static class Define
         Success,
     }
 
-    public enum EVirtualCamera 
+    public enum EVirtualCamera
     {
         TopViewCamera,
         GameViewCamera
+    }
+
+    public enum EColorType
+    {
+        None,
+        Red,
+        White,
+        Yellow,
+    }
+
+    public enum EUIName 
+    {
+        MissionProgressBar,
     }
     #endregion
 
