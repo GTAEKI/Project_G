@@ -6,6 +6,6 @@ public class ParticleCallback : MonoBehaviour
 {
     public void OnParticleSystemStopped()
     {
-        Debug.Log("Particle System Stop");
+        Destroy(this);
     }
 }

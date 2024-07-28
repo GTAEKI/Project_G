@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Define;
 
 public class GunshipBullet : MonoBehaviour
 {
     #region SerializeField
     [SerializeField]
     private ParticleSystem hitPS;
+
     [SerializeField]
     private ParticleSystem bulletPS;
     [SerializeField]
@@ -27,18 +29,19 @@ public class GunshipBullet : MonoBehaviour
     private Color Yellow;
     #endregion
 
+    public float Damage { get; private set; }
 
     private const string default_Bulletcolor = "White";
     private ParticleSystem.MainModule main;
+    private ParticleSystem[] hitPSArray = new ParticleSystem[3];
+    private ParticleSystem.MainModule[] hitmain = new ParticleSystem.MainModule[3];
+    
     private Vector3 hitPSdir;
     
     // test 용
     // 추후 병합 후 Define으로 변경할것 
-    public enum ECOLOR_TYPE
-    {
-        NONE, WHITE, RED, YELLOW
-    }
-    ECOLOR_TYPE colortype = ECOLOR_TYPE.NONE;
+
+    EColorType colortype = EColorType.None;
     //
 
 
@@ -46,30 +49,55 @@ public class GunshipBullet : MonoBehaviour
     {
         // Get ParticleSystem Mainmodule
         main = bulletPS.main;
+
+        hitPSArray = hitPS.GetComponentsInChildren<ParticleSystem>();
+        Debug.Log(hitPSArray.Length + "array Num");
+        Debug.Log(hitmain.Length + "main array Num");
+        for(int i = 0; i < hitPSArray.Length; i++)
+        {
+            hitmain[i] = hitPSArray[i].main;
+        }
     }
 
-    public void InitBulletColor(string type = default_Bulletcolor)
+    public void InitBulletColor(EColorType type = EColorType.None)
     {
-
         switch (type)
         {
-            case "White":
-                colortype = ECOLOR_TYPE.WHITE;
-                main.startColor = White;
-                bulletLight.color = White;
-                break;
-            case "Red":
-                colortype = ECOLOR_TYPE.RED;
+            //case "White":
+            //    colortype = ECOLOR_TYPE.WHITE;
+            //    main.startColor = White;
+            //    bulletLight.color = White;
+            //    for(int i = 0; i < hitmain.Length; i++)
+            //    {
+            //        hitmain[i].startColor = White;
+            //    }                
+            //    break;
+            case EColorType.Red:
+                colortype = EColorType.Red;
                 main.startColor = Red;
                 bulletLight.color = Red;
+                for (int i = 0; i < hitmain.Length; i++)
+                {
+                    hitmain[i].startColor = Red;
+                }
                 break;
-            case "Yellow":
-                colortype = ECOLOR_TYPE.YELLOW;
+            case EColorType.Yellow:
+                colortype = EColorType.Yellow;
                 main.startColor = Yellow;
                 bulletLight.color = Yellow;
+                for (int i = 0; i < hitmain.Length; i++)
+                {
+                    hitmain[i].startColor = Yellow;
+                }
                 break;
             default:
+                colortype = EColorType.White;
                 main.startColor = White;
+                bulletLight.color = White;
+                for (int i = 0; i < hitmain.Length; i++)
+                {
+                    hitmain[i].startColor = White;
+                }
                 break;
         }        
     }
@@ -82,17 +110,16 @@ public class GunshipBullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {        
-        if (other.TryGetComponent(out Enemy enemy))
+        if (other.TryGetComponent(out Enemy enemy) || other.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            // 병합후 처리
-            // 매개 변수로 type을 전달
-            //enemy.CalDamage();
+            enemy.CalDamage(Damage, colortype);
+            rigid.constraints = RigidbodyConstraints.FreezePosition;
+            hitPS.transform.position = other.ClosestPoint(transform.position) - hitPSdir;
+            hitPS.transform.forward = -hitPSdir;
+            hitPS.Play();
         }
-        rigid.constraints = RigidbodyConstraints.FreezePosition;
-        hitPS.transform.position = other.ClosestPoint(transform.position) - hitPSdir ;
-        hitPS.transform.forward = -hitPSdir;
-        hitPS.Play();
         
+
     }
     
        

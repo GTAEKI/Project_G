@@ -63,7 +63,7 @@ public class Enemy : Creature
         }
     }
 
-    public void CalDamage(GunshipBullet bullet) 
+    public void CalDamage(float damage, Define.EColorType colorType) 
     {
         //TODO
         // 불렛의 색깔 비교

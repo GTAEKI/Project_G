@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using static Define;
 
 public class GunshipAttack : MonoBehaviour
 {
@@ -25,12 +25,9 @@ public class GunshipAttack : MonoBehaviour
 
     // 병합 후 테스트
     //private Define.EColorType bulletType;
-    public enum EBULLET_TYPE
-    {
-        NONE, WHITE, RED, YELLOW
-    }
-    [SerializeField]
-    EBULLET_TYPE type = EBULLET_TYPE.NONE;
+
+    [field:SerializeField]
+    public EColorType Type { get; private set; }
     void Start()
     {
         Init();
@@ -67,28 +64,14 @@ public class GunshipAttack : MonoBehaviour
 
         GunshipBullet gBullet = obj.GetComponent<GunshipBullet>();
 
-        gBullet.InitBulletColor(SwitchBulletType());
+        gBullet.InitBulletColor(Type);
         gBullet.ShotBullet(dir, bulletSpeed);
     }
 
-    string SwitchBulletType()
-    {
-        string bulletType = default;
-        switch(type)
-        {
-            case EBULLET_TYPE.WHITE:
-                bulletType = "White";
-                break;
-            case EBULLET_TYPE.RED:
-                bulletType = "Red";
-                break;
-            case EBULLET_TYPE.YELLOW:
-                bulletType = "Yellow";
-                break;
-        }
-        return bulletType;
-
-    }
+    //EColorType SwitchBulletType()
+    //{
+    //    return type;
+    //}
 
     // 좌하단 스크린 포지션을 월드 포지션으로 변경
     Vector3 GetScreenToWorldPosition()
