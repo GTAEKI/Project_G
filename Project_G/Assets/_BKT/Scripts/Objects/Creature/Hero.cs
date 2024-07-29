@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Define;
 
 public class Hero : Creature
 {
@@ -30,12 +31,13 @@ public class Hero : Creature
 
     protected override void UpdateIdle()
     {
+
         if (_isTakingOver == true) 
         {
-
+            Collider col = GetComponent<Collider>();
             return;
         }
-
+        
         TargetBuilding building = FindClosestObject(Managers.Obj.TargetBuildings) as TargetBuilding;
 
         if (building != null) 
@@ -47,7 +49,15 @@ public class Hero : Creature
 
     protected override void UpdateMove()
     {
-        base.UpdateMove();
+        if (Hp <= 0) CreatureState = Define.ECreatureState.Die;
+
+        Enemy enemy = FindRangeObject(2f, Managers.Obj.Enemies) as Enemy;
+        if (enemy != null)
+        {
+            CreatureState = ECreatureState.Idle;
+            return;
+        }
+
 
         if (TargetBuiding == null)
         {
@@ -67,8 +77,28 @@ public class Hero : Creature
                 case Define.EFindPathResult.Fail_MoveTo:
                     break;
             }
-
-            //Debug.Log(result);
         }
+    }
+
+    protected override void UpdateAnimation()
+    {
+        switch (CreatureState)
+        {
+            case Define.ECreatureState.Idle:
+                animator.SetBool("Move", false);
+                break;
+            case Define.ECreatureState.Move:
+                animator.SetBool("Move", true);
+                break;
+            case Define.ECreatureState.Die:
+                animator.SetBool("Die", true);
+                break;
+        }
+    }
+
+    public void Attacked(float enemyPower) 
+    {
+        Hp -= enemyPower;
+        animator.SetTrigger("Attacked");
     }
 }

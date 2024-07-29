@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Define;
 
 public class Enemy : Creature
 {
@@ -28,21 +29,27 @@ public class Enemy : Creature
     protected override void UpdateIdle()
     {
         Hero hero = FindClosestObject(Managers.Obj.Heroes) as Hero;
-
         if (hero != null)
         {
             TargetHero = hero;
             CreatureState = Define.ECreatureState.Move;
+            
         }
     }
 
     protected override void UpdateMove()
     {
-        base.UpdateMove();
+        Hero hero = FindRangeObject(2f, Managers.Obj.Heroes) as Hero;
+        if (hero != null)
+        {
+            animator.SetTrigger("Attack");
+            return;
+        }
 
         if (TargetHero == null)
         {
             CreatureState = Define.ECreatureState.Idle;
+            
         }
         else
         {
@@ -63,10 +70,31 @@ public class Enemy : Creature
         }
     }
 
+    protected override void UpdateAnimation()
+    {
+        switch (CreatureState)
+        {
+            case Define.ECreatureState.Idle:
+                animator.SetBool("Move", false);
+                break;
+            case Define.ECreatureState.Move:
+                animator.SetBool("Move", true);
+                break;
+            case Define.ECreatureState.Die:
+                animator.SetBool("Die", true);
+                break;
+        }
+    }
+
     public void CalDamage(float damage, Define.EColorType colorType) 
     {
         //TODO
         // 불렛의 색깔 비교
         // 불렛 데미지에 대해 HP - 처리
+    }
+
+    public void HitHero() 
+    {
+        TargetHero.Attacked(Power);
     }
 }

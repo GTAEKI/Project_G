@@ -8,8 +8,10 @@ public class Creature : BaseObject
     #region Stat
     public float Speed { get; protected set; } = 1.0f;
     public float TurnSpeed { get; protected set; } = 2.0f;
-    public float Hp { get; protected set; } = 100.0f; 
+    public float Hp { get; protected set; } = 100.0f;
     #endregion
+
+    protected Animator animator;
 
     public Define.ECreatureType CreatureType { get; protected set; } = Define.ECreatureType.None;
     protected Define.ECreatureState _creatureState = Define.ECreatureState.None;
@@ -19,6 +21,7 @@ public class Creature : BaseObject
         set 
         {
             _creatureState = value;
+            UpdateAnimation();
         }
     }
 
@@ -27,7 +30,7 @@ public class Creature : BaseObject
         if (base.Init() == false)
             return false;
 
-        
+        animator = GetComponent<Animator>();
 
         return true;
     }
@@ -68,11 +71,12 @@ public class Creature : BaseObject
     }
 
     protected virtual void UpdateIdle() { }
-    protected virtual void UpdateMove() {/*Debug.Log($"{this.name} UpdateMove");*/}
+    protected virtual void UpdateMove() { }
     protected virtual void UpdateDie() { }
+    protected virtual void UpdateAnimation() { }
     #endregion
 
-    // 오브젝트 탐색
+    // 가장 가까운 오브젝트 탐색
     protected BaseObject FindClosestObject(IEnumerable<BaseObject> objs)
     {
         BaseObject target = null;
@@ -89,6 +93,27 @@ public class Creature : BaseObject
 
             target = obj;
             bestDistanceSqr = distToTargetSqr;
+        }
+
+        return target;
+    }
+
+    //범위내 오브젝트 탐색
+    protected BaseObject FindRangeObject(float range, IEnumerable<BaseObject> objs) 
+    {
+        BaseObject target = null;
+        float searchDistanceSqr = range * range;
+
+        foreach (BaseObject obj in objs)
+        {
+            Vector3 dir = obj.transform.position - transform.position;
+            float distToTargetSqr = dir.sqrMagnitude;
+
+            // 거리가 멀면 스킵
+            if (distToTargetSqr > searchDistanceSqr)
+                continue;
+
+            target = obj;
         }
 
         return target;
@@ -140,9 +165,21 @@ public class Creature : BaseObject
 
         if (dir != Vector3.zero)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(dir);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+            TurnRotation(dir, turnSpeed);
         }
+    }
+
+    public void TurnRotation(Vector3 dir, float turnSpeed = 0, bool force = false) 
+    {
+        Quaternion targetRotation = Quaternion.LookRotation(dir);
+        
+        if (force == true)
+        {
+            transform.rotation = targetRotation;
+            return;
+        }
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
     }
 
     public Define.EFindPathResult FindPathAndMoveToCellPos(Vector3 destWorldPos)
