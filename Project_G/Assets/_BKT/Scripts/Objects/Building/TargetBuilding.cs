@@ -30,13 +30,13 @@ public class TargetBuilding : Building
 
     IEnumerator FillMissionProgress()
     {
-        while (_missionProgress <= 100) 
+        while (_missionProgress <= 1) 
         {
             _missionProgress += Time.deltaTime;
             Managers.UI.Get<UI_MissionProgressBar>().ReflectValue(_missionProgress);
             yield return null;
-            //yield return new WaitForSeconds(0.1f);
         }
-        Debug.Log("완료");
+        
+        Managers.Game.Win();
     }
 }

@@ -11,19 +11,10 @@ public class ObjectManager
     public HashSet<EnemyBuilding> EnemyBuildings { get; } = new HashSet<EnemyBuilding> { };
 
     #region Make Root
-    public Transform GetRootTransform(string name)
-    {
-        GameObject root = GameObject.Find(name);
-        if (root == null)
-            root = new GameObject { name = name };
-
-        return root.transform;
-    }
-
-    public Transform HeroRoot { get { return GetRootTransform("@Heroes"); } }
-    public Transform EnemyRoot { get { return GetRootTransform("@Enemies"); } }
-    public Transform TargetBuildingRoot { get { return GetRootTransform("@TargetBuildingRoot"); }  }
-    public Transform EnemyBuildingRoot { get { return GetRootTransform("@EnemyBuildingRoot"); } }
+    public Transform HeroRoot { get { return Util.GetRootTransform("@Heroes"); } }
+    public Transform EnemyRoot { get { return Util.GetRootTransform("@Enemies"); } }
+    public Transform TargetBuildingRoot { get { return Util.GetRootTransform("@TargetBuildingRoot"); }  }
+    public Transform EnemyBuildingRoot { get { return Util.GetRootTransform("@EnemyBuildingRoot"); } }
     #endregion
 
     // 등록

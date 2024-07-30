@@ -50,4 +50,13 @@ public static class Util
 
 		return null;
 	}
+
+    public static Transform GetRootTransform(string name)
+    {
+        GameObject root = GameObject.Find(name);
+        if (root == null)
+            root = new GameObject { name = name };
+
+        return root.transform;
+    }
 }

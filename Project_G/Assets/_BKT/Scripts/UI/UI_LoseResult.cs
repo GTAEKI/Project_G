@@ -1,26 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class UI_MissionProgressBar : UI_Base
+public class UI_LoseResult : UI_Base
 {
-    private Slider _progressBar;
-
     public override bool Init()
     {
         if (base.Init() == false)
             return false;
 
-        _progressBar = GetComponent<Slider>();
         Register();
-
+        gameObject.SetActive(false);
         return true;
-    }
-
-    public void ReflectValue(float value) 
-    {
-        _progressBar.value = value;
     }
 
     protected override void Register()

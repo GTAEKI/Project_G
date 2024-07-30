@@ -49,7 +49,11 @@ public class Hero : Creature
 
     protected override void UpdateMove()
     {
-        if (Hp <= 0) CreatureState = Define.ECreatureState.Die;
+        if (Hp <= 0) 
+        {
+            CreatureState = Define.ECreatureState.Die;
+            Managers.Game.Lose();
+        }
 
         Enemy enemy = FindRangeObject(2f, Managers.Obj.Enemies) as Enemy;
         if (enemy != null)

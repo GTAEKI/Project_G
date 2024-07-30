@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI_Base : InitBase
+public abstract class UI_Base : InitBase
 {
     public override bool Init()
     {
@@ -11,4 +11,6 @@ public class UI_Base : InitBase
 
         return true;
     }
+
+    protected abstract void Register();
 }

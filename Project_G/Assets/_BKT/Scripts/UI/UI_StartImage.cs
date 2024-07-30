@@ -16,6 +16,7 @@ public class UI_StartImage : UI_Base
 
         _EventHandler = this.GetOrAddComponent<UI_EventHandler>();
         _EventHandler.OnClickHandler += OnPointerClick;
+        Register();
 
         return true;
     }
@@ -23,5 +24,10 @@ public class UI_StartImage : UI_Base
     public void OnPointerClick(PointerEventData eventData) 
     {
         Util.LoadScene(Define.EScene.TutorialScene);
+    }
+
+    protected override void Register()
+    {
+        Managers.UI.Register(this);
     }
 }

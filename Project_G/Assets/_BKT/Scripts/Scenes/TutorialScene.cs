@@ -27,9 +27,13 @@ public class TutorialScene : InitBase
         {
             EnemyBuilding enemyBuilding = enemyPoint.GetOrAddComponent<EnemyBuilding>();
             Managers.Obj.Register(enemyBuilding);
-        } 
+        }
         #endregion
 
+        #region Register UI
+        //Managers.UI.Create<UI_WinResult>();
+        //Managers.UI.Create<UI_LoseResult>();
+        #endregion
         Managers.Game.OnSelectHeroRespawnPoint += StartGame;
 
         return true;
