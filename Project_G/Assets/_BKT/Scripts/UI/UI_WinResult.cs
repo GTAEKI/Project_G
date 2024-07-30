@@ -19,4 +19,9 @@ public class UI_WinResult : UI_Base
     {
         Managers.UI.Register(this);
     }
+
+    private void OnDestroy()
+    {
+        Managers.UI.Remove<UI_WinResult>();
+    }
 }

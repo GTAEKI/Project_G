@@ -18,6 +18,7 @@ public class GameManager
     {
         Managers.UI.Get<UI_WinResult>().gameObject.SetActive(true);
         OnGameWin?.Invoke();
+        Result();
     }
 
 
@@ -26,6 +27,24 @@ public class GameManager
     {
         Managers.UI.Get<UI_LoseResult>().gameObject.SetActive(true);
         OnGameLose?.Invoke();
+        Result();
+    }
+
+    public event Action OnGameResult;
+    public void Result() 
+    {
+        OnGameResult?.Invoke();
+        //Managers.Obj.Clear();
+        //Managers.Controller.Clear();
+        //Managers.Map.Clear();
+        Clear();
+    }
+
+    public void Clear() 
+    {
+        //OnSelectHeroRespawnPoint = null;
+        //OnGameWin = null;
+        //OnGameLose = null;
     }
 
 }

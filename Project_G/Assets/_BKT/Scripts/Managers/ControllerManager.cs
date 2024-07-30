@@ -22,4 +22,9 @@ public class ControllerManager
 
         return null;
     }
+
+    public void Clear() 
+    {
+        controllers.Clear();
+    }
 }

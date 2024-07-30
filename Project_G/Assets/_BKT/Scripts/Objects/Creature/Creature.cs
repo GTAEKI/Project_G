@@ -11,6 +11,8 @@ public class Creature : BaseObject
     public float Hp { get; protected set; } = 100.0f;
     #endregion
 
+    private Coroutine coLerp;
+    private Coroutine coState;
     protected Animator animator;
 
     public Define.ECreatureType CreatureType { get; protected set; } = Define.ECreatureType.None;
@@ -38,9 +40,11 @@ public class Creature : BaseObject
     public virtual void SetInfo() 
     {
         // 상태에 따른 동작 시작
-        StartCoroutine(CoUpdateState());
+        coState = StartCoroutine(CoUpdateState());
         // 셀 좌표 이동 시작
-        StartCoroutine(CoLerpToCellPos());
+        coLerp = StartCoroutine(CoLerpToCellPos());
+        // 셀 이동 정지 이벤트 추가
+        Managers.Game.OnGameResult += StopCreatureCoroutine;
     }
 
     #region UpdateState
@@ -215,6 +219,12 @@ public class Creature : BaseObject
 
             yield return null;
         }
+    }
+
+    private void StopCreatureCoroutine() 
+    {
+        StopCoroutine(coLerp);
+        StopCoroutine(coState);
     }
     #endregion
 }

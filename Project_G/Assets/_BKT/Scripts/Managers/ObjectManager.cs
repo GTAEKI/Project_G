@@ -119,4 +119,12 @@ public class ObjectManager
 
         Managers.Resource.Destroy(obj.gameObject);
     }
+
+    public void Clear() 
+    {
+        Heroes.Clear();
+        Enemies.Clear();
+        TargetBuildings.Clear();
+        EnemyBuildings.Clear();
+    }
 }

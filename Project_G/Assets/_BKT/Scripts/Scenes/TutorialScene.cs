@@ -34,7 +34,11 @@ public class TutorialScene : InitBase
         //Managers.UI.Create<UI_WinResult>();
         //Managers.UI.Create<UI_LoseResult>();
         #endregion
+
+        Managers.Game.OnSelectHeroRespawnPoint -= StartGame;
         Managers.Game.OnSelectHeroRespawnPoint += StartGame;
+        Managers.Game.OnGameResult -= EndGame;
+        Managers.Game.OnGameResult += EndGame;
 
         return true;
     }

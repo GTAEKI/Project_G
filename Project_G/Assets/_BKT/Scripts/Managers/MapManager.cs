@@ -11,6 +11,13 @@ public class MapManager
     public GameObject Map { get; private set; }
     public Grid CellGrid { get; private set; }
 
+    public void Clear() 
+    {
+        Map = null;
+        CellGrid = null;
+        _cells = null;
+    }
+
     // (CellPos, Creature) 셀 위치에 따른 Creature
     private Dictionary<Vector3Int, Creature> _cells = new Dictionary<Vector3Int, Creature>();
 

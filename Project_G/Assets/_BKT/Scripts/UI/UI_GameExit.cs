@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class UI_LoseResult : UI_Base
+public class UI_GameExit : UI_MouseInteraction
 {
     public override bool Init()
     {
         if (base.Init() == false)
             return false;
 
-        Register();
-        gameObject.SetActive(false);
+        _EventHandler.OnClickHandler += OnPointerClick;
         return true;
+    }
+
+    protected override void OnPointerClick(PointerEventData eventData)
+    {
+        Util.LoadScene(Define.EScene.TitleScene);
     }
 
     protected override void Register()
@@ -21,6 +26,6 @@ public class UI_LoseResult : UI_Base
 
     private void OnDestroy()
     {
-        Managers.UI.Remove<UI_LoseResult>();
+        Managers.UI.Remove<UI_GameExit>();
     }
 }
