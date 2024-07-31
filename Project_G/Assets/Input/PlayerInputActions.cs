@@ -33,7 +33,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""id"": ""613a5ab0-922a-4438-8a5d-890ab9208419"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold(duration=0.1,pressPoint=1)"",
                     ""initialStateCheck"": true
                 },
                 {
@@ -53,6 +53,24 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""BulletChangeLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""60bb9ac3-e644-42f6-ac80-a73d05727023"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BulletChangeRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""28e81b56-3b8f-48ad-a74b-67a3780b0cad"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -60,7 +78,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""fa4ebf8d-12b8-4649-8f2f-2c0c1754cf7f"",
                     ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Fire"",
@@ -132,8 +150,36 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""MoveView"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5498b6ef-d54c-48dc-92f4-bcbd0e2b8635"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BulletChangeLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ce921e88-11c8-4fe5-ac82-0fe8c118d719"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BulletChangeRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""9c803deb-9bfb-482d-85a3-d41afd344844"",
+            ""actions"": [],
+            ""bindings"": []
         }
     ],
     ""controlSchemes"": []
@@ -143,6 +189,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_MoveView = m_Player.FindAction("MoveView", throwIfNotFound: true);
         m_Player_MousePosition = m_Player.FindAction("MousePosition", throwIfNotFound: true);
+        m_Player_BulletChangeLeft = m_Player.FindAction("BulletChangeLeft", throwIfNotFound: true);
+        m_Player_BulletChangeRight = m_Player.FindAction("BulletChangeRight", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -207,6 +257,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_MoveView;
     private readonly InputAction m_Player_MousePosition;
+    private readonly InputAction m_Player_BulletChangeLeft;
+    private readonly InputAction m_Player_BulletChangeRight;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -214,6 +266,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @MoveView => m_Wrapper.m_Player_MoveView;
         public InputAction @MousePosition => m_Wrapper.m_Player_MousePosition;
+        public InputAction @BulletChangeLeft => m_Wrapper.m_Player_BulletChangeLeft;
+        public InputAction @BulletChangeRight => m_Wrapper.m_Player_BulletChangeRight;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -232,6 +286,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @MousePosition.started += instance.OnMousePosition;
             @MousePosition.performed += instance.OnMousePosition;
             @MousePosition.canceled += instance.OnMousePosition;
+            @BulletChangeLeft.started += instance.OnBulletChangeLeft;
+            @BulletChangeLeft.performed += instance.OnBulletChangeLeft;
+            @BulletChangeLeft.canceled += instance.OnBulletChangeLeft;
+            @BulletChangeRight.started += instance.OnBulletChangeRight;
+            @BulletChangeRight.performed += instance.OnBulletChangeRight;
+            @BulletChangeRight.canceled += instance.OnBulletChangeRight;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -245,6 +305,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @MousePosition.started -= instance.OnMousePosition;
             @MousePosition.performed -= instance.OnMousePosition;
             @MousePosition.canceled -= instance.OnMousePosition;
+            @BulletChangeLeft.started -= instance.OnBulletChangeLeft;
+            @BulletChangeLeft.performed -= instance.OnBulletChangeLeft;
+            @BulletChangeLeft.canceled -= instance.OnBulletChangeLeft;
+            @BulletChangeRight.started -= instance.OnBulletChangeRight;
+            @BulletChangeRight.performed -= instance.OnBulletChangeRight;
+            @BulletChangeRight.canceled -= instance.OnBulletChangeRight;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -262,10 +328,53 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
+    public struct UIActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public UIActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void AddCallbacks(IUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
+        }
+
+        private void UnregisterCallbacks(IUIActions instance)
+        {
+        }
+
+        public void RemoveCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     public interface IPlayerActions
     {
         void OnFire(InputAction.CallbackContext context);
         void OnMoveView(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
+        void OnBulletChangeLeft(InputAction.CallbackContext context);
+        void OnBulletChangeRight(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
     }
 }

@@ -51,8 +51,6 @@ public class GunshipBullet : MonoBehaviour
         main = bulletPS.main;
 
         hitPSArray = hitPS.GetComponentsInChildren<ParticleSystem>();
-        Debug.Log(hitPSArray.Length + "array Num");
-        Debug.Log(hitmain.Length + "main array Num");
         for(int i = 0; i < hitPSArray.Length; i++)
         {
             hitmain[i] = hitPSArray[i].main;
@@ -63,15 +61,6 @@ public class GunshipBullet : MonoBehaviour
     {
         switch (type)
         {
-            //case "White":
-            //    colortype = ECOLOR_TYPE.WHITE;
-            //    main.startColor = White;
-            //    bulletLight.color = White;
-            //    for(int i = 0; i < hitmain.Length; i++)
-            //    {
-            //        hitmain[i].startColor = White;
-            //    }                
-            //    break;
             case EColorType.Red:
                 colortype = EColorType.Red;
                 main.startColor = Red;
@@ -110,16 +99,16 @@ public class GunshipBullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {        
-        if (other.TryGetComponent(out Enemy enemy) || other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (other.TryGetComponent(out Enemy enemy))
         {
             enemy.CalDamage(Damage, colortype);
-            rigid.constraints = RigidbodyConstraints.FreezePosition;
-            hitPS.transform.position = other.ClosestPoint(transform.position) - hitPSdir;
-            hitPS.transform.forward = -hitPSdir;
-            hitPS.Play();
-        }
-        
 
+        }
+
+        rigid.constraints = RigidbodyConstraints.FreezePosition;
+        hitPS.transform.position = other.ClosestPoint(transform.position) - hitPSdir;
+        hitPS.transform.forward = -hitPSdir;
+        hitPS.Play();
     }
     
        

@@ -11,7 +11,7 @@
                     "id": "613a5ab0-922a-4438-8a5d-890ab9208419",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold(duration=0.1,pressPoint=1)",
                     "initialStateCheck": true
                 },
                 {
@@ -31,6 +31,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "BulletChangeLeft",
+                    "type": "Button",
+                    "id": "60bb9ac3-e644-42f6-ac80-a73d05727023",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BulletChangeRight",
+                    "type": "Button",
+                    "id": "28e81b56-3b8f-48ad-a74b-67a3780b0cad",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -38,7 +56,7 @@
                     "name": "",
                     "id": "fa4ebf8d-12b8-4649-8f2f-2c0c1754cf7f",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Fire",
@@ -110,8 +128,36 @@
                     "action": "MoveView",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "5498b6ef-d54c-48dc-92f4-bcbd0e2b8635",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BulletChangeLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ce921e88-11c8-4fe5-ac82-0fe8c118d719",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BulletChangeRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "UI",
+            "id": "9c803deb-9bfb-482d-85a3-d41afd344844",
+            "actions": [],
+            "bindings": []
         }
     ],
     "controlSchemes": []

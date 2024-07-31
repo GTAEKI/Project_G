@@ -6,27 +6,58 @@ using UnityEngine.InputSystem;
 
 public class GameInput : MonoBehaviour
 {
-    public event EventHandler OnFireAction;
-
     private PlayerInputActions playerInputActions;
+    
+    public event EventHandler OnFireAction;
+    public event EventHandler OnBulletChange_Left;
+    public event EventHandler OnBulletChange_Right;
+
 
     private Vector3 lastMousePosition;
     [SerializeField]
     private LayerMask placementLayermask;
+
+    private bool isFire;
     private void Awake()
     {
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
 
-        playerInputActions.Player.Fire.performed += Fire;
+        playerInputActions.Player.Fire.started += FirePerformed;
+        playerInputActions.Player.Fire.canceled += FireCanceled;
+
+        playerInputActions.Player.BulletChangeLeft.performed += ChangeBulletLeftPerformed;
+        playerInputActions.Player.BulletChangeRight.performed += ChangeBulletRightPerformed;
+
     }
 
-    private void Fire(InputAction.CallbackContext obj)
+    public bool GetIsAttack()
     {
-        OnFireAction?.Invoke(this, EventArgs.Empty);        
-        Debug.Log("LeftMouse Click");
+        return isFire;
+    }
+    private void FirePerformed(InputAction.CallbackContext context)
+    {
+        Debug.Log("Peformed");
+        isFire = true;
     }
 
+    private void FireCanceled(InputAction.CallbackContext context)
+    {
+        Debug.Log("Canceled");
+        isFire = false;
+    }
+
+    private void ChangeBulletLeftPerformed(InputAction.CallbackContext context)
+    {
+        OnBulletChange_Left?.Invoke(context, EventArgs.Empty);
+        Debug.Log("Change weapon Left");
+    }
+
+    private void ChangeBulletRightPerformed(InputAction.CallbackContext context)
+    {
+        OnBulletChange_Right?.Invoke(context, EventArgs.Empty);
+        Debug.Log("Change weapon Right");
+    }
 
     public Vector2 GetMovementVectorNormailized()
     {
