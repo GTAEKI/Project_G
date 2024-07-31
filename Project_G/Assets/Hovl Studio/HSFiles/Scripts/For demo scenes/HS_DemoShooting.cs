@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class HS_DemoShooting : MonoBehaviour
 {
-    [Header("Fire rate")]
+    [Header("FirePerformed rate")]
     private int Prefab;
     [Range(0.0f, 1.0f)]
     public float fireRate = 0.1f;
