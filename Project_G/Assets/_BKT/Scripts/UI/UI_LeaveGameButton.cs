@@ -1,11 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UI_StartImage : UI_MouseInteraction
+public class UI_LeaveGameButton : UI_MouseInteraction
 {
     public override bool Init()
     {
@@ -18,9 +16,9 @@ public class UI_StartImage : UI_MouseInteraction
         return true;
     }
 
-    protected override void OnPointerClick(PointerEventData eventData) 
+    protected override void OnPointerClick(PointerEventData eventData)
     {
-        Util.LoadScene(Define.EScene.TutorialScene);
+        Application.Quit();
     }
 
     protected override void Register()
@@ -30,6 +28,6 @@ public class UI_StartImage : UI_MouseInteraction
 
     private void OnDestroy()
     {
-        Managers.UI.Remove<UI_StartImage>();
+        Managers.UI.Remove<UI_LeaveGameButton>();
     }
 }
