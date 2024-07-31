@@ -34,17 +34,17 @@ public class GameManager
     public void Result() 
     {
         OnGameResult?.Invoke();
-        //Managers.Obj.Clear();
-        //Managers.Controller.Clear();
-        //Managers.Map.Clear();
+        Managers.Obj.Clear();
+        Managers.Controller.Clear();
+        Managers.Map.Clear();
         Clear();
     }
 
     public void Clear() 
     {
-        //OnSelectHeroRespawnPoint = null;
-        //OnGameWin = null;
-        //OnGameLose = null;
+        OnSelectHeroRespawnPoint = null;
+        OnGameWin = null;
+        OnGameLose = null;
     }
 
 }

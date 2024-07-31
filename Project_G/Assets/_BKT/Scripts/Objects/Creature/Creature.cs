@@ -37,6 +37,13 @@ public class Creature : BaseObject
         return true;
     }
 
+    void OnDestroy()
+    {
+        Managers.Game.OnGameResult -= StopCreatureCoroutine;
+
+    }
+
+
     public virtual void SetInfo() 
     {
         // 상태에 따른 동작 시작

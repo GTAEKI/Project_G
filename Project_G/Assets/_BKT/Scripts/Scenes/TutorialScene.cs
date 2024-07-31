@@ -73,4 +73,10 @@ public class TutorialScene : InitBase
     {
         StopCoroutine(coEnemyRespawn);
     }
+
+    void OnDestroy()
+    {
+        Managers.Game.OnSelectHeroRespawnPoint -= StartGame;
+        Managers.Game.OnGameResult -= EndGame;
+    }
 }

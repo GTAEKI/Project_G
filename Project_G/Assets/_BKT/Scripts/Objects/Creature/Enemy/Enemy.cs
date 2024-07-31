@@ -91,6 +91,15 @@ public class Enemy : Creature
         //TODO
         // 불렛의 색깔 비교
         // 불렛 데미지에 대해 HP - 처리
+        // HSJ_
+        if(Hp <= 0)
+        {
+            CreatureState = ECreatureState.Die;
+        }
+        else
+        {
+            Hp -= damage;
+        }
     }
 
     public void HitHero() 

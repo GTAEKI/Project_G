@@ -29,7 +29,7 @@ public class GunshipBullet : MonoBehaviour
     private Color Yellow;
     #endregion
 
-    public float Damage { get; private set; }
+    public float Damage { get; private set; } = 10f;
 
     private const string default_Bulletcolor = "White";
     private ParticleSystem.MainModule main;

@@ -15,7 +15,8 @@ public class MapManager
     {
         Map = null;
         CellGrid = null;
-        _cells = null;
+        //_cells = null;
+        _cells.Clear();
     }
 
     // (CellPos, Creature) 셀 위치에 따른 Creature

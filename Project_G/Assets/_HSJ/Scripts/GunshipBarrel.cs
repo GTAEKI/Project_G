@@ -11,8 +11,6 @@ public class GunshipBarrel : MonoBehaviour
     private Camera gameCamera;
     [SerializeField]
     private GameInput gameInput;
-    [SerializeField]
-    private ParticleSystem flashParticle;
     #endregion
 
     private ResourceManager resource;
@@ -21,7 +19,7 @@ public class GunshipBarrel : MonoBehaviour
     private Vector3 bottomLeftWorld;
 
     
-    private float bulletSpeed = 25f;
+    private float bulletSpeed = 100f;
 
     [field: SerializeField]
     public EColorType BulletType { get; private set; } = EColorType.None;
@@ -55,7 +53,6 @@ public class GunshipBarrel : MonoBehaviour
 
     void GameInput_Fire()
     {
-        flashParticle.Play();
 
         Vector3 dir = gameCamera.transform.forward;
         
