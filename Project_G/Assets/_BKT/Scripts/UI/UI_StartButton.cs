@@ -20,7 +20,7 @@ public class UI_StartButton : UI_MouseInteraction
 
     protected override void OnPointerClick(PointerEventData eventData) 
     {
-        Util.LoadScene(Define.EScene.TutorialScene);
+        Util.LoadScene(Define.EScene.BattleScene);
     }
 
     protected override void Register()

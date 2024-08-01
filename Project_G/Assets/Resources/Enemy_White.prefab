@@ -2780,7 +2780,7 @@ Transform:
   - {fileID: 3754565515092194388}
   - {fileID: 437722924666257228}
   - {fileID: 8760692573197082188}
-  - {fileID: 957142402687947556}
+  - {fileID: 6618218487588250799}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &7087113648602434222
@@ -2931,7 +2931,7 @@ Transform:
   - {fileID: 3528166925991299503}
   m_Father: {fileID: 1136022238687367501}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &7865304128170312984
+--- !u!1001 &4303186391626576531
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -3002,16 +3002,16 @@ PrefabInstance:
     - target: {fileID: 8444047916393316033, guid: 1a3de59d397cc0648b55aec3a2c8df77,
         type: 3}
       propertyPath: m_Name
-      value: UI_Canvas_Hp
+      value: UI_Canvas_EnemyHp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a3de59d397cc0648b55aec3a2c8df77, type: 3}
---- !u!4 &957142402687947556 stripped
+--- !u!4 &6618218487588250799 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6948877887058253372, guid: 1a3de59d397cc0648b55aec3a2c8df77,
     type: 3}
-  m_PrefabInstance: {fileID: 7865304128170312984}
+  m_PrefabInstance: {fileID: 4303186391626576531}
   m_PrefabAsset: {fileID: 0}

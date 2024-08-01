@@ -10,8 +10,6 @@ public class UI_WinResult : UI_Base
             return false;
 
         Register();
-        gameObject.SetActive(false);
-        Debug.Log(this);
         return true;
     }
 

@@ -8,6 +8,7 @@ public class Hero : Creature
 {
     public TargetBuilding TargetBuiding { get; private set; }
     private bool _isTakingOver = false;
+    private UI_HeroHp UI_HeroHp { get; set; }
 
     public override bool Init()
     {
@@ -15,6 +16,7 @@ public class Hero : Creature
             return false;
 
         CreatureType = Define.ECreatureType.Hero;
+        UI_HeroHp = GameObject.Find("HeroHpBar").GetComponent<UI_HeroHp>();
 
         return true;
     }
@@ -26,7 +28,7 @@ public class Hero : Creature
         CreatureState = Define.ECreatureState.Idle;
         Speed = 3f;
         Hp = 100f;
-
+        UI_HeroHp.SetMaxHp(Hp);
     }
 
     protected override void UpdateIdle()
@@ -49,12 +51,6 @@ public class Hero : Creature
 
     protected override void UpdateMove()
     {
-        if (Hp <= 0) 
-        {
-            CreatureState = Define.ECreatureState.Die;
-            Managers.Game.Lose();
-        }
-
         Enemy enemy = FindRangeObject(2f, Managers.Obj.Enemies) as Enemy;
         if (enemy != null)
         {
@@ -103,6 +99,16 @@ public class Hero : Creature
     public void Attacked(float enemyPower) 
     {
         Hp -= enemyPower;
+        UI_HeroHp.ReflectUI(Hp);
+
+        if (Hp <= 0)
+        {
+            CreatureState = Define.ECreatureState.Die;
+            Managers.Game.Lose();
+            return;
+        }
+
         animator.SetTrigger("Attacked");
+
     }
 }

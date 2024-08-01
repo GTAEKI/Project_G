@@ -10,7 +10,6 @@ public class UI_LoseResult : UI_Base
             return false;
 
         Register();
-        gameObject.SetActive(false);
         return true;
     }
 

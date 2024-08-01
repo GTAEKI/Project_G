@@ -16,9 +16,9 @@ public class Enemy_Red : Enemy
 
     public override void SetInfo()
     {
-        base.SetInfo();
         Hp = 100f;
         Speed = 10f;
         Power = 10;
+        base.SetInfo();
     }
 }

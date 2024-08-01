@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Define;
 
 public class TargetBuilding : Building
 {
     private UI_MissionProgressBar _progressBar;
+    private UI_WorldSpace_Hp UI_Building_Hp { get; set; }
     //private bool _isDestroy = false;
     public float Hp { get; private set; } = 100f;
     private float _missionProgress = 0f;
@@ -15,6 +17,7 @@ public class TargetBuilding : Building
             return false;
 
         BuildingType = Define.EBuildingType.TargetBuilding;
+        UI_Building_Hp.SetMaxHp(Hp);
 
         return true;
     }
@@ -30,7 +33,7 @@ public class TargetBuilding : Building
 
     IEnumerator FillMissionProgress()
     {
-        while (_missionProgress <= 1) 
+        while (_missionProgress <= 100) 
         {
             _missionProgress += Time.deltaTime;
             Managers.UI.Get<UI_MissionProgressBar>().ReflectValue(_missionProgress);
@@ -38,5 +41,16 @@ public class TargetBuilding : Building
         }
         
         Managers.Game.Win();
+    }
+
+    public void Attacked(float enemyPower)
+    {
+        Hp -= enemyPower;
+        UI_Building_Hp.ReflectUI(Hp);
+
+        if (Hp <= 0)
+        {
+            Managers.Game.Lose();
+        }
     }
 }

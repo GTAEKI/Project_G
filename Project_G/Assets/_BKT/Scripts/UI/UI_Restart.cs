@@ -17,7 +17,7 @@ public class UI_Restart : UI_MouseInteraction
 
     protected override void OnPointerClick(PointerEventData eventData)
     {
-        Util.LoadScene(Define.EScene.TutorialScene);
+        Util.LoadScene(Define.EScene.BattleScene);
     }
 
     protected override void Register()

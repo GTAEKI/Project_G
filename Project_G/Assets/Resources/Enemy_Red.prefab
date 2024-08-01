@@ -2250,7 +2250,7 @@ Transform:
   - {fileID: 6024368366281019182}
   - {fileID: 5097663826086847525}
   - {fileID: 1376166659080047074}
-  - {fileID: 3845379771814867827}
+  - {fileID: 3512320595853040441}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8293561763934171342
@@ -2931,7 +2931,7 @@ Transform:
   - {fileID: 2330138383296068098}
   m_Father: {fileID: 6618635208176298097}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &6139205741226222927
+--- !u!1001 &5823465918347824389
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -3002,16 +3002,17 @@ PrefabInstance:
     - target: {fileID: 8444047916393316033, guid: 1a3de59d397cc0648b55aec3a2c8df77,
         type: 3}
       propertyPath: m_Name
-      value: UI_Canvas_Hp
+      value: UI_Canvas_EnemyHp
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8479082608084681140, guid: 1a3de59d397cc0648b55aec3a2c8df77, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a3de59d397cc0648b55aec3a2c8df77, type: 3}
---- !u!4 &3845379771814867827 stripped
+--- !u!4 &3512320595853040441 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6948877887058253372, guid: 1a3de59d397cc0648b55aec3a2c8df77,
     type: 3}
-  m_PrefabInstance: {fileID: 6139205741226222927}
+  m_PrefabInstance: {fileID: 5823465918347824389}
   m_PrefabAsset: {fileID: 0}

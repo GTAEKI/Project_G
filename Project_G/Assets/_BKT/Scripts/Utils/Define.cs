@@ -8,7 +8,6 @@ public static class Define
     public enum EScene
     {
         TitleScene,
-        TutorialScene,
         BaseScene,
         BattleScene,
         Dev_BKT,

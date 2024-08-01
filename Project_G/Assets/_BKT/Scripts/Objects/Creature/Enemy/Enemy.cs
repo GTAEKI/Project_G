@@ -9,6 +9,7 @@ public class Enemy : Creature
     public Hero TargetHero { get; private set; }
     public int Power { get; protected set; }
     public Define.EColorType ColorType { get; protected set; }
+    private UI_WorldSpace_Hp UI_EnemyHp { get; set; }
 
     public override bool Init()
     {
@@ -24,6 +25,8 @@ public class Enemy : Creature
     {
         base.SetInfo();
         CreatureState = Define.ECreatureState.Idle;
+        UI_EnemyHp = GetComponentInChildren<UI_WorldSpace_Hp>();
+        UI_EnemyHp.SetMaxHp(Hp);
     }
 
     protected override void UpdateIdle()
@@ -88,18 +91,17 @@ public class Enemy : Creature
 
     public void CalDamage(float damage, Define.EColorType colorType) 
     {
-        //TODO
-        // 불렛의 색깔 비교
-        // 불렛 데미지에 대해 HP - 처리
-        // HSJ_
+        if (ColorType == colorType)
+            damage *= 2;
+
+        Hp -= damage;
+        UI_EnemyHp.ReflectUI(Hp);
+
         if(Hp <= 0)
         {
             CreatureState = ECreatureState.Die;
         }
-        else
-        {
-            Hp -= damage;
-        }
+
     }
 
     public void HitHero() 

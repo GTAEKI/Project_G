@@ -37,26 +37,26 @@ public class GameInput : MonoBehaviour
     }
     private void FirePerformed(InputAction.CallbackContext context)
     {
-        Debug.Log("Peformed");
+        //Debug.Log("Peformed");
         isFire = true;
     }
 
     private void FireCanceled(InputAction.CallbackContext context)
     {
-        Debug.Log("Canceled");
+        //Debug.Log("Canceled");
         isFire = false;
     }
 
     private void ChangeBulletLeftPerformed(InputAction.CallbackContext context)
     {
         OnBulletChange_Left?.Invoke(context, EventArgs.Empty);
-        Debug.Log("Change weapon Left");
+        //Debug.Log("Change weapon Left");
     }
 
     private void ChangeBulletRightPerformed(InputAction.CallbackContext context)
     {
         OnBulletChange_Right?.Invoke(context, EventArgs.Empty);
-        Debug.Log("Change weapon Right");
+        //Debug.Log("Change weapon Right");
     }
 
     public Vector2 GetMovementVectorNormailized()
