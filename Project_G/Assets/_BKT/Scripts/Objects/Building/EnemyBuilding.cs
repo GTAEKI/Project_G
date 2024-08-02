@@ -23,13 +23,13 @@ public class EnemyBuilding : Building
         switch (randColor) 
         {
             case EColorType.White:
-                enemy = Managers.Obj.Spawn<Enemy_White>(transform.position);
+                enemy = Managers.Obj.Spawn<Enemy_White>(transform.position,true);
                 break;
             case EColorType.Red:
-                enemy = Managers.Obj.Spawn<Enemy_Red>(transform.position);
+                enemy = Managers.Obj.Spawn<Enemy_Red>(transform.position,true);
                 break;
             case EColorType.Yellow:
-                enemy = Managers.Obj.Spawn<Enemy_Yellow>(transform.position);
+                enemy = Managers.Obj.Spawn<Enemy_Yellow>(transform.position, true);
                 break;
         }
 

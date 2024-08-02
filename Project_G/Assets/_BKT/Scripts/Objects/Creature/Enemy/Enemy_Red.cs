@@ -16,6 +16,7 @@ public class Enemy_Red : Enemy
 
     public override void SetInfo()
     {
+        gameObject.SetActive(true);
         Hp = 100f;
         Speed = 10f;
         Power = 10;

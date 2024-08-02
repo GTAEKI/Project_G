@@ -19,6 +19,7 @@ public class Managers : MonoBehaviour
     private MapManager _map = new MapManager();
     private ControllerManager _controller = new ControllerManager();
     private UIManager _ui = new UIManager();
+    private PoolManager _pool = new PoolManager();
 
     public static ResourceManager Resource { get { return Instance?._resource; } }
     public static GameManager Game { get { return Instance?._game; } }
@@ -26,6 +27,7 @@ public class Managers : MonoBehaviour
     public static MapManager Map { get { return Instance?._map; } }
     public static ControllerManager Controller { get { return Instance?._controller; } }
     public static UIManager UI { get { return Instance?._ui; } }
+    public static PoolManager Pool { get { return Instance?._pool; } }
 
     public static void Init()
     {

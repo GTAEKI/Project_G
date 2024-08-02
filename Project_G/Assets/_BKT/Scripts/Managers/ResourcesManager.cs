@@ -13,15 +13,22 @@ public class ResourceManager
         return Resources.Load<T>($"{key}");
     }
 
-    public T Instantiate<T>(string key) where T : Object 
+    public GameObject Instantiate(string key, bool pooling = false)
     {
-        T obj = LoadFromResources<T>(key);
+        GameObject obj = LoadFromResources<GameObject>(key);
+        
+        if (pooling)
+            return Managers.Pool.Pop(obj);
+
         return Object.Instantiate(obj);
     }
 
     public void Destroy(GameObject go)
     {
         if (go == null)
+            return;
+
+        if (Managers.Pool.Push(go))
             return;
 
         Object.Destroy(go);

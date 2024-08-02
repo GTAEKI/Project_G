@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BattleScene : InitBase
 {
+    [SerializeField]
+    private int _maxEnemy = 5;
+
     Coroutine coEnemyRespawn;
 
     public override bool Init()
@@ -53,12 +57,18 @@ public class BattleScene : InitBase
 
     IEnumerator CoCreateEnemy() 
     {
-        while (true) 
+        while (true)
         {
+
             foreach (var enemyBuilding in Managers.Obj.EnemyBuildings)
             {
+                // 최대 적 숫자 설정
+                if (Managers.Obj.Enemies.Count >= _maxEnemy)
+                    yield return new WaitUntil(() => Managers.Obj.Enemies.Count < _maxEnemy);
+
                 int spawnChance = Random.Range(0, 10);
                 float spawnTime = Random.Range(0, 3);
+
 
                 if (spawnChance < 2)
                     yield return new WaitForSeconds(spawnTime);
@@ -78,5 +88,11 @@ public class BattleScene : InitBase
     {
         Managers.Game.OnSelectHeroRespawnPoint -= StartGame;
         Managers.Game.OnGameResult -= EndGame;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+            Managers.Pool.CheckPool();
     }
 }

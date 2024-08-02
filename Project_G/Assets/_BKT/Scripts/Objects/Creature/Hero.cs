@@ -27,7 +27,7 @@ public class Hero : Creature
 
         CreatureState = Define.ECreatureState.Idle;
         Speed = 3f;
-        Hp = 100f;
+        Hp = 10000f;
         UI_HeroHp.SetMaxHp(Hp);
     }
 

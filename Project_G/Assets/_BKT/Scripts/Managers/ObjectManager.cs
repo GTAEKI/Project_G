@@ -62,11 +62,11 @@ public class ObjectManager
     }
 
     // 생성
-    public T Spawn<T>(Vector3 position) where T : BaseObject
+    public T Spawn<T>(Vector3 position, bool pooling = false) where T : BaseObject
     {
         string prefabName = typeof(T).Name;
 
-        GameObject go = Managers.Resource.Instantiate<GameObject>(prefabName);
+        GameObject go = Managers.Resource.Instantiate(prefabName,pooling);
         go.name = prefabName;
         go.transform.position = position;
 

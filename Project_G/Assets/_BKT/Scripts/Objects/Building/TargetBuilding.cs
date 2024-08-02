@@ -17,7 +17,7 @@ public class TargetBuilding : Building
             return false;
 
         BuildingType = Define.EBuildingType.TargetBuilding;
-        UI_Building_Hp.SetMaxHp(Hp);
+        //UI_Building_Hp.SetMaxHp(Hp);
 
         return true;
     }

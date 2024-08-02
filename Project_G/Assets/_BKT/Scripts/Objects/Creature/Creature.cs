@@ -228,10 +228,15 @@ public class Creature : BaseObject
         }
     }
 
+    #endregion
     private void StopCreatureCoroutine() 
     {
         StopCoroutine(coLerp);
         StopCoroutine(coState);
     }
-    #endregion
+
+    private void OnDisable()
+    {
+        StopCreatureCoroutine();
+    }
 }

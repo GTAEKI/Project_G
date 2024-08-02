@@ -36,12 +36,16 @@ public class Enemy : Creature
         {
             TargetHero = hero;
             CreatureState = Define.ECreatureState.Move;
-            
         }
     }
 
     protected override void UpdateMove()
     {
+        if (Hp <= 0)
+        {
+            CreatureState = ECreatureState.Die;
+        }
+
         Hero hero = FindRangeObject(2f, Managers.Obj.Heroes) as Hero;
         if (hero != null)
         {
@@ -89,6 +93,11 @@ public class Enemy : Creature
         }
     }
 
+    protected override void UpdateDie()
+    {
+        Managers.Obj.Despawn(this);
+    }
+
     public void CalDamage(float damage, Define.EColorType colorType) 
     {
         if (ColorType == colorType)
@@ -96,12 +105,6 @@ public class Enemy : Creature
 
         Hp -= damage;
         UI_EnemyHp.ReflectUI(Hp);
-
-        if(Hp <= 0)
-        {
-            CreatureState = ECreatureState.Die;
-        }
-
     }
 
     public void HitHero() 
