@@ -33,7 +33,6 @@ public class UI_WorldSpace_Hp : InitBase
 
     public void ReflectUI(float hp)
     {
-        Debug.Log($"HP = {hp}");
         _slider.value = hp;
     }
 }

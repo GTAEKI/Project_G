@@ -6,7 +6,7 @@ using UnityEngine;
 public class BattleScene : InitBase
 {
     [SerializeField]
-    private int _maxEnemy = 5;
+    private int _maxEnemy = 1;
 
     Coroutine coEnemyRespawn;
 
@@ -32,11 +32,6 @@ public class BattleScene : InitBase
             EnemyBuilding enemyBuilding = enemyPoint.GetOrAddComponent<EnemyBuilding>();
             Managers.Obj.Register(enemyBuilding);
         }
-        #endregion
-
-        #region Register UI
-        //Managers.UI.Create<UI_WinResult>();
-        //Managers.UI.Create<UI_LoseResult>();
         #endregion
 
         Managers.Game.OnSelectHeroRespawnPoint -= StartGame;
@@ -65,6 +60,7 @@ public class BattleScene : InitBase
                 // 최대 적 숫자 설정
                 if (Managers.Obj.Enemies.Count >= _maxEnemy)
                     yield return new WaitUntil(() => Managers.Obj.Enemies.Count < _maxEnemy);
+                    //yield return new WaitUntil(() => Managers.Obj.Enemies.Count > _maxEnemy + 1);
 
                 int spawnChance = Random.Range(0, 10);
                 float spawnTime = Random.Range(0, 3);
@@ -88,11 +84,5 @@ public class BattleScene : InitBase
     {
         Managers.Game.OnSelectHeroRespawnPoint -= StartGame;
         Managers.Game.OnGameResult -= EndGame;
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-            Managers.Pool.CheckPool();
     }
 }

@@ -16,10 +16,10 @@ public class Enemy_Yellow : Enemy
 
     public override void SetInfo()
     {
-        gameObject.SetActive(true);
-        Hp = 500f;
+        base.SetInfo();
+
+        SetHp(500f);
         Speed = 3f;
         Power = 5;
-        base.SetInfo();
     }
 }

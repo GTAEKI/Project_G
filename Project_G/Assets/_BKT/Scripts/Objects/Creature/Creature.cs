@@ -33,7 +33,6 @@ public class Creature : BaseObject
             return false;
 
         animator = GetComponent<Animator>();
-
         return true;
     }
 
@@ -43,14 +42,17 @@ public class Creature : BaseObject
 
     }
 
-
-    public virtual void SetInfo() 
+    public virtual void SetInfo()
     {
+        CreatureState = Define.ECreatureState.Idle;
+
         // 상태에 따른 동작 시작
         coState = StartCoroutine(CoUpdateState());
         // 셀 좌표 이동 시작
         coLerp = StartCoroutine(CoLerpToCellPos());
+
         // 셀 이동 정지 이벤트 추가
+        Managers.Game.OnGameResult -= StopCreatureCoroutine;
         Managers.Game.OnGameResult += StopCreatureCoroutine;
     }
 
@@ -229,14 +231,9 @@ public class Creature : BaseObject
     }
 
     #endregion
-    private void StopCreatureCoroutine() 
+    protected void StopCreatureCoroutine() 
     {
         StopCoroutine(coLerp);
         StopCoroutine(coState);
-    }
-
-    private void OnDisable()
-    {
-        StopCreatureCoroutine();
     }
 }

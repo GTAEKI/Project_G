@@ -25,7 +25,6 @@ public class UI_HeroHp : UI_Base
 
     public void ReflectUI(float hp)
     {
-        Debug.Log($"HP = {hp}");
         _slider.value = hp;
     }
 

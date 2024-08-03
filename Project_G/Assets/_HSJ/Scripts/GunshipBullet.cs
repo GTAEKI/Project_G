@@ -102,7 +102,6 @@ public class GunshipBullet : MonoBehaviour
         if (other.TryGetComponent(out Enemy enemy))
         {
             enemy.CalDamage(Damage, colortype);
-            Debug.Log("Hit Enemy");
         }
 
         rigid.constraints = RigidbodyConstraints.FreezePosition;

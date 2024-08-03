@@ -26,7 +26,7 @@ internal class Pool
     public Pool(GameObject go) 
     {
         _prefab = go;
-        _pool = new ObjectPool<GameObject>(Create, OnGet, OnRelease, OnDestroy,false,1,1);
+        _pool = new ObjectPool<GameObject>(Create, OnGet, OnRelease, OnDestroy);
     }
 
     private GameObject Create() 
@@ -85,18 +85,13 @@ public class PoolManager
         if (_pools.ContainsKey(go.name) == false)
             Create(go);
 
-
-        return _pools[go.name].Pop();
+        GameObject obj = _pools[go.name].Pop();
+        Debug.Log($"{obj.name} + {obj.activeSelf}");
+        return obj;
     }
 
     public void Clear() 
     {
         _pools.Clear();
     }
-
-    public void CheckPool() 
-    {
-        Debug.Log(_pools.Count);
-    }
-
 }

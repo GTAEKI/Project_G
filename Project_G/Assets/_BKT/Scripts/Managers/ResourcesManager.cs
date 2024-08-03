@@ -16,9 +16,11 @@ public class ResourceManager
     public GameObject Instantiate(string key, bool pooling = false)
     {
         GameObject obj = LoadFromResources<GameObject>(key);
-        
-        if (pooling)
+
+        if (pooling) 
+        {
             return Managers.Pool.Pop(obj);
+        }
 
         return Object.Instantiate(obj);
     }

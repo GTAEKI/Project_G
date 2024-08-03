@@ -29,11 +29,13 @@ public class ObjectManager
                     obj.transform.parent = HeroRoot;
                     Hero hero = creature as Hero;
                     Heroes.Add(hero);
+                    //hero.SetInfo();
                     break;
                 case Define.ECreatureType.Enemy:
                     obj.transform.parent = EnemyRoot;
                     Enemy enemy = creature as Enemy;
                     Enemies.Add(enemy);
+                    //enemy.SetInfo();
                     break;
                 default:
                     return false;
@@ -71,6 +73,8 @@ public class ObjectManager
         go.transform.position = position;
 
         BaseObject obj = go.GetComponent<BaseObject>();
+
+        //Debug.Log($"{obj.name} + {obj.gameObject.activeSelf}");
 
         if (Register(obj) == false) 
         {

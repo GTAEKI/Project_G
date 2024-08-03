@@ -9,7 +9,7 @@ public class Enemy : Creature
     public Hero TargetHero { get; private set; }
     public int Power { get; protected set; }
     public Define.EColorType ColorType { get; protected set; }
-    private UI_WorldSpace_Hp UI_EnemyHp { get; set; }
+    protected UI_WorldSpace_Hp UI_EnemyHp { get; set; }
 
     public override bool Init()
     {
@@ -24,7 +24,11 @@ public class Enemy : Creature
     public override void SetInfo()
     {
         base.SetInfo();
-        CreatureState = Define.ECreatureState.Idle;
+    }
+
+    protected void SetHp(float value) 
+    {
+        Hp = value;
         UI_EnemyHp = GetComponentInChildren<UI_WorldSpace_Hp>();
         UI_EnemyHp.SetMaxHp(Hp);
     }
@@ -95,6 +99,7 @@ public class Enemy : Creature
 
     protected override void UpdateDie()
     {
+        Debug.Log("Die");
         Managers.Obj.Despawn(this);
     }
 

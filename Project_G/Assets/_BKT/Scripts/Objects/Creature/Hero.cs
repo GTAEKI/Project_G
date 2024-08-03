@@ -24,8 +24,6 @@ public class Hero : Creature
     public override void SetInfo()
     {
         base.SetInfo();
-
-        CreatureState = Define.ECreatureState.Idle;
         Speed = 3f;
         Hp = 10000f;
         UI_HeroHp.SetMaxHp(Hp);
