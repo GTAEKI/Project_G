@@ -20,6 +20,7 @@ public class Managers : MonoBehaviour
     private ControllerManager _controller = new ControllerManager();
     private UIManager _ui = new UIManager();
     private PoolManager _pool = new PoolManager();
+    private ScrapManager _scrap = new ScrapManager();
 
     public static ResourceManager Resource { get { return Instance?._resource; } }
     public static GameManager Game { get { return Instance?._game; } }
@@ -28,6 +29,7 @@ public class Managers : MonoBehaviour
     public static ControllerManager Controller { get { return Instance?._controller; } }
     public static UIManager UI { get { return Instance?._ui; } }
     public static PoolManager Pool { get { return Instance?._pool; } }
+    public static ScrapManager Scrap { get { return Instance?._scrap; } }
 
     public static void Init()
     {

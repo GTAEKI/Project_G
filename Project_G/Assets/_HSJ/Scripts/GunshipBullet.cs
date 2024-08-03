@@ -57,7 +57,7 @@ public class GunshipBullet : MonoBehaviour
         }
     }
 
-    public void InitBulletColor(EColorType type = EColorType.None)
+    public void InitBulletColor(EColorType type = EColorType.White)
     {
         switch (type)
         {

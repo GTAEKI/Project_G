@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1806cfdbe1ec724799e55427e2685f2, type: 3}
+  m_Name: Database
+  m_EditorClassIdentifier: 
+  objectData:
+  - <Name>k__BackingField: Base_building_tower_a_parent
+    <ID>k__BackingField: 0
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 3251358402267180642, guid: f7aed2faf183e8e4890475484d7340de,
+      type: 3}
+  - <Name>k__BackingField: Base_building__house_c_parent
+    <ID>k__BackingField: 1
+    <Size>k__BackingField: {x: 2, y: 2}
+    <Prefab>k__BackingField: {fileID: 1702938083802538661, guid: 2307138b3a8dbe94e9c09cd1560e5a37,
+      type: 3}
