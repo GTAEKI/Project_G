@@ -24,10 +24,10 @@ public class TestScene : InitBase
         Managers.Obj.Register(targetBuilding);
 
         Hero hero = Managers.Obj.Spawn<Hero>(HeroRespawn.transform.position);
-        Managers.Map.MoveTo(hero, Managers.Map.World2Cell(hero.transform.position), true);
+        Managers.Map.MoveTo(hero, Managers.Map.World2Cell(hero.transform.position), hero.CreatureType ,true);
 
         Enemy enemy = Managers.Obj.Spawn<Enemy>(EnemyRespawn.transform.position);
-        Managers.Map.MoveTo(enemy, Managers.Map.World2Cell(enemy.transform.position), true);
+        Managers.Map.MoveTo(enemy, Managers.Map.World2Cell(enemy.transform.position),enemy.CreatureType ,true);
         #endregion
 
         return true;

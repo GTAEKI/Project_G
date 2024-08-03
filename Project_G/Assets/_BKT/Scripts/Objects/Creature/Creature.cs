@@ -207,14 +207,14 @@ public class Creature : BaseObject
             return Define.EFindPathResult.Fail_LerpCell;
 
         // A*
-        List<Vector3Int> path = Managers.Map.FindPath(CellPos, destCellPos);
+        List<Vector3Int> path = Managers.Map.FindPath(CellPos, destCellPos, CreatureType);
         if (path.Count < 2)
             return Define.EFindPathResult.Fail_NoPath;
 
         Vector3Int dirCellPos = path[1] - CellPos;
         Vector3Int nextPos = CellPos + dirCellPos;
 
-        if (Managers.Map.MoveTo(this, nextPos) == false)
+        if (Managers.Map.MoveTo(this, nextPos,CreatureType) == false)
             return Define.EFindPathResult.Fail_MoveTo;
 
         return Define.EFindPathResult.Success;

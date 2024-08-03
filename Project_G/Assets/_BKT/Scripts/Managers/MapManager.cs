@@ -84,9 +84,9 @@ public class MapManager
         }
     }
 
-    public bool MoveTo(Creature obj, Vector3Int cellPos, bool forceMove = false)
+    public bool MoveTo(Creature obj, Vector3Int cellPos, Define.ECreatureType cretureType, bool forceMove = false)
     {
-        if (CanGo(cellPos) == false) 
+        if (CanGo(cellPos, cretureType) == false) 
         {
             return false;
         }
@@ -96,7 +96,7 @@ public class MapManager
         RemoveObject(obj);
 
         // 새 좌표에 오브젝트를 등록한다.
-        AddObject(obj, cellPos);
+        AddObject(obj, cellPos, cretureType);
 
         // 셀 좌표 이동
         obj.SetCellPos(cellPos, forceMove);
@@ -133,9 +133,9 @@ public class MapManager
     }
 
     // 해당 셀 위치에 자신을 추가 
-    public bool AddObject(Creature obj, Vector3Int cellPos)
+    public bool AddObject(Creature obj, Vector3Int cellPos, Define.ECreatureType creatureType)
     {
-        if (CanGo(cellPos) == false)
+        if (CanGo(cellPos, creatureType) == false)
         {
             Debug.LogWarning($"AddObject Failed");
             return false;
@@ -152,12 +152,12 @@ public class MapManager
         return true;
     }
 
-    public bool CanGo(Vector3 worldPos)
+    public bool CanGo(Vector3 worldPos, Define.ECreatureType creatureType)
     {
-        return CanGo(World2Cell(worldPos));
+        return CanGo(World2Cell(worldPos), creatureType);
     }
 
-    public bool CanGo(Vector3Int cellPos)
+    public bool CanGo(Vector3Int cellPos, Define.ECreatureType creatureType)
     {
         if (cellPos.x < MinX || cellPos.x > MaxX)
             return false;
@@ -173,8 +173,17 @@ public class MapManager
 
         Define.ECellCollisionType type = _collision[x, y];
 
-        if (type == Define.ECellCollisionType.None || type == Define.ECellCollisionType.Building)
-            return true;
+        switch (creatureType) 
+        {
+            case Define.ECreatureType.Hero:
+                if (type == Define.ECellCollisionType.None || type == Define.ECellCollisionType.Building)
+                    return true;
+                break;
+            case Define.ECreatureType.Enemy:
+                if (type == Define.ECellCollisionType.None)
+                    return true;
+                break;
+        }
 
         return false;
     }
@@ -214,7 +223,7 @@ public class MapManager
 		new Vector3Int(-1, 1, 0),
 	};
 
-    public List<Vector3Int> FindPath(Vector3Int startCellPos, Vector3Int destCellPos, int maxDepth = 20)
+    public List<Vector3Int> FindPath(Vector3Int startCellPos, Vector3Int destCellPos, Define.ECreatureType cretureType, int maxDepth = 20)
     {
         Dictionary<Vector3Int, int> best = new Dictionary<Vector3Int, int>();
         Dictionary<Vector3Int, Vector3Int> parent = new Dictionary<Vector3Int, Vector3Int>();
@@ -253,7 +262,7 @@ public class MapManager
             {
                 Vector3Int next = pos + dir;
 
-                if (CanGo(next) == false)
+                if (CanGo(next, cretureType) == false)
                     continue;
 
                 int h = (dest - next).sqrMagnitude;

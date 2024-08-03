@@ -45,9 +45,8 @@ public class BattleScene : InitBase
     public void StartGame(Transform transform) 
     {
         Hero hero = Managers.Obj.Spawn<Hero>(transform.position);
-        Managers.Map.MoveTo(hero, Managers.Map.World2Cell(hero.transform.position), true);
+        Managers.Map.MoveTo(hero, Managers.Map.World2Cell(hero.transform.position),hero.CreatureType, true);
         coEnemyRespawn = StartCoroutine(CoCreateEnemy());
-        
     }
 
     IEnumerator CoCreateEnemy() 

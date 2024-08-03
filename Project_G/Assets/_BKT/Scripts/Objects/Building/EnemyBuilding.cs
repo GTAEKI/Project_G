@@ -34,6 +34,6 @@ public class EnemyBuilding : Building
                 break;
         }
 
-        Managers.Map.MoveTo(enemy, Managers.Map.World2Cell(enemy.transform.position), true);
+        Managers.Map.MoveTo(enemy, Managers.Map.World2Cell(enemy.transform.position),enemy.CreatureType,true);
     }
 }
