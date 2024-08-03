@@ -48,6 +48,7 @@ public static class Define
     {
         None,
         Wall,
+        Building,
     }
 
     public enum EFindPathResult
@@ -81,6 +82,7 @@ public static class Define
     #region Hard Coding
     public const char MAP_TOOL_WALL = '0';
     public const char MAP_TOOL_NONE = '1';
+    public const char MAP_TOOL_BUILDING = '2';
 
     public const string HeroRespawn = "HeroRespawn";
     public const string EnemyRespawn = "EnemyRespawn";

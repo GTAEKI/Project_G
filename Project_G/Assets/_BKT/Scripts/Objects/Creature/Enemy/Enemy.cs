@@ -6,10 +6,11 @@ using static Define;
 
 public class Enemy : Creature
 {
-    public Hero TargetHero { get; private set; }
+    protected IDamageable Target { get; private set; }
     public int Power { get; protected set; }
     public Define.EColorType ColorType { get; protected set; }
     protected UI_WorldSpace_Hp UI_EnemyHp { get; set; }
+    private bool TriggerBuilding { get; set; }
 
     public override bool Init()
     {
@@ -38,18 +39,38 @@ public class Enemy : Creature
         Hero hero = FindClosestObject(Managers.Obj.Heroes) as Hero;
         if (hero != null)
         {
-            TargetHero = hero;
+            Target = hero;
             CreatureState = Define.ECreatureState.Move;
         }
     }
 
     protected override void UpdateMove()
     {
+        // 1. 체력 0이면 사망
         if (Hp <= 0)
         {
             CreatureState = ECreatureState.Die;
         }
 
+        // 2. 점령이 시작됐다면 건물을 타격
+        var targetBuilding = Target as TargetBuilding;
+        if (TriggerBuilding == true && targetBuilding != null) 
+        {
+            animator.SetTrigger("Attack");
+            transform.LookAt(targetBuilding.transform.position);
+            return;
+        }
+
+        foreach (var building in Managers.Obj.TargetBuildings)
+        {
+            // 미션이 시작된 건물이 타겟
+            if (building.IsMissionStart)
+            {
+                Target = building;
+            }
+        }
+
+        // 3. 점령이 시작되지 않았다면 히어로를 찾아 공격
         Hero hero = FindRangeObject(2f, Managers.Obj.Heroes) as Hero;
         if (hero != null)
         {
@@ -57,28 +78,9 @@ public class Enemy : Creature
             return;
         }
 
-        if (TargetHero == null)
-        {
-            CreatureState = Define.ECreatureState.Idle;
-            
-        }
-        else
-        {
-            Define.EFindPathResult result = FindPathAndMoveToCellPos(TargetHero.transform.position);
-            switch (result)
-            {
-                case Define.EFindPathResult.Success:
-                    break;
-                case Define.EFindPathResult.Fail_NoPath:
-                    break;
-                case Define.EFindPathResult.Fail_LerpCell:
-                    break;
-                case Define.EFindPathResult.Fail_MoveTo:
-                    break;
-            }
-
-            //Debug.Log(result);
-        }
+        // 4. 이동
+        BaseObject obj = Target as BaseObject;
+        Define.EFindPathResult result = FindPathAndMoveToCellPos(obj.transform.position);
     }
 
     protected override void UpdateAnimation()
@@ -112,8 +114,24 @@ public class Enemy : Creature
         UI_EnemyHp.ReflectUI(Hp);
     }
 
-    public void HitHero() 
+    public void HitObject() 
     {
-        TargetHero.Attacked(Power);
+        Target.Attacked(Power);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "TargetBuilding" && Target as TargetBuilding != null) 
+        {
+            TriggerBuilding = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "TargetBuilding" && Target as TargetBuilding != null) 
+        {
+            TriggerBuilding = false;
+        }
     }
 }

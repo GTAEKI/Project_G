@@ -33,12 +33,17 @@ public class MapEditor : MonoBehaviour
                     for (int x = tm.cellBounds.xMin; x <= tm.cellBounds.xMax; x++)
                     {
                         TileBase tile = tm.GetTile(new Vector3Int(x, y, 0));
-                        if (tile != null)
+                        if (tile == null)
                         {
-                            writer.Write(Define.MAP_TOOL_NONE);
-                        }
-                        else
                             writer.Write(Define.MAP_TOOL_WALL);
+                        }
+                        else 
+                        {
+                            if (tile.name == "MovableArea")
+                                writer.Write(Define.MAP_TOOL_NONE);
+                            else if (tile.name == "BuildingArea")
+                                writer.Write(Define.MAP_TOOL_BUILDING);
+                        }
                     }
                     writer.WriteLine();
                 }

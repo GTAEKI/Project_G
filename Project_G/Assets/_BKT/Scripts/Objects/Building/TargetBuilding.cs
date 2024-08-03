@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Define;
 
-public class TargetBuilding : Building
+public class TargetBuilding : Building,IDamageable
 {
     private UI_MissionProgressBar _progressBar;
     private UI_WorldSpace_Hp UI_Building_Hp { get; set; }
     //private bool _isDestroy = false;
     public float Hp { get; private set; } = 100f;
+    public bool IsMissionStart { get; private set; } = false;
     private float _missionProgress = 0f;
 
     public override bool Init()
@@ -17,8 +19,7 @@ public class TargetBuilding : Building
             return false;
 
         BuildingType = Define.EBuildingType.TargetBuilding;
-        //UI_Building_Hp.SetMaxHp(Hp);
-
+        UI_Building_Hp = GameObject.Find("UI_Canvas_BuildingHp").GetComponent<UI_WorldSpace_Hp>();
         return true;
     }
 
@@ -26,14 +27,16 @@ public class TargetBuilding : Building
     {
         if (other.tag == "Player")
         {
+            IsMissionStart = true;
             Debug.Log("Hero입장");
+            Managers.Obj.Despawn(other.GetComponent<Hero>());
             StartCoroutine(FillMissionProgress());
         }
     }
 
     IEnumerator FillMissionProgress()
     {
-        while (_missionProgress <= 100) 
+        while (_missionProgress <= 30) 
         {
             _missionProgress += Time.deltaTime;
             Managers.UI.Get<UI_MissionProgressBar>().ReflectValue(_missionProgress);
@@ -43,9 +46,9 @@ public class TargetBuilding : Building
         Managers.Game.Win();
     }
 
-    public void Attacked(float enemyPower)
+    public void Attacked(float damage)
     {
-        Hp -= enemyPower;
+        Hp -= damage;
         UI_Building_Hp.ReflectUI(Hp);
 
         if (Hp <= 0)

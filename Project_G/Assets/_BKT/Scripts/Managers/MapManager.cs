@@ -75,6 +75,9 @@ public class MapManager
                     case Define.MAP_TOOL_NONE:
                         _collision[x, y] = Define.ECellCollisionType.None;
                         break;
+                    case Define.MAP_TOOL_BUILDING:
+                        _collision[x, y] = Define.ECellCollisionType.Building;
+                        break;
                 }
                 // Debug.Log(_collision[x , y]);
             }
@@ -169,7 +172,8 @@ public class MapManager
         int y = MaxY - cellPos.y;
 
         Define.ECellCollisionType type = _collision[x, y];
-        if (type == Define.ECellCollisionType.None)
+
+        if (type == Define.ECellCollisionType.None || type == Define.ECellCollisionType.Building)
             return true;
 
         return false;

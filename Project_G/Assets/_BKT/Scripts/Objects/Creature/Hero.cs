@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static Define;
 
-public class Hero : Creature
+public class Hero : Creature, IDamageable
 {
     public TargetBuilding TargetBuiding { get; private set; }
     private bool _isTakingOver = false;
@@ -94,9 +94,9 @@ public class Hero : Creature
         }
     }
 
-    public void Attacked(float enemyPower) 
+    public void Attacked(float damage) 
     {
-        Hp -= enemyPower;
+        Hp -= damage;
         UI_HeroHp.ReflectUI(Hp);
 
         if (Hp <= 0)
