@@ -1,23 +1,27 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class GameInput : MonoBehaviour
 {
-    private PlayerInputActions playerInputActions;
     
     public event EventHandler OnFireAction;
     public event EventHandler OnBulletChange_Left;
     public event EventHandler OnBulletChange_Right;
+    public event Action OnClicked;
+    public event Action OnExit;
 
 
+    private PlayerInputActions playerInputActions;
+    private bool isFire;
     private Vector3 lastMousePosition;
     [SerializeField]
     private LayerMask placementLayermask;
+    
 
-    private bool isFire;
+
     private void Awake()
     {
         playerInputActions = new PlayerInputActions();
@@ -26,10 +30,25 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Fire.started += FirePerformed;
         playerInputActions.Player.Fire.canceled += FireCanceled;
 
-        playerInputActions.Player.BulletChangeLeft.performed += ChangeBulletLeftPerformed;
-        playerInputActions.Player.BulletChangeRight.performed += ChangeBulletRightPerformed;
+        playerInputActions.Player.BulletChangeLeft.started += ChangeBulletLeftPerformed;
+        playerInputActions.Player.BulletChangeRight.started += ChangeBulletRightPerformed;
 
     }
+
+    private void Update()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            OnClicked?.Invoke();
+        }
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            OnExit?.Invoke();
+        }
+    }
+
+    public bool isPointerOverUI()
+        => EventSystem.current.IsPointerOverGameObject();
 
     public bool GetIsAttack()
     {

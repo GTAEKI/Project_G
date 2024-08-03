@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class GunshipMovement : MonoBehaviour
 {
-    [SerializeField]
+
+
+    private Gunship gunship;
     GameInput gameInput;
-    [SerializeField]
-    Camera gameCamera;
+
     private float moveSpeed = 10f;
-    
-        
+
     void Start()
     {
-
+        Init();
     }
 
+    void Init()
+    {
+        gunship = GetComponent<Gunship>();        
+        gameInput = gunship.GameInput;
+        
+    }
     void Update()
     {
         Handle_Movement();

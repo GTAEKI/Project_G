@@ -181,8 +181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4c6bdaaf9f4e404e918ba3145ac2564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameCamera: {fileID: 4536505679790876247}
-  gameInput: {fileID: 0}
   <BulletType>k__BackingField: 0
 --- !u!1 &4541525795858639680
 GameObject:
@@ -194,6 +192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1083308915705067463}
   - component: {fileID: 1512174008774696075}
+  - component: {fileID: 319041039083155810}
   m_Layer: 0
   m_Name: Gunship
   m_TagString: Untagged
@@ -230,5 +229,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75a7a9f9d9e432d43a0399922bee674b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameInput: {fileID: 0}
-  gameCamera: {fileID: 4536505679790876247}
+--- !u!114 &319041039083155810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4541525795858639680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08cded5c80512404e912b98f210d037b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <GameInput>k__BackingField: {fileID: 0}
+  <MainCamera>k__BackingField: {fileID: 0}
