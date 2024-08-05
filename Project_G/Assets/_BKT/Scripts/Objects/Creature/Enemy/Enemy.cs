@@ -40,8 +40,12 @@ public class Enemy : Creature
         if (hero != null)
         {
             Target = hero;
-            CreatureState = Define.ECreatureState.Move;
         }
+        else 
+        {
+            Target = FindClosestObject(Managers.Obj.TargetBuildings) as TargetBuilding;
+        }
+        CreatureState = Define.ECreatureState.Move;
     }
 
     protected override void UpdateMove()
@@ -102,7 +106,7 @@ public class Enemy : Creature
     protected override void UpdateDie()
     {
         Debug.Log("Die");
-        Managers.Obj.Despawn(this);
+        Managers.Obj.Despawn(this,true);
     }
 
     public void CalDamage(float damage, Define.EColorType colorType) 

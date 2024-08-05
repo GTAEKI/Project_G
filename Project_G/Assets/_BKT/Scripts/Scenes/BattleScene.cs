@@ -7,8 +7,9 @@ public class BattleScene : InitBase
 {
     [SerializeField]
     private int _maxEnemy = 1;
-
-    public GameObject[] TargetBuildings;
+    private GameObject[] EnemyRespawnPoints;
+    private GameObject[] TargetBuildings;
+    //public GameObject[] TargetBuildings;
 
     Coroutine coEnemyRespawn;
 
@@ -19,10 +20,21 @@ public class BattleScene : InitBase
 
         Managers.Map.LoadMap("BattleMap");
 
-        #region Register Buildings
-        GameObject[] EnemyRespawnPoints = GameObject.FindGameObjectsWithTag(Define.EnemyRespawn);
-        //GameObject[] TargetBuildings = GameObject.FindGameObjectsWithTag(Define.TargetBuilding);
+        EnemyRespawnPoints = GameObject.FindGameObjectsWithTag(Define.EnemyRespawn);
+        TargetBuildings = GameObject.FindGameObjectsWithTag(Define.TargetBuilding);
 
+
+        Managers.Game.OnSelectHeroRespawnPoint -= StartGame;
+        Managers.Game.OnSelectHeroRespawnPoint += StartGame;
+        Managers.Game.OnGameResult -= EndGame;
+        Managers.Game.OnGameResult += EndGame;
+
+        return true;
+    }
+
+    public void StartGame(Transform transform) 
+    {
+        #region Register Buildings
         foreach (var target in TargetBuildings)
         {
             TargetBuilding targetBuilding = target.GetOrAddComponent<TargetBuilding>();
@@ -36,16 +48,6 @@ public class BattleScene : InitBase
         }
         #endregion
 
-        Managers.Game.OnSelectHeroRespawnPoint -= StartGame;
-        Managers.Game.OnSelectHeroRespawnPoint += StartGame;
-        Managers.Game.OnGameResult -= EndGame;
-        Managers.Game.OnGameResult += EndGame;
-
-        return true;
-    }
-
-    public void StartGame(Transform transform) 
-    {
         Hero hero = Managers.Obj.Spawn<Hero>(transform.position);
         Managers.Map.MoveTo(hero, Managers.Map.World2Cell(hero.transform.position),hero.CreatureType, true);
         coEnemyRespawn = StartCoroutine(CoCreateEnemy());

@@ -25,7 +25,7 @@ public class ResourceManager
         return Object.Instantiate(obj);
     }
 
-    public void Destroy(GameObject go)
+    public void Destroy(GameObject go, bool pooling)
     {
         if (go == null)
             return;
