@@ -8,6 +8,8 @@ public class BattleScene : InitBase
     [SerializeField]
     private int _maxEnemy = 1;
 
+    public GameObject[] TargetBuildings;
+
     Coroutine coEnemyRespawn;
 
     public override bool Init()
@@ -19,7 +21,7 @@ public class BattleScene : InitBase
 
         #region Register Buildings
         GameObject[] EnemyRespawnPoints = GameObject.FindGameObjectsWithTag(Define.EnemyRespawn);
-        GameObject[] TargetBuildings = GameObject.FindGameObjectsWithTag(Define.TargetBuilding);
+        //GameObject[] TargetBuildings = GameObject.FindGameObjectsWithTag(Define.TargetBuilding);
 
         foreach (var target in TargetBuildings)
         {
