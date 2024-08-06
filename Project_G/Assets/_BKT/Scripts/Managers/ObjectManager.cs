@@ -86,7 +86,7 @@ public class ObjectManager
     }
 
     // 파괴
-    public void Despawn<T>(T obj) where T : BaseObject
+    public void Despawn<T>(T obj, bool pooling) where T : BaseObject
     {
         Define.EObjectType objectType = obj.ObjectType;
 
@@ -121,7 +121,7 @@ public class ObjectManager
             }
         }
 
-        Managers.Resource.Destroy(obj.gameObject);
+        Managers.Resource.Destroy(obj.gameObject, pooling);
     }
 
     public void Clear() 

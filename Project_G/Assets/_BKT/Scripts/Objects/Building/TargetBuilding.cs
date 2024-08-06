@@ -29,7 +29,7 @@ public class TargetBuilding : Building,IDamageable
         {
             IsMissionStart = true;
             Debug.Log("Hero입장");
-            Managers.Obj.Despawn(other.GetComponent<Hero>());
+            Managers.Obj.Despawn(other.GetComponent<Hero>(), true);
             StartCoroutine(FillMissionProgress());
         }
     }
