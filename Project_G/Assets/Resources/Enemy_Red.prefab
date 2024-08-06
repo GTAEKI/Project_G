@@ -2227,7 +2227,7 @@ GameObject:
   - component: {fileID: 4088690459481533718}
   - component: {fileID: 8908456143873830021}
   - component: {fileID: -8772715590956571060}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Enemy_Red
   m_TagString: Enemy
   m_Icon: {fileID: 0}

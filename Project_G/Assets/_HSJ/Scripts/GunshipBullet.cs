@@ -38,12 +38,7 @@ public class GunshipBullet : MonoBehaviour
     
     private Vector3 hitPSdir;
     
-    // test 용
-    // 추후 병합 후 Define으로 변경할것 
-
-    EColorType colortype = EColorType.None;
-    //
-
+    EColorType colortype = EColorType.White;
 
     void Awake()
     {

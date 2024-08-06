@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 using static Define;
 
 public class GunshipBarrel : MonoBehaviour
@@ -14,12 +15,12 @@ public class GunshipBarrel : MonoBehaviour
     private GameObject bullet;
     private Vector3 bottomLeftScreen;
     private Vector3 bottomLeftWorld;
-
+    private Vector3 barrelOffset = new Vector3(2f,0f,0f);
     
     private float bulletSpeed = 100f;
 
     [field: SerializeField]
-    public EColorType BulletType { get; private set; } = EColorType.White;
+    public EColorType BulletType { get; private set; }
     void Start()
     {
         Init();
@@ -32,13 +33,11 @@ public class GunshipBarrel : MonoBehaviour
         gameInput = gunship.GameInput;
         mainCamera = gunship.MainCamera;
 
-
-        // resource 추가        
         resource = Managers.Resource;
-        bullet = resource.LoadFromResources<Object>("Bullet") as GameObject;
-        
+        bullet = resource.LoadFromResources<Object>("Bullet") as GameObject;        
         bullet.transform.rotation = mainCamera.transform.rotation;
-        
+
+        BulletType = EColorType.White;
         InitInputEvent();
     }
     // 이벤트 등록
@@ -77,7 +76,7 @@ public class GunshipBarrel : MonoBehaviour
 
     void ChangeBullet_Left(object sender, System.EventArgs e)
     {
-        if(BulletType <= EColorType.None)
+        if(BulletType <= EColorType.White)
         {
             BulletType = EColorType.Yellow;
             return;
@@ -88,7 +87,7 @@ public class GunshipBarrel : MonoBehaviour
     // Enum 순서 바꾸기 
     void ChangeBullet_Right(object sender, System.EventArgs e)
     {
-        if(BulletType > EColorType.Yellow)
+        if(BulletType >= EColorType.Yellow)
         {
             BulletType = EColorType.White;
             return;
@@ -101,7 +100,8 @@ public class GunshipBarrel : MonoBehaviour
     Vector3 GetScreenToWorldPosition()
     {
         bottomLeftScreen = new Vector3(0, 0, mainCamera.nearClipPlane);
-        bottomLeftWorld = mainCamera.ScreenToWorldPoint(bottomLeftScreen);
+        bottomLeftWorld = mainCamera.ScreenToWorldPoint(bottomLeftScreen );
+        bottomLeftWorld -= barrelOffset;
 
         return bottomLeftWorld;
     }
