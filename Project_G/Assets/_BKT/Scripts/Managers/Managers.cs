@@ -21,7 +21,6 @@ public class Managers : MonoBehaviour
     private UIManager _ui = new UIManager();
     private PoolManager _pool = new PoolManager();
     private ScrapManager _scrap = new ScrapManager();
-    // HSJ 
     private QuestManager _quest = new QuestManager();
 
     public static ResourceManager Resource { get { return Instance?._resource; } }
@@ -32,7 +31,6 @@ public class Managers : MonoBehaviour
     public static UIManager UI { get { return Instance?._ui; } }
     public static PoolManager Pool { get { return Instance?._pool; } }
     public static ScrapManager Scrap { get { return Instance?._scrap; } }
-    // HSJ 
     public static QuestManager Quest { get { return Instance?._quest; } }
 
     public static void Init()

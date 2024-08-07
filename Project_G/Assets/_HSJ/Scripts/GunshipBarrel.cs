@@ -15,7 +15,7 @@ public class GunshipBarrel : MonoBehaviour
     private GameObject bullet;
     private Vector3 bottomLeftScreen;
     private Vector3 bottomLeftWorld;
-    private Vector3 barrelOffset = new Vector3(2f,0f,0f);
+    private Vector3 barrelOffset = new Vector3(1f,0f,0f);
     
     private float bulletSpeed = 100f;
 
@@ -51,23 +51,35 @@ public class GunshipBarrel : MonoBehaviour
     void Update()
     {
         transform.position = GetScreenToWorldPosition();
+        
         if (gameInput.GetIsAttack())
         {
             GameInput_Fire();
         }
     }
-    
+
 
     void GameInput_Fire()
     {
+        Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
 
-        Vector3 dir = mainCamera.transform.forward;
-        
-        Debug.DrawRay(transform.position, dir * 100f, Color.red, 1.0f);
+        Vector3 targetPoint;
+        if(Physics.Raycast(ray, out hit))
+        {
+            targetPoint = hit.point;
+        }
+        else
+        {
+            return;
+        }
 
+
+        Vector3 dir = (targetPoint - transform.position).normalized;
         // 추후 다른 형태로 변경
         GameObject obj = Instantiate(bullet, transform.position, mainCamera.transform.rotation);
-
+        Managers.Pool.Create(obj);
+        
         GunshipBullet gBullet = obj.GetComponent<GunshipBullet>();
 
         gBullet.InitBulletColor(BulletType);
@@ -102,7 +114,7 @@ public class GunshipBarrel : MonoBehaviour
         bottomLeftScreen = new Vector3(0, 0, mainCamera.nearClipPlane);
         bottomLeftWorld = mainCamera.ScreenToWorldPoint(bottomLeftScreen );
         bottomLeftWorld -= barrelOffset;
-
+        
         return bottomLeftWorld;
     }
 }
