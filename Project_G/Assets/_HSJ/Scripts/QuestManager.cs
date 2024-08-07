@@ -17,8 +17,8 @@ public class QuestManager
 
     public void InitializeQuest()
     {
-        quests = questData.quests;
-        QuestCount = quests.Count;        
+        //quests = questData.quests;
+        //QuestCount = quests.Count;        
     }
     
 

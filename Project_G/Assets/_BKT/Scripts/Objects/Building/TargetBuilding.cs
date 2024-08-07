@@ -6,9 +6,7 @@ using static Define;
 
 public class TargetBuilding : Building,IDamageable
 {
-    private UI_MissionProgressBar _progressBar;
     private UI_WorldSpace_Hp UI_Building_Hp { get; set; }
-    //private bool _isDestroy = false;
     public float Hp { get; private set; } = 100f;
     public bool IsMissionStart { get; private set; } = false;
     private float _missionProgress = 0f;
@@ -19,7 +17,8 @@ public class TargetBuilding : Building,IDamageable
             return false;
 
         BuildingType = Define.EBuildingType.TargetBuilding;
-        UI_Building_Hp = GameObject.Find("UI_Canvas_BuildingHp").GetComponent<UI_WorldSpace_Hp>();
+        UI_Building_Hp = GetComponentInChildren<UI_WorldSpace_Hp>();
+        UI_Building_Hp.SetMaxHp(this.Hp);
         return true;
     }
 

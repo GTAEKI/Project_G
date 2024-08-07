@@ -20,8 +20,9 @@ public class Managers : MonoBehaviour
     private ControllerManager _controller = new ControllerManager();
     private UIManager _ui = new UIManager();
     private PoolManager _pool = new PoolManager();
-    private ScrapManager _scrap = new ScrapManager();
+    private HeroSpawnAreaManager _heroSpawn = new HeroSpawnAreaManager();
     // HSJ 
+    private ScrapManager _scrap = new ScrapManager();
     private QuestManager _quest = new QuestManager();
 
     public static ResourceManager Resource { get { return Instance?._resource; } }
@@ -31,8 +32,9 @@ public class Managers : MonoBehaviour
     public static ControllerManager Controller { get { return Instance?._controller; } }
     public static UIManager UI { get { return Instance?._ui; } }
     public static PoolManager Pool { get { return Instance?._pool; } }
-    public static ScrapManager Scrap { get { return Instance?._scrap; } }
+    public static HeroSpawnAreaManager HeroSpawn { get { return Instance?._heroSpawn; } }
     // HSJ 
+    public static ScrapManager Scrap { get { return Instance?._scrap; } }
     public static QuestManager Quest { get { return Instance?._quest; } }
 
     public static void Init()

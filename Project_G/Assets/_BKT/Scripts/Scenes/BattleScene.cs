@@ -9,7 +9,8 @@ public class BattleScene : InitBase
     private int _maxEnemy = 1;
     private GameObject[] EnemyRespawnPoints;
     private GameObject[] TargetBuildings;
-    //public GameObject[] TargetBuildings;
+    private GameObject ClickToRespawnPanel;
+    private GameObject HeroRespawn;
 
     Coroutine coEnemyRespawn;
 
@@ -22,10 +23,11 @@ public class BattleScene : InitBase
 
         EnemyRespawnPoints = GameObject.FindGameObjectsWithTag(Define.EnemyRespawn);
         TargetBuildings = GameObject.FindGameObjectsWithTag(Define.TargetBuilding);
+        ClickToRespawnPanel = GameObject.Find("ClickToRespawn");
+        HeroRespawn = GameObject.Find("HeroRespawn");
 
-
-        Managers.Game.OnSelectHeroRespawnPoint -= StartGame;
-        Managers.Game.OnSelectHeroRespawnPoint += StartGame;
+        Managers.Game.OnSelectHeroSpawnPoint -= StartGame;
+        Managers.Game.OnSelectHeroSpawnPoint += StartGame;
         Managers.Game.OnGameResult -= EndGame;
         Managers.Game.OnGameResult += EndGame;
 
@@ -34,6 +36,9 @@ public class BattleScene : InitBase
 
     public void StartGame(Transform transform) 
     {
+        ClickToRespawnPanel.SetActive(false);
+        HeroRespawn.SetActive(false);
+
         #region Register Buildings
         foreach (var target in TargetBuildings)
         {
@@ -51,6 +56,8 @@ public class BattleScene : InitBase
         Hero hero = Managers.Obj.Spawn<Hero>(transform.position);
         Managers.Map.MoveTo(hero, Managers.Map.World2Cell(hero.transform.position),hero.CreatureType, true);
         coEnemyRespawn = StartCoroutine(CoCreateEnemy());
+
+        Managers.Controller.Get<CinemachineController>().ChangeCamera(Define.EVirtualCamera.GameViewCamera);
     }
 
     IEnumerator CoCreateEnemy() 
@@ -85,7 +92,7 @@ public class BattleScene : InitBase
 
     void OnDestroy()
     {
-        Managers.Game.OnSelectHeroRespawnPoint -= StartGame;
+        Managers.Game.OnSelectHeroSpawnPoint -= StartGame;
         Managers.Game.OnGameResult -= EndGame;
     }
 }

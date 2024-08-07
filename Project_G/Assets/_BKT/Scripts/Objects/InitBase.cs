@@ -16,6 +16,10 @@ public class InitBase : MonoBehaviour
 
     private void Awake()
     {
-        Init();
+        if (Init() == false)
+        {
+            Debug.Log($"{gameObject.name} init failed, Destroy");
+            Destroy(gameObject);
+        }
     }
 }

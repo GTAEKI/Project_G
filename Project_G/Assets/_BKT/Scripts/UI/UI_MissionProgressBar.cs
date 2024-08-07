@@ -18,6 +18,11 @@ public class UI_MissionProgressBar : UI_Base
         return true;
     }
 
+    public void SetMaxValue(float value) 
+    {
+        _progressBar.maxValue = value; 
+    }
+
     public void ReflectValue(float value) 
     {
         _progressBar.value = value;

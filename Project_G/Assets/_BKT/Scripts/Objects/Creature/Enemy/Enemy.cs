@@ -106,6 +106,7 @@ public class Enemy : Creature
     protected override void UpdateDie()
     {
         Debug.Log("Die");
+        TriggerBuilding = false;
         Managers.Obj.Despawn(this,true);
     }
 
@@ -128,14 +129,6 @@ public class Enemy : Creature
         if (other.tag == "TargetBuilding" && Target as TargetBuilding != null) 
         {
             TriggerBuilding = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "TargetBuilding" && Target as TargetBuilding != null) 
-        {
-            TriggerBuilding = false;
         }
     }
 }
