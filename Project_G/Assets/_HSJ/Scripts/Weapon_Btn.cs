@@ -19,11 +19,16 @@ public class Weapon_Btn : MonoBehaviour
     [SerializeField]
     private Color Yellow;
     #endregion
+
+    void Awake()
+    {
+        BtnImg = GetComponent<Image>();
+    }
+
     void Start()
     {
         gameInput.OnBulletChange_Left += ChangeWeaponColor;
         gameInput.OnBulletChange_Right += ChangeWeaponColor;
-        BtnImg = GetComponent<Image>();
     }   
 
     private void GetColorType(EColorType type)
@@ -47,6 +52,11 @@ public class Weapon_Btn : MonoBehaviour
     public void ChangeWeaponColor(object sender, System.EventArgs e)
     {
         GetColorType(gunshipBarrel.BulletType);
-        Debug.Log("Weapon UI Changed");
+    }
+
+    void OnDestroy()
+    {
+        gameInput.OnBulletChange_Left -= ChangeWeaponColor;
+        gameInput.OnBulletChange_Right -= ChangeWeaponColor;
     }
 }

@@ -21,6 +21,9 @@ public class GunshipBarrel : MonoBehaviour
 
     [field: SerializeField]
     public EColorType BulletType { get; private set; }
+
+    [SerializeField]
+    private LayerMask layer;
     void Start()
     {
         Init();
@@ -64,21 +67,24 @@ public class GunshipBarrel : MonoBehaviour
         Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
 
+        
+
         Vector3 targetPoint;
-        if(Physics.Raycast(ray, out hit))
+        if(Physics.Raycast(mainCamera.transform.position,mainCamera.transform.forward, out hit, float.MaxValue, layer))
         {
             targetPoint = hit.point;
+            Debug.Log($"targetPoint pos {targetPoint}");
         }
         else
         {
             return;
         }
 
-
         Vector3 dir = (targetPoint - transform.position).normalized;
+        Debug.Log($"dir :  {dir}");
         // 추후 다른 형태로 변경
         GameObject obj = Instantiate(bullet, transform.position, mainCamera.transform.rotation);
-        Managers.Pool.Create(obj);
+        //Managers.Pool.Create(obj);
         
         GunshipBullet gBullet = obj.GetComponent<GunshipBullet>();
 
