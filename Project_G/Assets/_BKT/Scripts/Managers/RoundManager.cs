@@ -32,7 +32,7 @@ public class RoundManager
         rounds.Add(round4);
     }
 
-    public GameDifficulty GetCurrentRound() 
+    public GameDifficulty GetCurrentRoundDifficulty() 
     {
         Debug.Log($"CurrentRound is {currentRound}");
         return rounds[currentRound];
