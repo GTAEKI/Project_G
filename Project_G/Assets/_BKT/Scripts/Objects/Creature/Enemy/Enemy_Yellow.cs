@@ -17,9 +17,9 @@ public class Enemy_Yellow : Enemy
     public override void SetInfo()
     {
         base.SetInfo();
-
-        SetHp(500f);
-        Speed = 3f;
-        Power = 5;
+        float multiple = Managers.Round.GetCurrentRound().enemyDifficultyMultiple;
+        SetHp(500f * multiple);
+        Speed = 3f * multiple;
+        Power = 5 * multiple;
     }
 }

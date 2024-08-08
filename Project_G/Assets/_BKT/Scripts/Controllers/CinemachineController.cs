@@ -16,15 +16,15 @@ public class CinemachineController :InitBase, IController
 
         GameObject StartViewCamera = GameObject.Find(Define.EVirtualCamera.StartViewCamera.ToString());
         virtualCams.Add(StartViewCamera.name, StartViewCamera);
-        StartViewCamera.SetActive(true);
+        //StartViewCamera.SetActive(true);
 
         GameObject TopViewCamera = GameObject.Find(Define.EVirtualCamera.TopViewCamera.ToString());
         virtualCams.Add(TopViewCamera.name, TopViewCamera);
-        TopViewCamera.SetActive(false);
+        //TopViewCamera.SetActive(true);
 
         GameObject GameViewCamera = GameObject.Find(Define.EVirtualCamera.GameViewCamera.ToString());
         virtualCams.Add(GameViewCamera.name, GameViewCamera);
-        GameViewCamera.SetActive(false);
+        //GameViewCamera.SetActive(true);
         
         StartCoroutine(SwitchToTopViewCamera());
 
@@ -33,6 +33,8 @@ public class CinemachineController :InitBase, IController
 
     private IEnumerator SwitchToTopViewCamera()
     {
+        yield return new WaitForSeconds(0.01f);
+        ChangeCamera(Define.EVirtualCamera.StartViewCamera);
         yield return new WaitForSeconds(0.3f);
         ChangeCamera(Define.EVirtualCamera.TopViewCamera);
         float delayTime = Camera.main.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time;
@@ -53,6 +55,11 @@ public class CinemachineController :InitBase, IController
 
             cam.Value.SetActive(false);
         }
+    }
+
+    public GameObject GetVirtualCamera(Define.EVirtualCamera camera) 
+    {
+        return virtualCams[camera.ToString()];
     }
 
     public void RegisterController()

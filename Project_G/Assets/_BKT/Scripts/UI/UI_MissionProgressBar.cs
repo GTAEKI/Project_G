@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UI_MissionProgressBar : UI_Base
 {
     private Slider _progressBar;
+    public float MaxMissionValue { get; private set; } = 1f;
 
     public override bool Init()
     {
@@ -13,6 +14,7 @@ public class UI_MissionProgressBar : UI_Base
             return false;
 
         _progressBar = GetComponent<Slider>();
+        SetMaxValue(MaxMissionValue);
         Register();
 
         return true;

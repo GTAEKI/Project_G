@@ -31,13 +31,11 @@ public class ObjectManager
                     obj.transform.parent = HeroRoot;
                     Hero hero = creature as Hero;
                     Heroes.Add(hero);
-                    //hero.SetInfo();
                     break;
                 case Define.ECreatureType.Enemy:
                     obj.transform.parent = EnemyRoot;
                     Enemy enemy = creature as Enemy;
                     Enemies.Add(enemy);
-                    //enemy.SetInfo();
                     break;
                 default:
                     return false;

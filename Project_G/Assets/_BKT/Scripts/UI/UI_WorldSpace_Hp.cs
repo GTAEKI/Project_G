@@ -18,6 +18,8 @@ public class UI_WorldSpace_Hp : UI_WorldSpace
 
     public void SetMaxHp(float maxHp)
     {
+        if (_slider == null)
+            _slider = GetComponentInChildren<Slider>();
         _slider.maxValue = maxHp;
         _slider.value = maxHp;
     }

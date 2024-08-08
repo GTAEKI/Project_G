@@ -7,7 +7,7 @@ using static Define;
 public class Enemy : Creature
 {
     protected IDamageable Target { get; private set; }
-    public int Power { get; protected set; }
+    public float Power { get; protected set; }
     public Define.EColorType ColorType { get; protected set; }
     protected UI_WorldSpace_Hp UI_EnemyHp { get; set; }
     private bool TriggerBuilding { get; set; }

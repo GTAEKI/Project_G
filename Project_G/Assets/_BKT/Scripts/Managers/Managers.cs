@@ -21,6 +21,7 @@ public class Managers : MonoBehaviour
     private UIManager _ui = new UIManager();
     private PoolManager _pool = new PoolManager();
     private HeroSpawnAreaManager _heroSpawn = new HeroSpawnAreaManager();
+    private RoundManager _round = new RoundManager();
     // HSJ 
     private ScrapManager _scrap = new ScrapManager();
     private QuestManager _quest = new QuestManager();
@@ -33,6 +34,7 @@ public class Managers : MonoBehaviour
     public static UIManager UI { get { return Instance?._ui; } }
     public static PoolManager Pool { get { return Instance?._pool; } }
     public static HeroSpawnAreaManager HeroSpawn { get { return Instance?._heroSpawn; } }
+    public static RoundManager Round { get { return Instance?._round; } }
     // HSJ 
     public static ScrapManager Scrap { get { return Instance?._scrap; } }
     public static QuestManager Quest { get { return Instance?._quest; } }
@@ -53,6 +55,11 @@ public class Managers : MonoBehaviour
             DontDestroyOnLoad(go);
 
             s_instance = go.GetComponent<Managers>();
+
+            // 매니저 초기화
+            s_instance._game = new GameManager();
+            s_instance._heroSpawn.Init();
+            s_instance._round.Init();
         }
     }
 }

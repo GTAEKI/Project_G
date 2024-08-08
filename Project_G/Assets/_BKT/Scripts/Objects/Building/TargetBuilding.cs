@@ -35,10 +35,11 @@ public class TargetBuilding : Building,IDamageable
 
     IEnumerator FillMissionProgress()
     {
-        while (_missionProgress <= 30) 
+        UI_MissionProgressBar missionBar = Managers.UI.Get<UI_MissionProgressBar>();
+        while (_missionProgress <= missionBar.MaxMissionValue) 
         {
             _missionProgress += Time.deltaTime;
-            Managers.UI.Get<UI_MissionProgressBar>().ReflectValue(_missionProgress);
+            missionBar.ReflectValue(_missionProgress);
             yield return null;
         }
         

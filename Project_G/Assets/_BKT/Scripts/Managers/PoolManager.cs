@@ -86,7 +86,6 @@ public class PoolManager
             Create(go);
 
         GameObject obj = _pools[go.name].Pop();
-        Debug.Log($"{obj.name} + {obj.activeSelf}");
         return obj;
     }
 

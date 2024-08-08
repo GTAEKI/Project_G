@@ -70,7 +70,6 @@ public class BattleScene : InitBase
                 // 최대 적 숫자 설정
                 if (Managers.Obj.Enemies.Count >= _maxEnemy)
                     yield return new WaitUntil(() => Managers.Obj.Enemies.Count < _maxEnemy);
-                    //yield return new WaitUntil(() => Managers.Obj.Enemies.Count > _maxEnemy + 1);
 
                 int spawnChance = Random.Range(0, 10);
                 float spawnTime = Random.Range(0, 3);

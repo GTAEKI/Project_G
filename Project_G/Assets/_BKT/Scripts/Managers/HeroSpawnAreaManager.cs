@@ -7,6 +7,7 @@ using static Define;
 public class HeroSpawnAreaManager
 {
     private Dictionary<string, bool> heroSpawnAreas  = new Dictionary<string, bool>();
+    private string temporaryArea;
 
     public HeroSpawnAreaManager()
     {
@@ -14,6 +15,12 @@ public class HeroSpawnAreaManager
         {
             heroSpawnAreas.Add(((EHeroSpawnAreaName)i).ToString(), true);
         }
+    }
+
+    public void Init() 
+    {
+        Managers.Game.OnGameWin -= OnSetUsedSpawnArea;
+        Managers.Game.OnGameWin += OnSetUsedSpawnArea;
     }
 
     public bool IsSpawnAreaActive(GameObject spawnArea) 
@@ -45,6 +52,11 @@ public class HeroSpawnAreaManager
 
     public void SetUsedSpawnArea(GameObject UsedspawnArea) 
     {
-        heroSpawnAreas[UsedspawnArea.name] = false;
+        temporaryArea = UsedspawnArea.name;
+    }
+
+    private void OnSetUsedSpawnArea() 
+    {
+        heroSpawnAreas[temporaryArea] = false;
     }
 }

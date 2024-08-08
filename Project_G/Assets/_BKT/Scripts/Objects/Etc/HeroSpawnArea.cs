@@ -9,8 +9,10 @@ public class HeroSpawnArea : InitBase
         if(base.Init()==false) 
             return false;
 
-        if (Managers.HeroSpawn.IsSpawnAreaActive(this.gameObject) == false)
-            return false;
+        if (Managers.HeroSpawn.IsSpawnAreaActive(this.gameObject) == false) 
+        {
+            gameObject.SetActive(false);
+        }
 
         return true;
     }
@@ -18,5 +20,6 @@ public class HeroSpawnArea : InitBase
     public void SelectedArea() 
     {
         Managers.HeroSpawn.SetUsedSpawnArea(this.gameObject);
+        Managers.Game.SelectHeroSpawnPoint(transform);
     }
 }

@@ -52,6 +52,7 @@ public class GameManager
         Managers.Obj.Clear();
         Managers.Controller.Clear();
         Managers.Map.Clear();
+        Managers.Pool.Clear();
         Clear();
     }
 

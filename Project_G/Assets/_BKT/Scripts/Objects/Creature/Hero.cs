@@ -25,7 +25,7 @@ public class Hero : Creature, IDamageable
     {
         base.SetInfo();
         Speed = 3f;
-        Hp = 10000f;
+        Hp = 100f;
         UI_HeroHp.SetMaxHp(Hp);
     }
 

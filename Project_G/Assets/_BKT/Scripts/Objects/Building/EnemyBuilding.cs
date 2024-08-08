@@ -17,8 +17,8 @@ public class EnemyBuilding : Building
 
     public void CreateEnemy() 
     {
-        //EColorType randColor = (EColorType)Random.Range(1,4);
-        EColorType randColor = EColorType.Red;
+        EColorType randColor = (EColorType)Random.Range(1,4);
+        //EColorType randColor = EColorType.Red;
         Enemy enemy = null;
 
         switch (randColor) 

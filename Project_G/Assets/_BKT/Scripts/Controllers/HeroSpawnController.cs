@@ -33,7 +33,6 @@ public class HeroSpawnController : InitBase,IController
             {
                 HeroSpawnArea selectedSpawnArea = hit.transform.GetComponent<HeroSpawnArea>();
                 selectedSpawnArea.SelectedArea();
-                Managers.Game.SelectHeroSpawnPoint(hit.collider.transform);
             }
             else 
             {
