@@ -1,48 +1,67 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager
 {
-    public event Action<Transform> OnSelectHeroRespawnPoint;
+    public bool IsGameEnded { get; private set; } = true;
 
-    public void SelectHeroRespawnPoint(Transform transform) 
+    public void GameStart() 
     {
-        OnSelectHeroRespawnPoint?.Invoke(transform);
+        IsGameEnded = false;
+    }
+
+    public event Action<Transform> OnSelectHeroSpawnPoint;
+    public void SelectHeroSpawnPoint(Transform transform) 
+    {
+        OnSelectHeroSpawnPoint?.Invoke(transform);
     }
 
 
     public event Action OnGameWin;
     public void Win() 
     {
-        Managers.UI.Get<UI_WinResult>().gameObject.SetActive(true);
-        OnGameWin?.Invoke();
-        Result();
+        if (IsGameEnded == false)
+        {
+            Managers.UI.Get<UI_WinResult>().gameObject.SetActive(true);
+            Managers.HeroSpawn.OnSetUsedSpawnArea();
+            Managers.Round.NextRound();
+
+            OnGameWin?.Invoke();
+            Result();
+        }
     }
 
 
     public event Action OnGameLose;
     public void Lose() 
     {
-        Managers.UI.Get<UI_LoseResult>().gameObject.SetActive(true);
-        OnGameLose?.Invoke();
-        Result();
+        if (IsGameEnded == false) 
+        {
+            Managers.UI.Get<UI_LoseResult>().gameObject.SetActive(true);
+            OnGameLose?.Invoke();
+            Result();
+        }
     }
 
     public event Action OnGameResult;
     public void Result() 
     {
+        IsGameEnded = true;
+
         OnGameResult?.Invoke();
         Managers.Obj.Clear();
         Managers.Controller.Clear();
         Managers.Map.Clear();
+        Managers.Pool.Clear();
         Clear();
     }
 
     public void Clear() 
     {
-        OnSelectHeroRespawnPoint = null;
+        OnSelectHeroSpawnPoint = null;
         OnGameWin = null;
         OnGameLose = null;
     }

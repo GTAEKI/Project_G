@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class GameInput : MonoBehaviour
 {
     
-    public event EventHandler OnFireAction;
+    //public event EventHandler OnFireAction;
     public event EventHandler OnBulletChange_Left;
     public event EventHandler OnBulletChange_Right;
     public event Action OnClicked;

@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 
 public class UI_Restart : UI_MouseInteraction
 {
-
     public override bool Init()
     {
         if (base.Init() == false)

@@ -9,12 +9,14 @@ public class ObjectManager
     public HashSet<Enemy> Enemies { get; } = new HashSet<Enemy>();
     public HashSet<TargetBuilding> TargetBuildings { get; } = new HashSet<TargetBuilding>();
     public HashSet<EnemyBuilding> EnemyBuildings { get; } = new HashSet<EnemyBuilding> { };
+    public HashSet<HeroSpawnArea> HeroSpawnAreas { get; } = new HashSet<HeroSpawnArea> { };
 
     #region Make Root
     public Transform HeroRoot { get { return Util.GetRootTransform("@Heroes"); } }
     public Transform EnemyRoot { get { return Util.GetRootTransform("@Enemies"); } }
     public Transform TargetBuildingRoot { get { return Util.GetRootTransform("@TargetBuildingRoot"); }  }
     public Transform EnemyBuildingRoot { get { return Util.GetRootTransform("@EnemyBuildingRoot"); } }
+    public Transform HeroSpawnPointRoot { get { return Util.GetRootTransform("@HeroSpawnPointRoot"); } }
     #endregion
 
     // 등록
@@ -29,13 +31,11 @@ public class ObjectManager
                     obj.transform.parent = HeroRoot;
                     Hero hero = creature as Hero;
                     Heroes.Add(hero);
-                    //hero.SetInfo();
                     break;
                 case Define.ECreatureType.Enemy:
                     obj.transform.parent = EnemyRoot;
                     Enemy enemy = creature as Enemy;
                     Enemies.Add(enemy);
-                    //enemy.SetInfo();
                     break;
                 default:
                     return false;
@@ -45,7 +45,7 @@ public class ObjectManager
         else if (obj.ObjectType == Define.EObjectType.Building)
         {
             Building building = obj as Building;
-            switch (building.BuildingType) 
+            switch (building.BuildingType)
             {
                 case Define.EBuildingType.TargetBuilding:
                     obj.transform.parent = TargetBuildingRoot;

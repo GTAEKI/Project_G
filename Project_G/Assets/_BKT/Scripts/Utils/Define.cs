@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public static class Define
 {
     #region Enum
@@ -61,8 +57,9 @@ public static class Define
 
     public enum EVirtualCamera
     {
+        StartViewCamera,
         TopViewCamera,
-        GameViewCamera
+        GameViewCamera,
     }
 
     public enum EColorType
@@ -77,6 +74,15 @@ public static class Define
     {
         MissionProgressBar,
     }
+
+    public enum EHeroSpawnAreaName 
+    {
+        SpawnPoint1 = 0,
+        SpawnPoint2 = 1, 
+        SpawnPoint3 = 2,
+        Test = 3,
+        End = 4,
+    }
     #endregion
 
     #region Hard Coding
@@ -87,7 +93,7 @@ public static class Define
     public const string HeroRespawn = "HeroRespawn";
     public const string EnemyRespawn = "EnemyRespawn";
     public const string TargetBuilding = "TargetBuilding";
-    public const string RespawnPoint = "RespawnPoint";
+    public const string SpawnPoint = "SpawnPoint";
     //public const string TopViewCamera = "TopViewCamera";
     //public const string GameViewCamera = "GameViewCamera";
 

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using static Define;
 
@@ -31,7 +29,6 @@ public class GunshipBullet : MonoBehaviour
 
     public float Damage { get; private set; } = 10f;
 
-    private const string default_Bulletcolor = "White";
     private ParticleSystem.MainModule main;
     private ParticleSystem[] hitPSArray = new ParticleSystem[3];
     private ParticleSystem.MainModule[] hitmain = new ParticleSystem.MainModule[3];

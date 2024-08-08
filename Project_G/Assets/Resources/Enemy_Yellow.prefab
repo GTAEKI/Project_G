@@ -2193,7 +2193,7 @@ GameObject:
   - component: {fileID: 8943417185646160471}
   - component: {fileID: 3766990333974182006}
   - component: {fileID: 445970680906460650}
-  m_Layer: 0
+  m_Layer: 28
   m_Name: Enemy_Yellow
   m_TagString: Enemy
   m_Icon: {fileID: 0}
