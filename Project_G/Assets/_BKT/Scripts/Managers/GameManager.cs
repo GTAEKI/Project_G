@@ -26,6 +26,9 @@ public class GameManager
         if (IsGameEnded == false)
         {
             Managers.UI.Get<UI_WinResult>().gameObject.SetActive(true);
+            Managers.HeroSpawn.OnSetUsedSpawnArea();
+            Managers.Round.NextRound();
+
             OnGameWin?.Invoke();
             Result();
         }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class RoundManager
 {
-    public class GameSet 
+    public class GameDifficulty
     {
-        public GameSet(int _maxEnemyCount, float _enemyDifficultyMultiple) 
+        public GameDifficulty(int _maxEnemyCount, float _enemyDifficultyMultiple) 
         {
             maxEnemyCount = _maxEnemyCount;
             enemyDifficultyMultiple = _enemyDifficultyMultiple;
@@ -16,33 +16,29 @@ public class RoundManager
         public float enemyDifficultyMultiple;
     }
 
-    private List<GameSet> rounds = new List<GameSet>();
+    private List<GameDifficulty> rounds = new List<GameDifficulty>();
     private int currentRound = 0;
 
     public RoundManager() 
     {
-        GameSet round1 = new GameSet(10, 1f);
-        GameSet round2 = new GameSet(15, 1.5f);
-        GameSet round3 = new GameSet(20, 2f);
+        GameDifficulty round1 = new GameDifficulty(10, 1f);
+        GameDifficulty round2 = new GameDifficulty(15, 1.5f);
+        GameDifficulty round3 = new GameDifficulty(20, 2f);
+        GameDifficulty round4 = new GameDifficulty(25, 2.5f);
 
         rounds.Add(round1);
         rounds.Add(round2);
         rounds.Add(round3);
+        rounds.Add(round4);
     }
 
-    public void Init() 
-    {
-        Managers.Game.OnGameWin -= NextRound;
-        Managers.Game.OnGameWin += NextRound;
-    }
-
-    public GameSet GetCurrentRound() 
+    public GameDifficulty GetCurrentRound() 
     {
         Debug.Log($"CurrentRound is {currentRound}");
         return rounds[currentRound];
     }
 
-    private void NextRound() 
+    public void NextRound() 
     {
         currentRound++;
     }

@@ -55,11 +55,6 @@ public class Managers : MonoBehaviour
             DontDestroyOnLoad(go);
 
             s_instance = go.GetComponent<Managers>();
-
-            // 매니저 초기화
-            s_instance._game = new GameManager();
-            s_instance._heroSpawn.Init();
-            s_instance._round.Init();
         }
     }
 }

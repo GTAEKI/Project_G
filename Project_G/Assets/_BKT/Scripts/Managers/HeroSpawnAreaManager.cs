@@ -17,12 +17,6 @@ public class HeroSpawnAreaManager
         }
     }
 
-    public void Init() 
-    {
-        Managers.Game.OnGameWin -= OnSetUsedSpawnArea;
-        Managers.Game.OnGameWin += OnSetUsedSpawnArea;
-    }
-
     public bool IsSpawnAreaActive(GameObject spawnArea) 
     {
         if (heroSpawnAreas[spawnArea.name] == true)
@@ -55,7 +49,7 @@ public class HeroSpawnAreaManager
         temporaryArea = UsedspawnArea.name;
     }
 
-    private void OnSetUsedSpawnArea() 
+    public void OnSetUsedSpawnArea() 
     {
         heroSpawnAreas[temporaryArea] = false;
     }
