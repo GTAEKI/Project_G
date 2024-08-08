@@ -78,7 +78,6 @@ public class GunshipBarrel : MonoBehaviour
         Vector3 dir = (targetPoint - transform.position).normalized;
         // 추후 다른 형태로 변경
         GameObject obj = Instantiate(bullet, transform.position, mainCamera.transform.rotation);
-        Managers.Pool.Create(obj);
         
         GunshipBullet gBullet = obj.GetComponent<GunshipBullet>();
 
