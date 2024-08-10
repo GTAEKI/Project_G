@@ -11,7 +11,8 @@ public class UIManager
     public void Register<T>(T ui) where T : UI_Base
     {
         string key = typeof(T).Name;
-        UIs.Add(key, ui);
+        if (UIs.ContainsKey(key) == false)
+            UIs.Add(key, ui);
     }
 
     public T Get<T>() where T : UI_Base
