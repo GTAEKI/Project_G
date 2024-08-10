@@ -20,6 +20,6 @@ MonoBehaviour:
       type: 3}
   - <Name>k__BackingField: Base_building__house_c_parent
     <ID>k__BackingField: 1
-    <Size>k__BackingField: {x: 3, y: 2}
+    <Size>k__BackingField: {x: 2, y: 2}
     <Prefab>k__BackingField: {fileID: 1702938083802538661, guid: 2307138b3a8dbe94e9c09cd1560e5a37,
       type: 3}

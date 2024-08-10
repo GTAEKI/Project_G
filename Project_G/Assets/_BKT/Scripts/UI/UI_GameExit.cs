@@ -16,7 +16,8 @@ public class UI_GameExit : UI_MouseInteraction
 
     protected override void OnPointerClick(PointerEventData eventData)
     {
-        Util.LoadScene(Define.EScene.TitleScene);
+        Util.LoadScene(Define.EScene.BaseScene);
+        Managers.Scrap.AddScrap(200);
     }
 
     protected override void Register()

@@ -59,4 +59,28 @@ public static class Util
 
         return root.transform;
     }
+
+    // HSJ 
+    public static GameObject GetRootObject(string objectName)
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        GameObject[] rootObjects = scene.GetRootGameObjects();
+        GameObject targetObject = null;        
+        foreach (GameObject go in rootObjects)
+        {
+            Debug.Log("gameObject name" + go.name);
+            if (go.name.Equals(objectName))
+            {
+                targetObject = go;
+                return targetObject;
+            }
+            else
+            {
+                Debug.LogError("Can't find " + objectName + "rootObject");
+                targetObject = new GameObject("objectName");                
+            }
+        }
+        return targetObject;
+    }
+    
 }
