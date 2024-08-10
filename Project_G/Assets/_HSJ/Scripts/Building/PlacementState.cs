@@ -58,18 +58,19 @@ public class PlacementState : IBuildingState
         int index 
             = objectPlacer.PlaceObject(database.objectData[selectedObjectIndex].Prefab, grid.CellToWorld(gridPosition));
 
-        GridData selectedData = database.objectData[selectedObjectIndex].ID == 0 ? floorData : buildingData;
+        GridData selectedData = database.objectData[selectedObjectIndex].BuildingType == 0 ? floorData : buildingData;
         selectedData.AddObject(gridPosition,
             database.objectData[selectedObjectIndex].Size,
             database.objectData[selectedObjectIndex].ID,
-            index);
+            index,
+            database.objectData[selectedObjectIndex].BuildingType);
 
         previewSystem.UpdatePosition(grid.CellToWorld(gridPosition), false);
     }
 
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
     {
-        GridData selectedData = database.objectData[selectedObjectIndex].ID == 0 ? floorData : buildingData;
+        GridData selectedData = database.objectData[selectedObjectIndex].BuildingType == 0 ? floorData : buildingData;
         
         return selectedData.CanPlaceObjectAt(gridPosition, database.objectData[selectedObjectIndex].Size);
     }

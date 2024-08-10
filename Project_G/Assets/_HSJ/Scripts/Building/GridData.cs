@@ -7,10 +7,10 @@ public class GridData
 {
     Dictionary<Vector3Int, PlacementData> placedObjects = new Dictionary<Vector3Int, PlacementData>();
 
-    public void AddObject(Vector3Int gridPosition, Vector2Int objectsSize, int ID, int placedObjectIndex)
+    public void AddObject(Vector3Int gridPosition, Vector2Int objectsSize, int ID, int placedObjectIndex, Define.EPlacementBuildingType type)
     {
         List<Vector3Int> positionToOccupy = CalculatePosition(gridPosition, objectsSize);
-        PlacementData data = new PlacementData(positionToOccupy, ID, placedObjectIndex);
+        PlacementData data = new PlacementData(positionToOccupy, ID, placedObjectIndex, type);
         foreach(var pos in positionToOccupy)
         {
             if(placedObjects.ContainsKey(pos))
@@ -46,6 +46,19 @@ public class GridData
         }
         return true;
     }
+
+    public int CountBuildingInGrid()
+    {
+        int count = 0;
+        foreach(PlacementData pD in placedObjects.Values)
+        {
+            if(pD.Type == Define.EPlacementBuildingType.Building)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
 }
 
 public class PlacementData
@@ -53,12 +66,13 @@ public class PlacementData
     public List<Vector3Int> occupiedPositions;
     public int ID { get; private set; }
     public int PlacedObjectIndex { get; private set; }
+    public Define.EPlacementBuildingType Type { get; private set; }
 
-
-    public PlacementData(List<Vector3Int> occupiedPositions, int iD, int placedObjectIndex)
+    public PlacementData(List<Vector3Int> occupiedPositions, int iD, int placedObjectIndex, Define.EPlacementBuildingType type)
     {
         this.occupiedPositions = occupiedPositions;
         ID = iD;
         PlacedObjectIndex = placedObjectIndex;
+        Type = type;
     }
 }

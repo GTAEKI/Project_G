@@ -83,6 +83,13 @@ public static class Define
         Test = 3,
         End = 4,
     }
+
+    // HSJ
+    public enum EPlacementBuildingType
+    {
+        Floor = 0,
+        Building = 1
+    }
     #endregion
 
     #region Hard Coding

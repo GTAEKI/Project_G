@@ -6,6 +6,8 @@ public class QuestManager
 {
     [SerializeField]
     private QuestDataBase questData;
+    [SerializeField]
+    private GridData gridData;
     private List<Quest> quests;
 
     public QuestManager()
