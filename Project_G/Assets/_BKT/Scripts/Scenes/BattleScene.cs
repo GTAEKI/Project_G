@@ -31,6 +31,8 @@ public class BattleScene : InitBase
         Managers.Game.OnGameResult -= EndGame;
         Managers.Game.OnGameResult += EndGame;
 
+        Managers.Sound.Play(Define.ESound.Bgm, "BattleCinema01");
+
         return true;
     }
 

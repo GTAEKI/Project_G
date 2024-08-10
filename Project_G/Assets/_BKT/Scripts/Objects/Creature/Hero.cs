@@ -106,7 +106,9 @@ public class Hero : Creature, IDamageable
             return;
         }
 
-        animator.SetTrigger("Attacked");
+        int rand = Random.Range(0,4);
+        Managers.Sound.Play(ESound.Effect, $"AttackedHero{rand}");
 
+        animator.SetTrigger("Attacked");
     }
 }

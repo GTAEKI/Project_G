@@ -81,7 +81,14 @@ public static class Define
         SpawnPoint2 = 1, 
         SpawnPoint3 = 2,
         Test = 3,
-        End = 4,
+        EndCount = 4,
+    }
+
+    public enum ESound
+    {
+        Bgm = 0,
+        Effect = 1,
+        EndCount = 2,
     }
     #endregion
 
