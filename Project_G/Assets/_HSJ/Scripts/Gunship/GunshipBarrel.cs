@@ -57,15 +57,13 @@ public class GunshipBarrel : MonoBehaviour
     void Update()
     {
         transform.position = GetScreenToWorldPosition();
-        
-        if (gameInput.GetIsAttack())
+
+        if (Managers.Game.IsGameEnded == false && gameInput.GetIsAttack())
         {
             GameInput_Fire();
 
-
             // BKT 임시 Test
             count += 1;
-            Debug.Log(count);
             if (count >= 4)
             {
                 Managers.Sound.Play(ESound.Effect, "Gun4_1");

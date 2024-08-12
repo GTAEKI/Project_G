@@ -6,9 +6,9 @@ using UnityEngine;
 public class Creature : BaseObject
 {
     #region Stat
-    public float Speed { get; protected set; } = 1.0f;
+    public float Speed { get; protected set; }
+    public float Hp { get; protected set; }
     public float TurnSpeed { get; protected set; } = 2.0f;
-    public float Hp { get; protected set; } = 100.0f;
     #endregion
 
     private Coroutine coLerp;

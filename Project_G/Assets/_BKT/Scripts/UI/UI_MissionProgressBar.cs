@@ -6,7 +6,10 @@ using UnityEngine.UI;
 public class UI_MissionProgressBar : UI_Base
 {
     private Slider _progressBar;
-    public float MaxMissionValue { get; private set; } = 1f;
+
+    [SerializeField]
+    private float _maxMissionValue;
+    public float MaxMissionValue { get { return _maxMissionValue; } }
 
     public override bool Init()
     {
