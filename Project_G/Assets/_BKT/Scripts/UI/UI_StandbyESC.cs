@@ -22,13 +22,18 @@ public class UI_StandbyESC : UI_Base
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isPanelActive == false) 
-                panel.gameObject.SetActive(true);
-            else 
-                panel.gameObject.SetActive(false);
-
-            isPanelActive = !isPanelActive;
+            TogglePanel();
         }
+    }
+
+    public void TogglePanel() 
+    {
+        if (isPanelActive == false)
+            panel.gameObject.SetActive(true);
+        else
+            panel.gameObject.SetActive(false);
+
+        isPanelActive = !isPanelActive;
     }
 
 

@@ -24,6 +24,9 @@ public class GunshipBarrel : MonoBehaviour
 
     [SerializeField]
     private LayerMask layer;
+
+    int count = 0;
+
     void Start()
     {
         Init();
@@ -58,6 +61,16 @@ public class GunshipBarrel : MonoBehaviour
         if (gameInput.GetIsAttack())
         {
             GameInput_Fire();
+
+
+            // BKT 임시 Test
+            count += 1;
+            Debug.Log(count);
+            if (count >= 4)
+            {
+                Managers.Sound.Play(Define.ESound.Effect, "Gun4_1");
+                count = 0;
+            }
         }
     }
 

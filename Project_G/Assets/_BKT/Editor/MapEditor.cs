@@ -43,6 +43,8 @@ public class MapEditor : MonoBehaviour
                                 writer.Write(Define.MAP_TOOL_NONE);
                             else if (tile.name == "BuildingArea")
                                 writer.Write(Define.MAP_TOOL_BUILDING);
+                            else if(tile.name == "EnemyArea")
+                                writer.Write(Define.MAP_TOOL_Enemy);
                         }
                     }
                     writer.WriteLine();

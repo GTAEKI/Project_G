@@ -45,6 +45,7 @@ public static class Define
         None,
         Wall,
         Building,
+        Enemy,
     }
 
     public enum EFindPathResult
@@ -81,7 +82,14 @@ public static class Define
         SpawnPoint2 = 1, 
         SpawnPoint3 = 2,
         Test = 3,
-        End = 4,
+        EndCount = 4,
+    }
+
+    public enum ESound
+    {
+        Bgm = 0,
+        Effect = 1,
+        EndCount = 2,
     }
 
     // HSJ
@@ -96,6 +104,7 @@ public static class Define
     public const char MAP_TOOL_WALL = '0';
     public const char MAP_TOOL_NONE = '1';
     public const char MAP_TOOL_BUILDING = '2';
+    public const char MAP_TOOL_Enemy = '3';
 
     public const string HeroRespawn = "HeroRespawn";
     public const string EnemyRespawn = "EnemyRespawn";

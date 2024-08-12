@@ -22,6 +22,7 @@ public class Managers : MonoBehaviour
     private PoolManager _pool = new PoolManager();
     private HeroSpawnAreaManager _heroSpawn = new HeroSpawnAreaManager();
     private RoundManager _round = new RoundManager();
+    private SoundManager _sound = new SoundManager();
     // HSJ 
     private ScrapManager _scrap = new ScrapManager();
 
@@ -34,6 +35,7 @@ public class Managers : MonoBehaviour
     public static PoolManager Pool { get { return Instance?._pool; } }
     public static HeroSpawnAreaManager HeroSpawn { get { return Instance?._heroSpawn; } }
     public static RoundManager Round { get { return Instance?._round; } }
+    public static SoundManager Sound { get { return Instance?._sound; } }
     // HSJ 
     public static ScrapManager Scrap { get { return Instance?._scrap; } }
 
@@ -53,6 +55,7 @@ public class Managers : MonoBehaviour
             DontDestroyOnLoad(go);
 
             s_instance = go.GetComponent<Managers>();
+            Sound.Init();
         }
     }
 }

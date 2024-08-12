@@ -11,7 +11,7 @@ public class HeroSpawnAreaManager
 
     public HeroSpawnAreaManager()
     {
-        for (int i = 0; i < (int)EHeroSpawnAreaName.End; i++) 
+        for (int i = 0; i < (int)EHeroSpawnAreaName.EndCount; i++) 
         {
             heroSpawnAreas.Add(((EHeroSpawnAreaName)i).ToString(), true);
         }
