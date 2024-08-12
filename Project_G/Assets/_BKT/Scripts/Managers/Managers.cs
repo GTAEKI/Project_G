@@ -24,7 +24,6 @@ public class Managers : MonoBehaviour
     private RoundManager _round = new RoundManager();
     // HSJ 
     private ScrapManager _scrap = new ScrapManager();
-    private QuestManager _quest = new QuestManager();
 
     public static ResourceManager Resource { get { return Instance?._resource; } }
     public static GameManager Game { get { return Instance?._game; } }
@@ -37,7 +36,6 @@ public class Managers : MonoBehaviour
     public static RoundManager Round { get { return Instance?._round; } }
     // HSJ 
     public static ScrapManager Scrap { get { return Instance?._scrap; } }
-    public static QuestManager Quest { get { return Instance?._quest; } }
 
     public static void Init()
     {

@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestManager
+public class QuestManager : MonoBehaviour
 {
     [SerializeField]
     private QuestDataBase questData;
     [SerializeField]
     private GridData gridData;
-    private List<Quest> quests;
 
     public QuestManager()
     {
