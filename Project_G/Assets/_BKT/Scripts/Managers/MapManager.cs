@@ -78,6 +78,9 @@ public class MapManager
                     case Define.MAP_TOOL_BUILDING:
                         _collision[x, y] = Define.ECellCollisionType.Building;
                         break;
+                    case Define.MAP_TOOL_Enemy:
+                        _collision[x, y] = Define.ECellCollisionType.Enemy;
+                        break;
                 }
                 // Debug.Log(_collision[x , y]);
             }
@@ -180,7 +183,7 @@ public class MapManager
                     return true;
                 break;
             case Define.ECreatureType.Enemy:
-                if (type == Define.ECellCollisionType.None)
+                if (type == Define.ECellCollisionType.None || type == Define.ECellCollisionType.Enemy)
                     return true;
                 break;
         }
