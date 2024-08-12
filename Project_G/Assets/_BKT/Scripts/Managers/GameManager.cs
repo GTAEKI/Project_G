@@ -29,6 +29,7 @@ public class GameManager
             Managers.HeroSpawn.OnSetUsedSpawnArea();
             Managers.Round.NextRound();
 
+            Managers.Scrap.AddScrap(200);
             OnGameWin?.Invoke();
             Result();
         }

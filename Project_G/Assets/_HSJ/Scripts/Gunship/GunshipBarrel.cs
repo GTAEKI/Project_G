@@ -68,7 +68,7 @@ public class GunshipBarrel : MonoBehaviour
             Debug.Log(count);
             if (count >= 4)
             {
-                Managers.Sound.Play(Define.ESound.Effect, "Gun4_1");
+                Managers.Sound.Play(ESound.Effect, "Gun4_1");
                 count = 0;
             }
         }

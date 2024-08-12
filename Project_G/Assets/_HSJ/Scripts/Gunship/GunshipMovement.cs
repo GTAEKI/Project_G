@@ -7,8 +7,8 @@ public class GunshipMovement : MonoBehaviour
 
 
     private Gunship gunship;
-    GameInput gameInput;
-
+    private GameInput gameInput;
+    [SerializeField]
     private float moveSpeed = 10f;
 
     void Start()
