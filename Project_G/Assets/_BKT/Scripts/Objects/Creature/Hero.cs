@@ -6,6 +6,11 @@ using static Define;
 
 public class Hero : Creature, IDamageable
 {
+    [SerializeField]
+    private float _hero_Hp = 100f;
+    [SerializeField]
+    private float _hero_Speed = 10f;
+
     public TargetBuilding TargetBuiding { get; private set; }
     private bool _isTakingOver = false;
     private UI_HeroHp UI_HeroHp { get; set; }
@@ -24,9 +29,9 @@ public class Hero : Creature, IDamageable
     public override void SetInfo()
     {
         base.SetInfo();
-        Speed = 3f;
-        Hp = 100f;
-        UI_HeroHp.SetMaxHp(Hp);
+        Speed = _hero_Speed;
+        Hp = _hero_Hp;
+        UI_HeroHp.SetMaxHp(_hero_Hp);
     }
 
     protected override void UpdateIdle()

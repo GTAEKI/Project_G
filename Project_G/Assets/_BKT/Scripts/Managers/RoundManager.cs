@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,30 +18,34 @@ public class RoundManager
     }
 
     private List<GameDifficulty> rounds = new List<GameDifficulty>();
-    private int currentRound = 0;
+    public int CurrentRound { get; private set; } = 0;
+    //public bool IsLastRound { get; private set; } = false;
 
     public RoundManager() 
     {
-        GameDifficulty round1 = new GameDifficulty(10, 1f);
-        GameDifficulty round2 = new GameDifficulty(15, 1.5f);
-        GameDifficulty round3 = new GameDifficulty(20, 2f);
-        GameDifficulty round4 = new GameDifficulty(25, 2.5f);
-
-        rounds.Add(round1);
-        rounds.Add(round2);
-        rounds.Add(round3);
-        rounds.Add(round4);
+        rounds.Add(new GameDifficulty(40,1f));
+        rounds.Add(new GameDifficulty(60, 1.1f));
+        rounds.Add(new GameDifficulty(80, 1.2f));
+        rounds.Add(new GameDifficulty(120, 1.3f));
     }
 
     public GameDifficulty GetCurrentRoundDifficulty() 
     {
-        Debug.Log($"CurrentRound is {currentRound}");
-        return rounds[currentRound];
+        Debug.Log($"CurrentRound is {CurrentRound}");
+        return rounds[CurrentRound];
     }
 
+    public event Action OnLastRound;
     public void NextRound() 
     {
-        currentRound++;
+        if (CurrentRound < rounds.Count - 1) 
+        {
+            CurrentRound++;       
+        }
+        else if (CurrentRound == rounds.Count - 1) 
+        {
+            OnLastRound?.Invoke();
+        }
     }
     
 }
