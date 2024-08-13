@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using static Define;
 
 public class GunshipBullet : MonoBehaviour
@@ -88,18 +89,30 @@ public class GunshipBullet : MonoBehaviour
         hitPSdir = dir;
         rigid.AddForce(dir * bulletSpeed, ForceMode.VelocityChange);
     }
+    
+    IEnumerator DelayEffect(Collider other)
+    {
+        hitPS.Play();
+        while(hitPS.isPlaying)
+        {
+            hitPS.transform.position = other.ClosestPoint(transform.position) - hitPSdir;
+            hitPS.transform.forward = -hitPSdir;
+        }
+        yield return null;
+        Managers.Projectile.Enqueue(this.gameObject);
 
+    }
     void OnTriggerEnter(Collider other)
     {        
         if (other.TryGetComponent(out Enemy enemy))
         {
             enemy.CalDamage(Damage, colortype);
+            //StartCoroutine(DelayEffect(other));
         }
 
-        rigid.constraints = RigidbodyConstraints.FreezePosition;
-        hitPS.transform.position = other.ClosestPoint(transform.position) - hitPSdir;
-        hitPS.transform.forward = -hitPSdir;
-        hitPS.Play();
+        //hitPS.transform.position = other.ClosestPoint(transform.position) - hitPSdir;
+        //hitPS.transform.forward = -hitPSdir;
+        //hitPS.Play();
     }
     
        

@@ -40,7 +40,10 @@ public class GunshipMovement : MonoBehaviour
 
         transform.position += moveDir * moveDistance;
 
+    }
 
+    void CheckMapEdge()
+    {
 
     }
 }

@@ -25,7 +25,7 @@ public class Managers : MonoBehaviour
     private SoundManager _sound = new SoundManager();
     // HSJ 
     private ScrapManager _scrap = new ScrapManager();
-
+    private ProjectileManager _projectile = new ProjectileManager();
     public static ResourceManager Resource { get { return Instance?._resource; } }
     public static GameManager Game { get { return Instance?._game; } }
     public static ObjectManager Obj { get { return Instance?._obj; } }
@@ -38,6 +38,7 @@ public class Managers : MonoBehaviour
     public static SoundManager Sound { get { return Instance?._sound; } }
     // HSJ 
     public static ScrapManager Scrap { get { return Instance?._scrap; } }
+    public static ProjectileManager Projectile { get { return Instance?._projectile; } }
 
     public static void Init()
     {

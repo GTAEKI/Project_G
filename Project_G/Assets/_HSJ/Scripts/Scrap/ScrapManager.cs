@@ -35,10 +35,7 @@ public class ScrapManager
         }
         else
         {
-
             mono.StartCoroutine(InfoTimer());
-
-
         }
         ChangeScrapText(Scrap);
     }

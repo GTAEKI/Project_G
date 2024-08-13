@@ -39,9 +39,10 @@ public class GunshipBarrel : MonoBehaviour
         gameInput = gunship.GameInput;
         mainCamera = gunship.MainCamera;
 
-        resource = Managers.Resource;
-        bullet = resource.LoadFromResources<Object>("Bullet") as GameObject;        
-        bullet.transform.rotation = mainCamera.transform.rotation;
+        //resource = Managers.Resource;
+        //bullet = resource.LoadFromResources<Object>("Bullet") as GameObject;        
+        //GameObject bullet = projectileManager.Dequeue();
+        //bullet.transform.rotation = mainCamera.transform.rotation;
 
         BulletType = EColorType.White;
         InitInputEvent();
@@ -77,11 +78,8 @@ public class GunshipBarrel : MonoBehaviour
 
     void GameInput_Fire()
     {
-        Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
-
-        
-
+       
         Vector3 targetPoint;
         if(Physics.Raycast(mainCamera.transform.position,mainCamera.transform.forward, out hit, float.MaxValue, layer))
         {
@@ -93,11 +91,12 @@ public class GunshipBarrel : MonoBehaviour
         }
 
         Vector3 dir = (targetPoint - transform.position).normalized;
-        // 추후 다른 형태로 변경
-        GameObject obj = Instantiate(bullet, transform.position, mainCamera.transform.rotation);
-        //Managers.Pool.Create(obj);
-        
-        GunshipBullet gBullet = obj.GetComponent<GunshipBullet>();
+        GameObject bullet = 
+            Managers.Projectile.Dequeue(
+                transform.position,
+                mainCamera.transform.rotation);
+
+        GunshipBullet gBullet = bullet.GetComponent<GunshipBullet>();
 
         gBullet.InitBulletColor(BulletType);
         gBullet.ShotBullet(dir, bulletSpeed);
