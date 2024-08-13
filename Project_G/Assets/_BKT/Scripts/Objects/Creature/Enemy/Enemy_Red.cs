@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Enemy_Red : Enemy
 {
+    [SerializeField]
+    private  float _R_HP = 80f;
+    [SerializeField]
+    private  float _R_Speed = 20f;
+    [SerializeField]
+    private  float _R_Power = 10f;
+
     public override bool Init()
     {
         if (base.Init() == false)
@@ -18,9 +25,8 @@ public class Enemy_Red : Enemy
     {
         base.SetInfo();
         float multiple = Managers.Round.GetCurrentRoundDifficulty().enemyDifficultyMultiple;
-        SetHp(100f * multiple);
-        Speed = 10f * multiple;
-        Power = 10 * multiple;
-
+        SetHp(_R_HP * multiple);
+        Speed = _R_Speed * multiple;
+        Power = _R_Power * multiple;
     }
 }

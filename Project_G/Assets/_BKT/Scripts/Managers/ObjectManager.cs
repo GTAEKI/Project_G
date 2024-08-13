@@ -33,7 +33,7 @@ public class ObjectManager
                     Heroes.Add(hero);
                     break;
                 case Define.ECreatureType.Enemy:
-                    obj.transform.parent = EnemyRoot;
+                    //obj.transform.parent = EnemyRoot;
                     Enemy enemy = creature as Enemy;
                     Enemies.Add(enemy);
                     break;

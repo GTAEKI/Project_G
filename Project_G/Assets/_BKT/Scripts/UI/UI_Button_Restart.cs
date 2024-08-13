@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class UI_Button_Restart : UI_MouseInteraction
 {
@@ -10,8 +12,18 @@ public class UI_Button_Restart : UI_MouseInteraction
         if (base.Init() == false)
             return false;
 
+        _EventHandler.OnClickHandler -= OnPointerClick;
         _EventHandler.OnClickHandler += OnPointerClick;
+
+        Managers.Round.OnLastRound -= DestroyObject;
+        Managers.Round.OnLastRound += DestroyObject;
+
         return true;
+    }
+
+    private void DestroyObject() 
+    {
+        Destroy(gameObject);
     }
 
     protected override void OnPointerClick(PointerEventData eventData)
