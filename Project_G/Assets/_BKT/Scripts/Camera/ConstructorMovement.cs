@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunshipMovement : MonoBehaviour
+public class ConstructorMovement : MonoBehaviour
 {
-    private Gunship gunship;
+    [SerializeField]
     private GameInput gameInput;
     [SerializeField]
     private float moveSpeed = 10f;
@@ -15,17 +15,6 @@ public class GunshipMovement : MonoBehaviour
     [SerializeField]
     private Vector3 maxBounds;
 
-    void Start()
-    {
-        Init();
-    }
-
-    void Init()
-    {
-        gunship = GetComponent<Gunship>();        
-        gameInput = gunship.GameInput;
-        
-    }
     void Update()
     {
         Handle_Movement();
