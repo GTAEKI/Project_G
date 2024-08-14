@@ -6,6 +6,7 @@ public class ParticleCallback : MonoBehaviour
 {
     public void OnParticleSystemStopped()
     {
-        Destroy(this);
-    }
+        Managers.Projectile.Enqueue(this.gameObject,"Fx");
+    } 
+
 }

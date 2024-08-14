@@ -164,8 +164,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.3
-  m_Center: {x: 0, y: 0.2, z: 0}
+  m_Radius: 0.4
+  m_Center: {x: 0, y: 0.01, z: -0.3}
 --- !u!114 &-3190810180112726016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5134,6 +5134,10 @@ PrefabInstance:
     - target: {fileID: 1974592250055434, guid: b15a120c1390db449b8eb5af19d62424, type: 3}
       propertyPath: m_Name
       value: Hit
+      objectReference: {fileID: 0}
+    - target: {fileID: 1974592250055434, guid: b15a120c1390db449b8eb5af19d62424, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4273727487683586, guid: b15a120c1390db449b8eb5af19d62424, type: 3}
       propertyPath: m_RootOrder

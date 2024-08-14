@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: QuestDataBase
   m_EditorClassIdentifier: 
   quests:
-  - <Name>k__BackingField: TutorialQuest
+  - <Name>k__BackingField: "\uAC74\uBB3C\uAC74\uC124"
     <ID>k__BackingField: 0
-    <ClearTargetNum>k__BackingField: 10
+    <ClearTargetNum>k__BackingField: 5
     <CurClearNum>k__BackingField: 0
     <IsClear>k__BackingField: 0

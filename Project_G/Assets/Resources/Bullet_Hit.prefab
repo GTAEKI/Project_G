@@ -9847,6 +9847,7 @@ GameObject:
   - component: {fileID: 6890455024278294284}
   - component: {fileID: 6120019200902084084}
   - component: {fileID: 1867551045743010390}
+  - component: {fileID: 6546294846739536517}
   m_Layer: 0
   m_Name: Bullet_Hit
   m_TagString: Untagged
@@ -9864,8 +9865,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 8, y: 8, z: 8}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7702253361475408071}
   - {fileID: 8049636440783016213}
@@ -9881,7 +9882,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 3
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -14738,3 +14739,15 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &6546294846739536517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7686523321501968054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2acc065af8b9a6a48bdc33cef6e54d4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

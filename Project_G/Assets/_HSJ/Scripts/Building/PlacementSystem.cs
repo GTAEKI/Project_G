@@ -65,13 +65,6 @@ public class PlacementSystem : MonoBehaviour
         buildingState.OnAction(gridPosition);
     }
 
-    //private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
-    //{
-    //    GridData selectedData = database.objectData[selectedObjectIndex].ID  == 0 ? floorData : buildingData;
-
-
-    //    return selectedData.CanPlaceObjectAt(gridPosition, database.objectData[selectedObjectIndex].Size);
-    //}
 
     private void StopPlacement()
     {
@@ -101,5 +94,12 @@ public class PlacementSystem : MonoBehaviour
             buildingState.UpdateState(gridPosition);
             lastDetectedPosition = gridPosition;
         }
+    }
+
+    public int GetBuildingCount()
+    {
+        int count = 0;
+        count = buildingData.CountBuildingInGrid();
+        return count;
     }
 }

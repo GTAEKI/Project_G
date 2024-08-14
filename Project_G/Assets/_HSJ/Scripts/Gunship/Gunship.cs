@@ -18,10 +18,6 @@ public class Gunship : MonoBehaviour
 
     void Init()
     {
-        if (GameInput == null)
-        {
-            GameInput = Util.GetRootObject("GameInput").GetComponent<GameInput>();
-        }
         if(MainCamera == null)
         {
             MainCamera = Camera.main;

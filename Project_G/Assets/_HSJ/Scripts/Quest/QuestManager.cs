@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class QuestManager : MonoBehaviour
 {
@@ -8,20 +9,32 @@ public class QuestManager : MonoBehaviour
     private QuestDataBase questData;
     [SerializeField]
     private GridData gridData;
+    [SerializeField]
+    private PlacementSystem placementSystem;
+    [SerializeField]
+    private TMP_Text questText;
 
-    public QuestManager()
+    void Update()
     {
-        InitializeQuest();
+        UpdateQuestLog();
+        CheckQuestClear();
     }
 
-    public int QuestCount { get; private set; }
-
-    public void InitializeQuest()
+    void UpdateQuestLog()
     {
-        //quests = questData.quests;
-        //QuestCount = quests.Count;        
+        questText.text = questData.quests[0].Name +
+            " " + placementSystem.GetBuildingCount() + 
+            " / " + questData.quests[0].ClearTargetNum;
     }
-    
+
+    void CheckQuestClear()
+    {
+        if (questData.quests[0].ClearTargetNum <= placementSystem.GetBuildingCount())
+        {
+            // 퀘스트 클리어 
+        }
+    }
+
 
 
 }

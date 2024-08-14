@@ -68,7 +68,6 @@ public static class Util
         GameObject targetObject = null;        
         foreach (GameObject go in rootObjects)
         {
-            Debug.Log("gameObject name" + go.name);
             if (go.name.Equals(objectName))
             {
                 targetObject = go;

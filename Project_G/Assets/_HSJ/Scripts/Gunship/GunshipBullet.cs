@@ -90,24 +90,21 @@ public class GunshipBullet : MonoBehaviour
         rigid.AddForce(dir * bulletSpeed, ForceMode.VelocityChange);
     }
     
-    IEnumerator DelayEffect(Collider other)
-    {
-        hitPS.Play();
-        while(hitPS.isPlaying)
-        {
-            hitPS.transform.position = other.ClosestPoint(transform.position) - hitPSdir;
-            hitPS.transform.forward = -hitPSdir;
-        }
-        yield return null;
-        Managers.Projectile.Enqueue(this.gameObject);
 
-    }
     void OnTriggerEnter(Collider other)
     {        
         if (other.TryGetComponent(out Enemy enemy))
         {
             enemy.CalDamage(Damage, colortype);
-            //StartCoroutine(DelayEffect(other));
+            Managers.Projectile.CreateHitFx();
+            Managers.Projectile.Enqueue(this.gameObject, "Bullet");
+        }
+        if(other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            GameObject go = Managers.Projectile.CreateHitFx();            
+            Managers.Projectile.Dequeue(other.ClosestPoint(transform.position) - hitPSdir,Quaternion.identity, "Bullet");
+            Managers.Projectile.Enqueue(this.gameObject, "Bullet");
+
         }
 
         //hitPS.transform.position = other.ClosestPoint(transform.position) - hitPSdir;
