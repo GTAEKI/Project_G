@@ -35,18 +35,18 @@ public class ProjectileManager
     public void Enqueue(GameObject go, string type)
     {
         go.SetActive(false);
-        go.transform.position = Vector3.zero;
+        Debug.Log($"go position : {go.transform.position}");
+        //go.transform.position = Vector3.zero;
         go.transform.rotation = Quaternion.identity;
         switch(type)
         {
-            case "bullet":
+            case "Bullet":
                 bullets.Enqueue(go);
                 break;
             case "Fx":
                 particles.Enqueue(go);
                 break;
-        }
-    }
+        }    }
 
     public GameObject Dequeue(Vector3 pos, Quaternion rot , string type)
     {
@@ -81,8 +81,44 @@ public class ProjectileManager
         return go;
     }
 
+    public GameObject Dequeue(Vector3 pos, Vector3 dir, string type)
+    {
+        GameObject go = default;
+
+        switch (type)
+        {
+            case "Bullet":
+                if (bullets.Count == 0)
+                {
+                    go = CreateBullet();
+                }
+                else
+                {
+                    go = bullets.Dequeue();
+                }
+                break;
+            case "Fx":
+                if (particles.Count == 0)
+                {
+                    go = CreateHitFx();
+                }
+                else
+                {
+                    go = particles.Dequeue();
+                }
+                break;
+        }
+        go.transform.position = pos;
+        go.transform.forward = dir;
+        go.SetActive(true);
+        return go;
+    }
+
     public void Clear()
     {
         bullets.Clear();
+        particles.Clear();
     }
+
+    
 }

@@ -35,7 +35,7 @@ public class GunshipBullet : MonoBehaviour
     private ParticleSystem.MainModule[] hitmain = new ParticleSystem.MainModule[3];
     
     private Vector3 hitPSdir;
-    
+    private float existTimer = 2f;
     EColorType colortype = EColorType.White;
 
     void Awake()
@@ -49,7 +49,7 @@ public class GunshipBullet : MonoBehaviour
             hitmain[i] = hitPSArray[i].main;
         }
     }
-
+    
     public void InitBulletColor(EColorType type = EColorType.White)
     {
         switch (type)
@@ -89,29 +89,42 @@ public class GunshipBullet : MonoBehaviour
         hitPSdir = dir;
         rigid.AddForce(dir * bulletSpeed, ForceMode.VelocityChange);
     }
-    
+
 
     void OnTriggerEnter(Collider other)
-    {        
+    {
         if (other.TryGetComponent(out Enemy enemy))
         {
             enemy.CalDamage(Damage, colortype);
-            Managers.Projectile.CreateHitFx();
             Managers.Projectile.Enqueue(this.gameObject, "Bullet");
+            Managers.Projectile.Dequeue(other.ClosestPoint(transform.position) - hitPSdir, -hitPSdir, "Fx");
+
         }
-        if(other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            GameObject go = Managers.Projectile.CreateHitFx();            
-            Managers.Projectile.Dequeue(other.ClosestPoint(transform.position) - hitPSdir,Quaternion.identity, "Bullet");
+            Managers.Projectile.Dequeue(other.ClosestPoint(transform.position) - hitPSdir, -hitPSdir , "Fx");
             Managers.Projectile.Enqueue(this.gameObject, "Bullet");
 
+            //}
+            //Managers.Projectile.Enqueue(this.gameObject, "Bullet");
+            //hitPS.transform.position = other.ClosestPoint(transform.position) - hitPSdir;
+            //hitPS.transform.forward = -hitPSdir;
+            //hitPS.Play();
+            //if(other.gameObject.layer == LayerMask.NameToLayer("Default"))
+            //{
+            //    Managers.Projectile.Enqueue(this.gameObject, "Bullet");
+
+            //}
         }
 
-        //hitPS.transform.position = other.ClosestPoint(transform.position) - hitPSdir;
-        //hitPS.transform.forward = -hitPSdir;
-        //hitPS.Play();
+      
     }
-    
-       
-     
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Managers.Projectile.Enqueue(this.gameObject, "Bullet");
+        }
+    }
 }

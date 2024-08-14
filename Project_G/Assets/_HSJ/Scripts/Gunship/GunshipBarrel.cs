@@ -16,7 +16,7 @@ public class GunshipBarrel : MonoBehaviour
     private Vector3 bottomLeftScreen;
     private Vector3 bottomLeftWorld;
     private Vector3 barrelOffset = new Vector3(1f,0f,0f);
-    private float bulletSpeed = 100f;
+    private float bulletSpeed = 50f;
     private const float bulletDelay = 0.1f;
     private bool isFire = default;
 
@@ -88,19 +88,21 @@ public class GunshipBarrel : MonoBehaviour
         {
             return;
         }
+        Vector3 dir = (targetPoint - transform.position).normalized;
 
-        //GameObject bullet = 
-        //    Managers.Projectile.Dequeue(
-        //        transform.position,
-        //        mainCamera.transform.rotation);
+        GameObject bullet =
+            Managers.Projectile.Dequeue(
+                transform.position,
+                mainCamera.transform.rotation,
+                "Bullet");
 
-        //GunshipBullet gBullet = bullet.GetComponent<GunshipBullet>();
+        GunshipBullet gBullet = bullet.GetComponent<GunshipBullet>();
 
-        //gBullet.InitBulletColor(BulletType);
-        //gBullet.ShotBullet(dir, bulletSpeed);
-        
-        if(isFire) { return; }
-        StartCoroutine(DelayFire(targetPoint));
+        gBullet.InitBulletColor(BulletType);
+        gBullet.ShotBullet(dir, bulletSpeed);
+
+        //if (isFire) { return; }
+        //StartCoroutine(DelayFire(targetPoint));
     }
 
     IEnumerator DelayFire(Vector3 targetPoint)
