@@ -53,4 +53,12 @@ public class HeroSpawnAreaManager
     {
         heroSpawnAreas[temporaryArea] = false;
     }
+
+    public void ResetSpawnArea() 
+    {
+        for (int i = 0; i < (int)EHeroSpawnAreaName.EndCount; i++)
+        {
+            heroSpawnAreas[((EHeroSpawnAreaName)i).ToString()] = true;
+        }
+    }
 }

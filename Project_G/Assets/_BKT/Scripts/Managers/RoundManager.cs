@@ -47,5 +47,10 @@ public class RoundManager
             OnLastRound?.Invoke();
         }
     }
+
+    public void ResetRound() 
+    {
+        CurrentRound = 0;
+    }
     
 }

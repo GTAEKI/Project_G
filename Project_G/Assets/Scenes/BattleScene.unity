@@ -8662,33 +8662,6 @@ Transform:
   - {fileID: 142366828}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1740203344 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3453516647906346163, guid: 9f95f52df7b8abc43854e44be0a25a42,
-    type: 3}
-  m_PrefabInstance: {fileID: 8115499923991048636}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1740203346
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1740203344}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 200, y: 5, z: 200}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1873848803
 GameObject:
   m_ObjectHideFlags: 0
@@ -16213,21 +16186,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2926622664132461607, guid: 9f95f52df7b8abc43854e44be0a25a42,
-        type: 3}
-      propertyPath: m_Convex
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2926622664132461607, guid: 9f95f52df7b8abc43854e44be0a25a42,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3451747013136878106, guid: 9f95f52df7b8abc43854e44be0a25a42,
-        type: 3}
-      propertyPath: m_Convex
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4074977789825636183, guid: 9f95f52df7b8abc43854e44be0a25a42,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -16246,11 +16204,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3453516647906346163, guid: 9f95f52df7b8abc43854e44be0a25a42,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1740203346}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f95f52df7b8abc43854e44be0a25a42, type: 3}
 --- !u!222 &8346761601562680844
 CanvasRenderer:
