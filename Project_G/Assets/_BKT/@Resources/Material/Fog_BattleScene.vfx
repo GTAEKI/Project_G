@@ -1062,7 +1062,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614607}
       inputSlot: {fileID: 8926484042661614798}
-    position: {x: 743, y: -69}
+    position: {x: 729, y: 82}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614607
@@ -1155,7 +1155,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.AABox, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"center":{"x":0.0,"y":30.0,"z":0.0},"size":{"x":325.0,"y":5.0,"z":340.0}}'
+      m_SerializableObject: '{"center":{"x":0.0,"y":23.0,"z":0.0},"size":{"x":300.0,"y":5.0,"z":300.0}}'
     m_Space: 0
   m_Property:
     name: Box
@@ -2277,7 +2277,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.AABox, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"center":{"x":0.0,"y":0.0,"z":0.0},"size":{"x":182.34664916992188,"y":260.35076904296877,"z":184.7028045654297}}'
+      m_SerializableObject: '{"center":{"x":0.0,"y":0.0,"z":0.0},"size":{"x":210.0,"y":100.0,"z":180.0}}'
     m_Space: 0
   m_Property:
     name: box
@@ -3724,7 +3724,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 500
+      m_SerializableObject: 1000
     m_Space: 2147483647
   m_Property:
     name: Count

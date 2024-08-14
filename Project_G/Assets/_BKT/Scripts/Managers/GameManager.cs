@@ -25,11 +25,16 @@ public class GameManager
     {
         if (IsGameEnded == false)
         {
-            Managers.UI.Get<UI_WinResult>().gameObject.SetActive(true);
+            int winReward = 200;
+
+            UI_WinResult ui_win = Managers.UI.Get<UI_WinResult>();
+            ui_win.gameObject.SetActive(true);
+            ui_win.DisplayScrap(winReward);
+
             Managers.HeroSpawn.OnSetUsedSpawnArea();
             Managers.Round.NextRound();
 
-            Managers.Scrap.AddScrap(200);
+            Managers.Scrap.AddScrap(winReward);
             OnGameWin?.Invoke();
             Result();
         }

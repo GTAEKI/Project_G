@@ -1,19 +1,36 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UI_StandbyESC : UI_Base
 {
-    private Transform panel;
-    private bool isPanelActive = false;
+    private Transform _panel;
+    private bool _isPanelActive = false;
+    private TextMeshProUGUI _text;
 
     public override bool Init()
     {
         if (base.Init() == false)
             return false;
 
-        panel = transform.GetChild(0);
+        _panel = transform.GetChild(0);
+        TogglePanel();
+        
+        TextMeshProUGUI[] _texts;
+        _texts = GetComponentsInChildren<TextMeshProUGUI>();
+
+        foreach (var text in _texts)
+        {
+            if (text.name == "Text_CurrentScrap")
+            {
+                _text = text;
+                break;
+            }
+        }
+
+        TogglePanel();
 
         return true;
     }
@@ -22,18 +39,24 @@ public class UI_StandbyESC : UI_Base
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            DisplayCurrentScrap();
             TogglePanel();
         }
     }
 
     public void TogglePanel() 
     {
-        if (isPanelActive == false)
-            panel.gameObject.SetActive(true);
+        if (_isPanelActive == false)
+            _panel.gameObject.SetActive(true);
         else
-            panel.gameObject.SetActive(false);
+            _panel.gameObject.SetActive(false);
 
-        isPanelActive = !isPanelActive;
+        _isPanelActive = !_isPanelActive;
+    }
+
+    private void DisplayCurrentScrap()
+    {
+        _text.text = Managers.Scrap.GetCurrentScrapText();
     }
 
 
