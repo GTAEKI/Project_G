@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlacementState : IBuildingState
 {
     private int selectedObjectIndex = -1;
+    private int buildingNum = 0;
     int ID;
     Grid grid;
     PreviewSystem previewSystem;
@@ -12,6 +13,7 @@ public class PlacementState : IBuildingState
     GridData floorData;
     GridData buildingData;
     ObjectPlacer objectPlacer;
+    
 
     public PlacementState(int iD,
                           Grid grid,
@@ -65,6 +67,11 @@ public class PlacementState : IBuildingState
             index,
             database.objectData[selectedObjectIndex].BuildingType);
 
+        if(selectedData == buildingData)
+        {
+            buildingNum++;
+        }
+
         previewSystem.UpdatePosition(grid.CellToWorld(gridPosition), false);
     }
 
@@ -81,4 +88,5 @@ public class PlacementState : IBuildingState
 
         previewSystem.UpdatePosition(grid.CellToWorld(gridPosition), placemetValidity);
     }
+
 }

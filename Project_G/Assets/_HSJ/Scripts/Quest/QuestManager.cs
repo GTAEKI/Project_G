@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -32,6 +30,7 @@ public class QuestManager : MonoBehaviour
         if (questData.quests[0].ClearTargetNum <= placementSystem.GetBuildingCount())
         {
             // 퀘스트 클리어 
+
         }
     }
 

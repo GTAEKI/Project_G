@@ -105,16 +105,6 @@ public class GunshipBullet : MonoBehaviour
             Managers.Projectile.Dequeue(other.ClosestPoint(transform.position) - hitPSdir, -hitPSdir , "Fx");
             Managers.Projectile.Enqueue(this.gameObject, "Bullet");
 
-            //}
-            //Managers.Projectile.Enqueue(this.gameObject, "Bullet");
-            //hitPS.transform.position = other.ClosestPoint(transform.position) - hitPSdir;
-            //hitPS.transform.forward = -hitPSdir;
-            //hitPS.Play();
-            //if(other.gameObject.layer == LayerMask.NameToLayer("Default"))
-            //{
-            //    Managers.Projectile.Enqueue(this.gameObject, "Bullet");
-
-            //}
         }
 
       

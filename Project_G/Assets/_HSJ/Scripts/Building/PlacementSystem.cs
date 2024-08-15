@@ -98,8 +98,7 @@ public class PlacementSystem : MonoBehaviour
 
     public int GetBuildingCount()
     {
-        int count = 0;
-        count = buildingData.CountBuildingInGrid();
-        return count;
+        return 0;
+
     }
 }

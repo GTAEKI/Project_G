@@ -16,7 +16,7 @@ public class GunshipBarrel : MonoBehaviour
     private Vector3 bottomLeftScreen;
     private Vector3 bottomLeftWorld;
     private Vector3 barrelOffset = new Vector3(1f,0f,0f);
-    private float bulletSpeed = 50f;
+    private float bulletSpeed = 100f;
     private const float bulletDelay = 0.1f;
     private bool isFire = default;
 
@@ -101,8 +101,7 @@ public class GunshipBarrel : MonoBehaviour
         gBullet.InitBulletColor(BulletType);
         gBullet.ShotBullet(dir, bulletSpeed);
 
-        //if (isFire) { return; }
-        //StartCoroutine(DelayFire(targetPoint));
+
     }
 
     IEnumerator DelayFire(Vector3 targetPoint)

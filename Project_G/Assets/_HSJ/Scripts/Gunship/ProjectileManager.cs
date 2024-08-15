@@ -35,13 +35,13 @@ public class ProjectileManager
     public void Enqueue(GameObject go, string type)
     {
         go.SetActive(false);
-        Debug.Log($"go position : {go.transform.position}");
-        //go.transform.position = Vector3.zero;
+        go.transform.position = Vector3.zero;
         go.transform.rotation = Quaternion.identity;
         switch(type)
         {
             case "Bullet":
                 bullets.Enqueue(go);
+
                 break;
             case "Fx":
                 particles.Enqueue(go);

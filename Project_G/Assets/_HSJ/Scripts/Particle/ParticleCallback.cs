@@ -5,15 +5,21 @@ using UnityEngine;
 public class ParticleCallback : MonoBehaviour
 {
     ParticleSystem main;
-    void Start()
+    void Awake()
     {
         main = GetComponent<ParticleSystem>();
+        Debug.Log(main == null);
     }
-
+    void OnEnable()
+    {
+        main.Play();
+    }
     public void OnParticleSystemStopped()
     {
-        main.Stop();
+        
+        Debug.Log($"particle pos : {gameObject.transform.position}");
         Managers.Projectile.Enqueue(this.gameObject,"Fx");
+        gameObject.SetActive(false);
     } 
 
 }
