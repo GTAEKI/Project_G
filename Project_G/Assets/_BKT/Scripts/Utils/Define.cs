@@ -6,6 +6,7 @@ public static class Define
         TitleScene,
         BaseScene,
         BattleScene,
+        GameClearScene,
         Dev_BKT,
         Test_BaseScene_HSJ,
         TestScene_HSJ,

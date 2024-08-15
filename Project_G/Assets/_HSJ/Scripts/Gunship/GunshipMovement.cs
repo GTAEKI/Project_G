@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class GunshipMovement : MonoBehaviour
 {
-
-
     private Gunship gunship;
     private GameInput gameInput;
     [SerializeField]
     private float moveSpeed = 10f;
+
+    //BKT
+    [SerializeField]
+    private Vector3 minBounds;
+    [SerializeField]
+    private Vector3 maxBounds;
 
     void Start()
     {
@@ -38,8 +42,14 @@ public class GunshipMovement : MonoBehaviour
         // 맵 범위를 벗어나는지 후에 체크
         //bool canMove = default;
 
-        transform.position += moveDir * moveDistance;
+        // BKT
+        Vector3 newPosition = transform.position + moveDir * moveDistance;
 
+        newPosition.x = Mathf.Clamp(newPosition.x, minBounds.x, maxBounds.x);
+        newPosition.y = Mathf.Clamp(newPosition.y, minBounds.y, maxBounds.y);
+        newPosition.z = Mathf.Clamp(newPosition.z, minBounds.z, maxBounds.z);
+
+        transform.position = newPosition;
     }
 
     void CheckMapEdge()

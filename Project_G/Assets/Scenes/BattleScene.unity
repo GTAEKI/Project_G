@@ -2330,6 +2330,36 @@ PrefabInstance:
       propertyPath: gameCamera
       value: 
       objectReference: {fileID: 1066516223}
+    - target: {fileID: 1512174008774696075, guid: ac8981b3c0053a346b048b3d511d33ca,
+        type: 3}
+      propertyPath: maxBounds.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1512174008774696075, guid: ac8981b3c0053a346b048b3d511d33ca,
+        type: 3}
+      propertyPath: maxBounds.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1512174008774696075, guid: ac8981b3c0053a346b048b3d511d33ca,
+        type: 3}
+      propertyPath: maxBounds.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1512174008774696075, guid: ac8981b3c0053a346b048b3d511d33ca,
+        type: 3}
+      propertyPath: minBounds.x
+      value: -72
+      objectReference: {fileID: 0}
+    - target: {fileID: 1512174008774696075, guid: ac8981b3c0053a346b048b3d511d33ca,
+        type: 3}
+      propertyPath: minBounds.y
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1512174008774696075, guid: ac8981b3c0053a346b048b3d511d33ca,
+        type: 3}
+      propertyPath: minBounds.z
+      value: -62
+      objectReference: {fileID: 0}
     - target: {fileID: 4536505679790876247, guid: ac8981b3c0053a346b048b3d511d33ca,
         type: 3}
       propertyPath: m_Enabled
@@ -2705,7 +2735,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 60.000004
+  field of view: 70
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2731,8 +2761,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066516221}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.6980669, y: -0.0058952407, z: 0.0044245226, w: -0.7159947}
-  m_LocalPosition: {x: -1.2757375, y: 54.808594, z: -5.8754444}
+  m_LocalRotation: {x: 0.55403227, y: 0.2120122, z: -0.14845252, w: 0.79124016}
+  m_LocalPosition: {x: -25, y: 60, z: -30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8557,33 +8587,6 @@ Transform:
   - {fileID: 142366828}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1740203344 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3453516647906346163, guid: 9f95f52df7b8abc43854e44be0a25a42,
-    type: 3}
-  m_PrefabInstance: {fileID: 8115499923991048636}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1740203346
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1740203344}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 200, y: 5, z: 200}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1873848803
 GameObject:
   m_ObjectHideFlags: 0
@@ -16108,21 +16111,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2926622664132461607, guid: 9f95f52df7b8abc43854e44be0a25a42,
-        type: 3}
-      propertyPath: m_Convex
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2926622664132461607, guid: 9f95f52df7b8abc43854e44be0a25a42,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3451747013136878106, guid: 9f95f52df7b8abc43854e44be0a25a42,
-        type: 3}
-      propertyPath: m_Convex
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4074977789825636183, guid: 9f95f52df7b8abc43854e44be0a25a42,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -16141,11 +16129,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3453516647906346163, guid: 9f95f52df7b8abc43854e44be0a25a42,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1740203346}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f95f52df7b8abc43854e44be0a25a42, type: 3}
 --- !u!222 &8346761601562680844
 CanvasRenderer:

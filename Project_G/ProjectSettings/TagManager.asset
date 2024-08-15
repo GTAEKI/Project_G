@@ -31,10 +31,10 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Hero
+  - Enemy_Red
+  - Enemy_Yellow
+  - Enemy_White
   - 
   - 
   - Enemy
