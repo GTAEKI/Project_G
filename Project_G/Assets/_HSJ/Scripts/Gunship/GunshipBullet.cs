@@ -35,7 +35,6 @@ public class GunshipBullet : MonoBehaviour
     private ParticleSystem.MainModule[] hitmain = new ParticleSystem.MainModule[3];
     
     private Vector3 hitPSdir;
-    private float existTimer = 2f;
     EColorType colortype = EColorType.White;
 
     void Awake()
@@ -110,11 +109,4 @@ public class GunshipBullet : MonoBehaviour
       
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Managers.Projectile.Enqueue(this.gameObject, "Bullet");
-        }
-    }
 }

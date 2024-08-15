@@ -17,7 +17,8 @@ public class GameViewCamera : InitBase
 
     private void MovePosition(Transform heroSpawnArea) 
     {
-        transform.position = heroSpawnArea.position + new Vector3(-25,60,-30);
+        //transform.position = heroSpawnArea.position + new Vector3(-25,60,-30);
+        transform.parent.position = heroSpawnArea.position + new Vector3(-25, 60, -30);
     }
 
     private void OnDestroy()

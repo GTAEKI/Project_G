@@ -20,7 +20,8 @@ public class ProjectileManager
 
     private GameObject CreateBullet()
     {
-        GameObject bulletObject = Managers.Resource.Instantiate(RESOURCE_BULLET);        
+        GameObject bulletObject = Managers.Resource.Instantiate(RESOURCE_BULLET);
+        bulletObject.SetActive(false);
         bullets.Enqueue(bulletObject);
         return bulletObject;
     }
@@ -28,6 +29,7 @@ public class ProjectileManager
     public GameObject CreateHitFx()
     {
         GameObject hitFxObject = Managers.Resource.Instantiate(RESOURCE_HIT);
+        hitFxObject.SetActive(false);
         particles.Enqueue(hitFxObject);
         return hitFxObject;
     }
