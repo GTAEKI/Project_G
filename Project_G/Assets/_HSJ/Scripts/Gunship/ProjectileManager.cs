@@ -66,16 +66,6 @@ public class ProjectileManager
                     go = bullets.Dequeue();
                 }
                 break;
-            case "Fx":
-                if(particles.Count == 0)
-                {
-                    go = CreateHitFx();
-                }
-                else
-                {
-                    go = particles.Dequeue();
-                }
-                break;
         }
         go.transform.position = pos;
         go.transform.rotation = rot;
@@ -89,16 +79,6 @@ public class ProjectileManager
 
         switch (type)
         {
-            case "Bullet":
-                if (bullets.Count == 0)
-                {
-                    go = CreateBullet();
-                }
-                else
-                {
-                    go = bullets.Dequeue();
-                }
-                break;
             case "Fx":
                 if (particles.Count == 0)
                 {
@@ -115,6 +95,7 @@ public class ProjectileManager
         go.SetActive(true);
         return go;
     }
+
 
     public void Clear()
     {

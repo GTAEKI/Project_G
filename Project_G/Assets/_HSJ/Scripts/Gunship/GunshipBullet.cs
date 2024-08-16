@@ -5,8 +5,6 @@ using static Define;
 public class GunshipBullet : MonoBehaviour
 {
     #region SerializeField
-    [SerializeField]
-    private ParticleSystem hitPS;
 
     [SerializeField]
     private ParticleSystem bulletPS;
@@ -31,8 +29,6 @@ public class GunshipBullet : MonoBehaviour
     public float Damage { get; private set; } = 10f;
 
     private ParticleSystem.MainModule main;
-    private ParticleSystem[] hitPSArray = new ParticleSystem[3];
-    private ParticleSystem.MainModule[] hitmain = new ParticleSystem.MainModule[3];
     
     private Vector3 hitPSdir;
     EColorType colortype = EColorType.White;
@@ -41,14 +37,18 @@ public class GunshipBullet : MonoBehaviour
     {
         // Get ParticleSystem Mainmodule
         main = bulletPS.main;
+    }
 
-        hitPSArray = hitPS.GetComponentsInChildren<ParticleSystem>();
-        for(int i = 0; i < hitPSArray.Length; i++)
+
+    void Update()
+    {
+        if(gameObject.transform.position.y < -200)
         {
-            hitmain[i] = hitPSArray[i].main;
+            Managers.Projectile.Enqueue(this.gameObject, "Bullet");
         }
     }
-    
+
+
     public void InitBulletColor(EColorType type = EColorType.White)
     {
         switch (type)
@@ -57,28 +57,16 @@ public class GunshipBullet : MonoBehaviour
                 colortype = EColorType.Red;
                 main.startColor = Red;
                 bulletLight.color = Red;
-                for (int i = 0; i < hitmain.Length; i++)
-                {
-                    hitmain[i].startColor = Red;
-                }
                 break;
             case EColorType.Yellow:
                 colortype = EColorType.Yellow;
                 main.startColor = Yellow;
                 bulletLight.color = Yellow;
-                for (int i = 0; i < hitmain.Length; i++)
-                {
-                    hitmain[i].startColor = Yellow;
-                }
                 break;
             default:
                 colortype = EColorType.White;
                 main.startColor = White;
                 bulletLight.color = White;
-                for (int i = 0; i < hitmain.Length; i++)
-                {
-                    hitmain[i].startColor = White;
-                }
                 break;
         }        
     }
@@ -96,17 +84,16 @@ public class GunshipBullet : MonoBehaviour
         {
             enemy.CalDamage(Damage, colortype);
             Managers.Projectile.Enqueue(this.gameObject, "Bullet");
-            Managers.Projectile.Dequeue(other.ClosestPoint(transform.position) - hitPSdir, -hitPSdir, "Fx");
-
+            GameObject fx = Managers.Projectile.Dequeue(other.ClosestPoint(transform.position) - hitPSdir, -hitPSdir, "Fx");
+            fx.GetComponent<ParticleColorChange>().ChangeParticleColor(colortype);
         }
         if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            Managers.Projectile.Dequeue(other.ClosestPoint(transform.position) - hitPSdir, -hitPSdir , "Fx");
+            GameObject fx = Managers.Projectile.Dequeue(other.ClosestPoint(transform.position) - hitPSdir, -hitPSdir , "Fx");
+            fx.GetComponent<ParticleColorChange>().ChangeParticleColor(colortype);
+
             Managers.Projectile.Enqueue(this.gameObject, "Bullet");
-
-        }
-
-      
+        }      
     }
 
 }
