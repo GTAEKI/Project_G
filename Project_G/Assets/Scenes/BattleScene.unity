@@ -1900,6 +1900,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button_NextRound
       objectReference: {fileID: 0}
+    - target: {fileID: 7773683359666677329, guid: 5c45a0220922802409a8ba835c883786,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8926232455497865018, guid: 5c45a0220922802409a8ba835c883786,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -16162,6 +16167,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547870467729963716, guid: 9f95f52df7b8abc43854e44be0a25a42,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547870467729963716, guid: 9f95f52df7b8abc43854e44be0a25a42,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547870467729963716, guid: 9f95f52df7b8abc43854e44be0a25a42,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3796323690950288888, guid: 9f95f52df7b8abc43854e44be0a25a42,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3796323690950288888, guid: 9f95f52df7b8abc43854e44be0a25a42,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3936122872873546231, guid: 9f95f52df7b8abc43854e44be0a25a42,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 3936122872873546231, guid: 9f95f52df7b8abc43854e44be0a25a42,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.54
       objectReference: {fileID: 0}
     - target: {fileID: 4074977789825636183, guid: 9f95f52df7b8abc43854e44be0a25a42,
         type: 3}

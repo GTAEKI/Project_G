@@ -60,7 +60,7 @@ public class GunshipBarrel : MonoBehaviour
             count += 1;
             if (count >= 4)
             {
-                Managers.Sound.Play(ESound.Effect, "Gun4_1");
+                Managers.Sound.Play(ESound.Effect, "GunShoot");
                 count = 0;
             }
         }

@@ -12,6 +12,7 @@ public class UI_EventHandler : MonoBehaviour, IPointerClickHandler, IPointerDown
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        Managers.Sound.Play(Define.ESound.Effect, "ButtonClick");
         OnClickHandler?.Invoke(eventData);
     }
 

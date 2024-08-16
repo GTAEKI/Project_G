@@ -33,7 +33,6 @@ public class GameManager
             ui_win.DisplayScrap(winReward);
 
             Managers.HeroSpawn.OnSetUsedSpawnArea();
-            Managers.Round.NextRound();
 
             Managers.Scrap.AddScrap(winReward);
             OnGameWin?.Invoke();

@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,15 +35,12 @@ public class CinemachineController :InitBase, IController
     private IEnumerator SwitchToTopViewCamera()
     {
         yield return new WaitForSeconds(0.01f);
-        ChangeCamera(Define.EVirtualCamera.StartViewCamera);
+        SwitchCamera(Define.EVirtualCamera.StartViewCamera);
         yield return new WaitForSeconds(0.3f);
-        ChangeCamera(Define.EVirtualCamera.TopViewCamera);
-        float delayTime = Camera.main.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time;
-        yield return new WaitForSeconds(delayTime);
-        Managers.Game.GameStart();
+        SwitchCamera(Define.EVirtualCamera.TopViewCamera);
     }
 
-    public void ChangeCamera(Define.EVirtualCamera changeCam)
+    public void SwitchCamera(Define.EVirtualCamera changeCam, Action OnCameraSwitchComplete = null)
     {
         string name = changeCam.ToString();
         foreach (var cam in virtualCams)
@@ -55,6 +53,15 @@ public class CinemachineController :InitBase, IController
 
             cam.Value.SetActive(false);
         }
+
+        if (OnCameraSwitchComplete != null)
+            StartCoroutine(CoOnCameraSwitchComplete(OnCameraSwitchComplete));
+    }
+
+    private IEnumerator CoOnCameraSwitchComplete(Action onCameraChangeComplete)
+    {
+        yield return new WaitForSeconds(2f);
+        onCameraChangeComplete();
     }
 
     public GameObject GetVirtualCamera(Define.EVirtualCamera camera) 

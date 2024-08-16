@@ -24,7 +24,7 @@ public class HeroSpawnController : InitBase,IController
     private void Update()
     {
 
-        if (Input.GetMouseButtonDown(0) && Managers.Game.IsGameEnded == false)
+        if (Input.GetMouseButtonDown(0) && Managers.Game.IsGameEnded == true)
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             int layerMask = 1 << LayerMask.NameToLayer(Define.SpawnPoint);
