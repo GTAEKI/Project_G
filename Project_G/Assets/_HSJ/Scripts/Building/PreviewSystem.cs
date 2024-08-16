@@ -50,7 +50,10 @@ public class PreviewSystem : MonoBehaviour
             Material[] materials = renderer.materials;
             for (int i = 0; i < materials.Length; i++)
             {
-                materials[i] = previewMaterialInstance;
+                Color color = materials[i].color;
+                color.a = 0.1f;
+                materials[i].color = color;
+                //materials[i] = previewMaterialInstance;
             }
             renderer.materials = materials;
         }
