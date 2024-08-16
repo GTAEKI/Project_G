@@ -104,31 +104,6 @@ public class GunshipBarrel : MonoBehaviour
 
     }
 
-    IEnumerator DelayFire(Vector3 targetPoint)
-    {
-        float timer = 0;
-        while(bulletDelay > timer)
-        {
-            isFire = true;
-            timer += Time.deltaTime;
-            yield return null;
-        }
-
-        Vector3 dir = (targetPoint - transform.position).normalized;
-
-        GameObject bullet =
-           Managers.Projectile.Dequeue(
-               transform.position,
-               mainCamera.transform.rotation,
-               "Bullet");
-
-        GunshipBullet gBullet = bullet.GetComponent<GunshipBullet>();
-
-        gBullet.InitBulletColor(BulletType);
-        gBullet.ShotBullet(dir, bulletSpeed);
-        isFire = false;
-
-    }
 
     void ChangeBullet_Left(object sender, System.EventArgs e)
     {

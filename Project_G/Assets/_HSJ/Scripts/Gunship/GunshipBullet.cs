@@ -42,7 +42,7 @@ public class GunshipBullet : MonoBehaviour
 
     void Update()
     {
-        if(gameObject.transform.position.y < -200)
+        if(gameObject.transform.position.y < -1000)
         {
             Managers.Projectile.Enqueue(this.gameObject, "Bullet");
         }
@@ -73,8 +73,10 @@ public class GunshipBullet : MonoBehaviour
 
     public void ShotBullet(Vector3 dir, float bulletSpeed)
     {
+        rigid.constraints = RigidbodyConstraints.None;
         hitPSdir = dir;
         rigid.AddForce(dir * bulletSpeed, ForceMode.VelocityChange);
+        
     }
 
 
@@ -93,7 +95,7 @@ public class GunshipBullet : MonoBehaviour
             fx.GetComponent<ParticleColorChange>().ChangeParticleColor(colortype);
 
             Managers.Projectile.Enqueue(this.gameObject, "Bullet");
-        }      
+        }
+        rigid.constraints = RigidbodyConstraints.FreezeAll;
     }
-
 }
