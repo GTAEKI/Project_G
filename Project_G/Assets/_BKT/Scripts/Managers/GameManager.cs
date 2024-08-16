@@ -11,6 +11,7 @@ public class GameManager
     public void GameStart() 
     {
         IsGameEnded = false;
+        Managers.Projectile.Clear();
     }
 
     public event Action<Transform> OnSelectHeroSpawnPoint;
@@ -64,6 +65,7 @@ public class GameManager
         Managers.Pool.Clear();
         Managers.Projectile.Clear();
         Clear();
+
     }
 
     public void Clear() 

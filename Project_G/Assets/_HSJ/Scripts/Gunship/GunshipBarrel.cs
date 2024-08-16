@@ -11,14 +11,11 @@ public class GunshipBarrel : MonoBehaviour
     private Camera mainCamera;
     private GameInput gameInput;
   
-    private ResourceManager resource;
-    private GameObject bullet;
     private Vector3 bottomLeftScreen;
     private Vector3 bottomLeftWorld;
     private Vector3 barrelOffset = new Vector3(1f,0f,0f);
     private float bulletSpeed = 100f;
     private const float bulletDelay = 0.1f;
-    private bool isFire = default;
 
     [field: SerializeField]
     public EColorType BulletType { get; private set; }
@@ -39,11 +36,6 @@ public class GunshipBarrel : MonoBehaviour
 
         gameInput = gunship.GameInput;
         mainCamera = gunship.MainCamera;
-
-        //resource = Managers.Resource;
-        //bullet = resource.LoadFromResources<Object>("Bullet") as GameObject;        
-        //GameObject bullet = projectileManager.Dequeue();
-        //bullet.transform.rotation = mainCamera.transform.rotation;
 
         BulletType = EColorType.White;
         InitInputEvent();

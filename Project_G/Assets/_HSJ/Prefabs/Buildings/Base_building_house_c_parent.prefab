@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3123927218595137136}
   m_Layer: 0
-  m_Name: Base_building__house_c_parent
+  m_Name: Base_building_house_c_parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

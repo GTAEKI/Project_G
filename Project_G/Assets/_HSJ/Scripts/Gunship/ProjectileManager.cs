@@ -39,7 +39,7 @@ public class ProjectileManager
         go.SetActive(false);
         go.transform.position = Vector3.zero;
         go.transform.rotation = Quaternion.identity;
-        switch(type)
+        switch (type)
         {
             case "Bullet":
                 bullets.Enqueue(go);
@@ -48,7 +48,8 @@ public class ProjectileManager
             case "Fx":
                 particles.Enqueue(go);
                 break;
-        }    }
+        }
+    }
 
     public GameObject Dequeue(Vector3 pos, Quaternion rot , string type)
     {
@@ -103,5 +104,6 @@ public class ProjectileManager
         particles.Clear();
     }
 
+    
     
 }

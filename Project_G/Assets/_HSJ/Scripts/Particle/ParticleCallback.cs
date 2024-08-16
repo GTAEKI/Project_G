@@ -8,7 +8,6 @@ public class ParticleCallback : MonoBehaviour
     void Awake()
     {
         main = GetComponent<ParticleSystem>();
-        Debug.Log(main == null);
     }
     void OnEnable()
     {
@@ -17,7 +16,6 @@ public class ParticleCallback : MonoBehaviour
     public void OnParticleSystemStopped()
     {
         
-        Debug.Log($"particle pos : {gameObject.transform.position}");
         Managers.Projectile.Enqueue(this.gameObject,"Fx");
         gameObject.SetActive(false);
     } 
