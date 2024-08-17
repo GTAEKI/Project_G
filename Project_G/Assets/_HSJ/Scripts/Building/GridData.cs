@@ -6,6 +6,7 @@ using UnityEngine;
 public class GridData
 {
     Dictionary<Vector3Int, PlacementData> placedObjects = new Dictionary<Vector3Int, PlacementData>();
+    Dictionary<Vector3Int, GridPosData> savedObjects = new Dictionary<Vector3Int, GridPosData>();
 
     public void AddObject(Vector3Int gridPosition, Vector2Int objectsSize, int ID, int placedObjectIndex, Define.EPlacementBuildingType type)
     {
@@ -19,6 +20,12 @@ public class GridData
             }
             placedObjects[pos] = data;
         }
+    }
+
+    public void Saveobject(Vector3Int gridPosition, int ID)
+    {
+        Vector3Int tempGridPosition = gridPosition;
+
     }
 
     private List<Vector3Int> CalculatePosition(Vector3Int gridPosition, Vector2Int objectsSize)
@@ -68,11 +75,23 @@ public class PlacementData
     public int PlacedObjectIndex { get; private set; }
     public Define.EPlacementBuildingType Type { get; private set; }
 
-    public PlacementData(List<Vector3Int> occupiedPositions, int iD, int placedObjectIndex, Define.EPlacementBuildingType type)
+    public PlacementData(List<Vector3Int> occupiedPositions, int ID, int placedObjectIndex, Define.EPlacementBuildingType type)
     {
         this.occupiedPositions = occupiedPositions;
-        ID = iD;
+        this.ID = ID;
         PlacedObjectIndex = placedObjectIndex;
         Type = type;
+    }
+}
+
+public class GridPosData
+{
+    public List<Vector3Int> gridPositions;
+    public int ID { get; private set; }
+    
+    public GridPosData(List<Vector3Int> gridPositions, int ID)
+    {
+        this.gridPositions = gridPositions;
+        this.ID = ID;
     }
 }

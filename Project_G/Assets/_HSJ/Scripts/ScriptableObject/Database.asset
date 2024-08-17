@@ -34,24 +34,24 @@ MonoBehaviour:
       type: 3}
     <BuildingType>k__BackingField: 1
     <BuildingPrice>k__BackingField: 100
-  - <Name>k__BackingField: Base_small_buildingE_parent
+  - <Name>k__BackingField: Base_building_house_c_parent
     <ID>k__BackingField: 3
+    <Size>k__BackingField: {x: 2, y: 2}
+    <Prefab>k__BackingField: {fileID: 1702938083802538661, guid: 2307138b3a8dbe94e9c09cd1560e5a37,
+      type: 3}
+    <BuildingType>k__BackingField: 1
+    <BuildingPrice>k__BackingField: 1200
+  - <Name>k__BackingField: Base_small_buildingE_parent
+    <ID>k__BackingField: 4
     <Size>k__BackingField: {x: 4, y: 2}
     <Prefab>k__BackingField: {fileID: 7673464862960249759, guid: e940c3472994805488292fd405f53901,
       type: 3}
     <BuildingType>k__BackingField: 1
     <BuildingPrice>k__BackingField: 400
   - <Name>k__BackingField: Base_small_buildingE_parent
-    <ID>k__BackingField: 4
+    <ID>k__BackingField: 5
     <Size>k__BackingField: {x: 4, y: 4}
     <Prefab>k__BackingField: {fileID: 3300081761983933334, guid: 1dc52c59535b58242b9461e03b05da2b,
       type: 3}
     <BuildingType>k__BackingField: 1
     <BuildingPrice>k__BackingField: 600
-  - <Name>k__BackingField: Base_building_turtle_a_parent
-    <ID>k__BackingField: 5
-    <Size>k__BackingField: {x: 2, y: 2}
-    <Prefab>k__BackingField: {fileID: 1702938083802538661, guid: 2307138b3a8dbe94e9c09cd1560e5a37,
-      type: 3}
-    <BuildingType>k__BackingField: 1
-    <BuildingPrice>k__BackingField: 1200

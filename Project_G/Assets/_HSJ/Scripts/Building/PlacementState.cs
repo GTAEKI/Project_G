@@ -41,9 +41,6 @@ public class PlacementState : IBuildingState
         {
             throw new System.Exception($"No Object with ID {iD}");
         }
-
-
-
     }
 
     public void EndState()
