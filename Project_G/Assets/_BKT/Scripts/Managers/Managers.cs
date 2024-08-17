@@ -26,6 +26,8 @@ public class Managers : MonoBehaviour
     // HSJ 
     private ScrapManager _scrap = new ScrapManager();
     private ProjectileManager _projectile = new ProjectileManager();
+
+
     public static ResourceManager Resource { get { return Instance?._resource; } }
     public static GameManager Game { get { return Instance?._game; } }
     public static ObjectManager Obj { get { return Instance?._obj; } }
@@ -56,7 +58,7 @@ public class Managers : MonoBehaviour
             DontDestroyOnLoad(go);
 
             s_instance = go.GetComponent<Managers>();
-            Sound.Init();
+            s_instance._sound.Init();
         }
     }
 }
