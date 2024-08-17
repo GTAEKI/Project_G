@@ -26,6 +26,7 @@ public class Managers : MonoBehaviour
     // HSJ 
     private ScrapManager _scrap = new ScrapManager();
     private ProjectileManager _projectile = new ProjectileManager();
+    private BaseMapManager _basemap = new BaseMapManager();
 
 
     public static ResourceManager Resource { get { return Instance?._resource; } }
