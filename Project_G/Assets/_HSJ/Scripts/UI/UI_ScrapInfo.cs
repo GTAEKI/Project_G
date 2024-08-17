@@ -37,7 +37,7 @@ public class UI_ScrapInfo : UI_Base
 
     private void OnDestroy()
     {
-        Managers.UI.Remove<UI_LoseResult>();
+        Managers.UI.Remove<UI_ScrapInfo>();
     }
 
 }

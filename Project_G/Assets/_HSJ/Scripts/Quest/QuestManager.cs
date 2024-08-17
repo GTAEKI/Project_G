@@ -14,25 +14,24 @@ public class QuestManager : MonoBehaviour
 
     void Update()
     {
-        UpdateQuestLog();
-        CheckQuestClear();
+        //UpdateQuestLog();
+        //CheckQuestClear();
     }
 
-    void UpdateQuestLog()
-    {
-        questText.text = questData.quests[0].Name +
-            " " + placementSystem.GetBuildingCount() + 
-            " / " + questData.quests[0].ClearTargetNum;
-    }
+    //void UpdateQuestLog()
+    //{
+    //    questText.text =
+    //        $"{placementSystem.GetBuildingCount()} / { questData.quests[0].ClearTargetNum}";
+    //}
 
-    void CheckQuestClear()
-    {
-        if (questData.quests[0].ClearTargetNum <= placementSystem.GetBuildingCount())
-        {
-            // 퀘스트 클리어 
+    //void CheckQuestClear()
+    //{
+    //    if (questData.quests[0].ClearTargetNum <= placementSystem.GetBuildingCount())
+    //    {
+    //        // 퀘스트 클리어 
 
-        }
-    }
+    //    }
+    //}
 
 
 

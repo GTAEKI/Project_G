@@ -95,10 +95,5 @@ public class PlacementSystem : MonoBehaviour
             lastDetectedPosition = gridPosition;
         }
     }
-
-    public int GetBuildingCount()
-    {
-        return 0;
-
-    }
+    
 }

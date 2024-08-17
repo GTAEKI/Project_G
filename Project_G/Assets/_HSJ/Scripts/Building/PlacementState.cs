@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlacementState : IBuildingState
 {
     private int selectedObjectIndex = -1;
-    private int buildingNum = 0;
     int ID;
     Grid grid;
     PreviewSystem previewSystem;
@@ -56,6 +55,11 @@ public class PlacementState : IBuildingState
     {
         bool placemetValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
         if (placemetValidity == false) { return; }
+        if(CheckPriceValidity() == false)
+        {
+            //Managers.UI
+        }
+
 
         int index 
             = objectPlacer.PlaceObject(database.objectData[selectedObjectIndex].Prefab, grid.CellToWorld(gridPosition));
@@ -67,12 +71,8 @@ public class PlacementState : IBuildingState
             index,
             database.objectData[selectedObjectIndex].BuildingType);
 
-        if(selectedData == buildingData)
-        {
-            buildingNum++;
-        }
-
         previewSystem.UpdatePosition(grid.CellToWorld(gridPosition), false);
+
     }
 
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
@@ -82,6 +82,11 @@ public class PlacementState : IBuildingState
         return selectedData.CanPlaceObjectAt(gridPosition, database.objectData[selectedObjectIndex].Size);
     }
 
+    private bool CheckPriceValidity()
+    {
+        bool isAffordable = database.objectData[selectedObjectIndex].BuildingPrice <= Managers.Scrap.Scrap ? true: false;
+        return isAffordable;
+    }
     public void UpdateState(Vector3Int gridPosition)
     {
         bool placemetValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);

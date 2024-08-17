@@ -10,6 +10,11 @@ public class MapManager
 {
     public GameObject Map { get; private set; }
     public Grid CellGrid { get; private set; }
+    
+    
+    // HSJ basemap 
+    public GridData basemapData { get; private set; }
+
 
     public void Clear() 
     {
@@ -36,7 +41,8 @@ public class MapManager
     public void LoadMap(string mapName)
     {
         GameObject map = GameObject.Find(mapName);
-
+        // HSJ basemap 
+        basemapData = new GridData();
         Map = map;
         CellGrid = Util.FindChild<Grid>(map, "Grid", true);
 
@@ -318,4 +324,16 @@ public class MapManager
     }
 
     #endregion
+
+
+
+
+    #region BaseMap
+
+
+
+
+
+    #endregion
+
 }

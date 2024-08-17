@@ -20,5 +20,8 @@ public class ObjectData
     [field: SerializeField]
     public GameObject Prefab { get; private set; }
     [field: SerializeField]
-    public Define.EPlacementBuildingType BuildingType { get; private set; } 
+    public Define.EPlacementBuildingType BuildingType { get; private set; }
+    [field: SerializeField]
+    public int BuildingPrice { get; private set; }
+    
 }
