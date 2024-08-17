@@ -19,33 +19,36 @@ public class RoundManager
 
     private List<GameDifficulty> rounds = new List<GameDifficulty>();
     public int CurrentRound { get; private set; } = 0;
-    //public bool IsLastRound { get; private set; } = false;
 
     public RoundManager() 
     {
-        rounds.Add(new GameDifficulty(40,1f));
-        rounds.Add(new GameDifficulty(60, 1.1f));
-        rounds.Add(new GameDifficulty(80, 1.2f));
-        rounds.Add(new GameDifficulty(120, 1.3f));
+        rounds.Add(new GameDifficulty(20, 1f));
+        rounds.Add(new GameDifficulty(25, 1.1f));
+        rounds.Add(new GameDifficulty(30, 1.2f));
+        rounds.Add(new GameDifficulty(35, 1.3f));
     }
 
     public GameDifficulty GetCurrentRoundDifficulty() 
     {
-        Debug.Log($"CurrentRound is {CurrentRound}");
         return rounds[CurrentRound];
     }
 
-    public event Action OnLastRound;
     public void NextRound() 
     {
         if (CurrentRound < rounds.Count - 1) 
         {
-            CurrentRound++;       
+            CurrentRound++;
         }
-        else if (CurrentRound == rounds.Count - 1) 
+    }
+
+    public bool HasNextRound() 
+    {
+        if (CurrentRound == rounds.Count - 1)
         {
-            OnLastRound?.Invoke();
+            return false;
         }
+
+        return true;
     }
 
     public void ResetRound() 

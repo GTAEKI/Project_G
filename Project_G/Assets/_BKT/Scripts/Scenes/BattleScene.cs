@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Define;
 
 public class BattleScene : InitBase
 {
@@ -31,7 +32,7 @@ public class BattleScene : InitBase
         Managers.Game.OnGameResult -= EndGame;
         Managers.Game.OnGameResult += EndGame;
 
-        Managers.Sound.Play(Define.ESound.Bgm, "BattleCinema01");
+        Managers.Sound.Play(Define.ESound.Bgm, "BattleScene");
 
         return true;
     }
@@ -60,30 +61,31 @@ public class BattleScene : InitBase
         _maxEnemy = Managers.Round.GetCurrentRoundDifficulty().maxEnemyCount;
         coEnemyRespawn = StartCoroutine(CoCreateEnemy());
 
-        Managers.Controller.Get<CinemachineController>().ChangeCamera(Define.EVirtualCamera.GameViewCamera);
+        Managers.Controller.Get<CinemachineController>().SwitchCamera(Define.EVirtualCamera.GameViewCamera, Managers.Game.GameStart);
     }
 
     IEnumerator CoCreateEnemy() 
     {
+        float spawnTime = 3f;
+        
         while (true)
         {
-
             foreach (var enemyBuilding in Managers.Obj.EnemyBuildings)
             {
                 // 최대 적 숫자 설정
                 if (Managers.Obj.Enemies.Count >= _maxEnemy)
                     yield return new WaitUntil(() => Managers.Obj.Enemies.Count < _maxEnemy);
 
-                int spawnChance = Random.Range(0, 10);
-                float spawnTime = Random.Range(0, 3);
+                //int spawnChance = Random.Range(0, 10);
+                //float spawnTime = Random.Range(0, 3);
 
-
-                if (spawnChance < 2)
-                    yield return new WaitForSeconds(spawnTime);
+                //if (spawnChance < 2)
+                //    yield return new WaitForSeconds(spawnTime);
 
                 enemyBuilding.CreateEnemy();
-                yield return new WaitForSeconds(spawnTime);
             }
+
+            yield return new WaitForSeconds(spawnTime);
         }
     }
 

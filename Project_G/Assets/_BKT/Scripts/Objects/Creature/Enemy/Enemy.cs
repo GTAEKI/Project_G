@@ -105,8 +105,8 @@ public class Enemy : Creature
 
     protected override void UpdateDie()
     {
-        Debug.Log("Die");
         TriggerBuilding = false;
+        Managers.Sound.Play(ESound.Effect, "ZombieDie");
         Managers.Obj.Despawn(this,true);
     }
 

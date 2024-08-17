@@ -9,6 +9,8 @@ public class TitleScene : InitBase
         if(base.Init() == false)
             return false;
 
+        Managers.Sound.Play(Define.ESound.Bgm, "TitleScene");
+
         return true;
     }
 }

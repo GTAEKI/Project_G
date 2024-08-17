@@ -79,10 +79,10 @@ public static class Define
 
     public enum EHeroSpawnAreaName 
     {
-        SpawnPoint1 = 0,
-        SpawnPoint2 = 1, 
-        SpawnPoint3 = 2,
-        Test = 3,
+        SpawnPoint0 = 0,
+        SpawnPoint1 = 1, 
+        SpawnPoint2 = 2,
+        SpawnPoint3 = 3,
         EndCount = 4,
     }
 

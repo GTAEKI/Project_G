@@ -21,5 +21,6 @@ public class HeroSpawnArea : InitBase
     {
         Managers.HeroSpawn.SetUsedSpawnArea(this.gameObject);
         Managers.Game.SelectHeroSpawnPoint(transform);
+        Managers.Sound.Play(Define.ESound.Effect, "ButtonClick");
     }
 }
