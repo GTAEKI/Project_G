@@ -18,11 +18,12 @@ public class UI_ScrapInfo : UI_Base
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A))
+        if(Managers.Scrap.CheckScrapChange(scrapText))
         {
-            Managers.Scrap.RemoveScrap(100,this);
+            scrapText.text = Managers.Scrap.GetCurrentScrapText();
         }
     }
+
     public override bool Init()
     {
         if(base.Init() == false) { return false; }

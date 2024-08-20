@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ScrapManager
@@ -12,7 +12,7 @@ public class ScrapManager
     private bool scrapUIActive;
     public ScrapManager()
     {
-        Scrap = 0;
+        Scrap = 1000;
         ScrapTxt = Scrap.ToString();
     }
 
@@ -24,31 +24,29 @@ public class ScrapManager
     public void AddScrap(int scrap)
     {
         Scrap += scrap;
-        ChangeScrapText(Scrap);
+        ScrapTxt = Scrap.ToString();
     }
 
-    public void RemoveScrap(int scrap, MonoBehaviour mono)
+    public void RemoveScrap(int scrap)
     {
         if (Scrap >= scrap)
         {
             Scrap -= scrap;
         }
-        else
-        {
-            //mono.StartCoroutine(InfoTimer());
-        }
-        ChangeScrapText(Scrap);
-    }
-    
-    public string GetCurrentScrapText()
-    {
-        return ScrapTxt;
+        ScrapTxt = Scrap.ToString();
     }
 
-    private void ChangeScrapText(int curScrap)
+    public bool CheckScrapChange(TMP_Text tmp)
     {
-        ScrapTxt = curScrap.ToString();
+        if(ScrapTxt == tmp.text) { return false; }
+        GetCurrentScrapText();
+        return true;
     }
+    public string GetCurrentScrapText()
+    {
+            return ScrapTxt;        
+    }
+
     
     IEnumerator InfoTimer()
     {

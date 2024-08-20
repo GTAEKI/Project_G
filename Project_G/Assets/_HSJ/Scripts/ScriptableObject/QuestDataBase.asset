@@ -13,8 +13,23 @@ MonoBehaviour:
   m_Name: QuestDataBase
   m_EditorClassIdentifier: 
   quests:
-  - <Name>k__BackingField: "\uAC74\uBB3C\uAC74\uC124"
-    <ID>k__BackingField: 0
-    <ClearTargetNum>k__BackingField: 5
-    <CurClearNum>k__BackingField: 0
+  - <Name>k__BackingField: "\uAC74\uBB3C \uAC74\uC124"
+    <ID>k__BackingField: 2
+    <ClearNum>k__BackingField: 5
+    <CurNum>k__BackingField: 0
+    <IsClear>k__BackingField: 0
+  - <Name>k__BackingField: "\uAC74\uBB3C \uAC74\uC124"
+    <ID>k__BackingField: 3
+    <ClearNum>k__BackingField: 2
+    <CurNum>k__BackingField: 0
+    <IsClear>k__BackingField: 0
+  - <Name>k__BackingField: "\uAC74\uBB3C \uAC74\uC124"
+    <ID>k__BackingField: 4
+    <ClearNum>k__BackingField: 2
+    <CurNum>k__BackingField: 0
+    <IsClear>k__BackingField: 0
+  - <Name>k__BackingField: "\uAC74\uBB3C \uAC74\uC124"
+    <ID>k__BackingField: 5
+    <ClearNum>k__BackingField: 1
+    <CurNum>k__BackingField: 0
     <IsClear>k__BackingField: 0

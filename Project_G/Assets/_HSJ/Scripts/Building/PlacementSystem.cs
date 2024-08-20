@@ -92,7 +92,6 @@ public class PlacementSystem : MonoBehaviour
         if(lastDetectedPosition != gridPosition)
         {
             buildingState.UpdateState(gridPosition);
-            Managers.BaseMap.UpdateGridData(buildingData);
             lastDetectedPosition = gridPosition;
         }
     }

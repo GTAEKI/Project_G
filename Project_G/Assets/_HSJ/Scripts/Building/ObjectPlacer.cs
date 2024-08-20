@@ -14,6 +14,12 @@ public class ObjectPlacer : MonoBehaviour
         newObject.transform.position = position;
         placedGameObject.Add(newObject);
         return placedGameObject.Count - 1;
-
     }
+
+    public void PlaceSavedObject(GameObject prefab, Vector3 position)
+    {
+        GameObject newObject = Instantiate(prefab);
+        newObject.transform.position = position;        
+    }
+    
 }

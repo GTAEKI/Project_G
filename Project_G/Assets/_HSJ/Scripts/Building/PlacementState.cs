@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static BaseMapManager;
 
 public class PlacementState : IBuildingState
 {
@@ -51,10 +52,11 @@ public class PlacementState : IBuildingState
     public void OnAction(Vector3Int gridPosition)
     {
         bool placemetValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
-        if (placemetValidity == false) { return; }
-        if(CheckPriceValidity() == false)
+        bool priceValidity = CheckPriceValidity();
+        if(placemetValidity == false || priceValidity == false)
         {
-            //Managers.UI
+            Managers.Sound.Play(Define.ESound.Effect, $"Error1");
+            return;
         }
 
 
@@ -67,9 +69,16 @@ public class PlacementState : IBuildingState
             database.objectData[selectedObjectIndex].ID,
             index,
             database.objectData[selectedObjectIndex].BuildingType);
-
+        
         previewSystem.UpdatePosition(grid.CellToWorld(gridPosition), false);
 
+        SavedObject sbo = new SavedObject(database.objectData[selectedObjectIndex].ID,
+            gridPosition,
+            database.objectData[selectedObjectIndex].Prefab);
+
+        Managers.BaseMap.AddToList(sbo);
+        Managers.Scrap.RemoveScrap(database.objectData[selectedObjectIndex].BuildingPrice);
+        Managers.Sound.Play(Define.ESound.Effect, $"Placement");
     }
 
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
