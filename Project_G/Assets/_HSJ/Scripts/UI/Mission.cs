@@ -11,7 +11,6 @@ public class Mission : MonoBehaviour
     public int QuestID { get; private set; }
     private TMP_Text[] textArray;
     private Image image;
-
     // Need Refactoring
 
     void Awake()
@@ -28,10 +27,40 @@ public class Mission : MonoBehaviour
         Progress = textArray[1];
     }
 
+    void Update()
+    {
+        SetText();
+    }
+
     public void SetQuestID(int id)
     {
         QuestID = id;
         SetImage(QuestID);
+    }
+
+    public void SetText()
+    {
+
+        switch (QuestID)
+        {
+            case 2:
+                SetProgressText(Managers.Quest.savedQuests[0].CurNum, Managers.Quest.savedQuests[0].ClearNum);
+                break;
+            case 3:
+
+                SetProgressText(Managers.Quest.savedQuests[1].CurNum, Managers.Quest.savedQuests[1].ClearNum);
+                break;
+            case 4:
+                SetProgressText(Managers.Quest.savedQuests[2].CurNum, Managers.Quest.savedQuests[2].ClearNum);
+
+                break;
+            case 5:
+                SetProgressText(Managers.Quest.savedQuests[3].CurNum, Managers.Quest.savedQuests[3].ClearNum);
+
+                break;
+            default:
+                break;
+        }
     }
 
     public void SetImage(int id)

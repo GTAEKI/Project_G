@@ -27,6 +27,7 @@ public class Managers : MonoBehaviour
     private ScrapManager _scrap = new ScrapManager();
     private ProjectileManager _projectile = new ProjectileManager();
     private BaseMapManager _basemap = new BaseMapManager();
+    private QuestManager _quest = new QuestManager();
 
 
     public static ResourceManager Resource { get { return Instance?._resource; } }
@@ -43,6 +44,7 @@ public class Managers : MonoBehaviour
     public static ScrapManager Scrap { get { return Instance?._scrap; } }
     public static ProjectileManager Projectile { get { return Instance?._projectile; } }
     public static BaseMapManager BaseMap { get { return Instance?._basemap; } }
+    public static QuestManager Quest { get { return Instance?._quest; } }
 
     public static void Init()
     {

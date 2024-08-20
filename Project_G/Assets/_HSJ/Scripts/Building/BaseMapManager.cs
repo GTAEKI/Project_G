@@ -5,7 +5,7 @@ using UnityEngine;
 public class BaseMapManager
 {
     public List<SavedObject> SavedBuildingObjects { get; private set; }
-    public event EventHandler updateQuest;
+    
     public BaseMapManager()
     {
         SavedBuildingObjects = new();

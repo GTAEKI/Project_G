@@ -1,97 +1,92 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
-public class QuestManager : MonoBehaviour
+public class QuestManager
 {
-    [SerializeField]
-    private QuestDataBase questData;
-    [SerializeField]
-    private GameObject questRoot;
-    [SerializeField]
-    private Mission[] missions;
-    private int[] curNums;
-
-    // if quests count and missions count are different, it occurs error. Refactoring needed 
-    void Start()
+    public List<Quest> savedQuests;
+    public QuestManager()
     {
-        missions = questRoot.GetComponentsInChildren<Mission>();
-        SetMissionId();
-
-        curNums = new int[questData.quests.Count];
-        for(int i = 0; i < questData.quests.Count; i++)
-        {
-            curNums[i] = questData.quests[i].CurNum;
-            missions[i].SetProgressText(questData.quests[i].CurNum, questData.quests[i].ClearNum);
-        }
-        CheckSavedData();
+        savedQuests = new();
     }
 
-    void SetMissionId()
-    {
-        int questLength = questData.quests.Count;
-        for(int i = 0; i < questLength; i++)
-        {
-            missions[i].SetQuestID(questData.quests[i].ID);
-        }
-    }
 
-    void CheckSavedData()
+    public void SetQuestList(QuestData data)
     {
-        List<int> tempIDs = Managers.BaseMap.GetSavedObejctID();
-        CountQuestNum(tempIDs);
-    }
-
-    // Need Refactoring 
-    void CountQuestNum(List<int> tempIDs)
-    {
+        Quest quest = new Quest(data.Name, data.ID, data.ClearNum, data.CurNum, data.IsClear);
+        savedQuests.Add(quest);
         
-        int length = tempIDs.Count;
+    }
 
-        for (int i = 0; i < length; i++)
+    public bool CheckQuestEmpty()
+    {
+        if(savedQuests.Count < 1)
         {
-            switch (tempIDs[i])
-            {                
-                case 2:
-                    curNums[0]++;
-                    missions[0].SetProgressText(curNums[0], questData.quests[0].ClearNum);
-                    break;
-                case 3:
-                    curNums[1]++;
-                    missions[1].SetProgressText(curNums[1], questData.quests[1].ClearNum);
-                    break;
-                case 4:
-                    curNums[2]++;
-                    missions[2].SetProgressText(curNums[2], questData.quests[2].ClearNum);
-                    break;
-                case 5:
-                    curNums[3]++;
-                    missions[3].SetProgressText(curNums[3], questData.quests[3].ClearNum);
-                    break;
+            return true;
+        }
+        return false;
+    }
+
+    public void UpdateQuestState(int buildingType)
+    {
+        for (int i = 0; i < savedQuests.Count; i++)
+        {
+            if (savedQuests[i].ID == buildingType)
+            {
+                savedQuests[i].Add();
+                CheckQuestClear();
+            }
+        }
+    }       
+
+    public void CheckAllQuestClear()
+    {
+        foreach(Quest quest in savedQuests)
+        {
+            if(quest.IsClear == false)
+            {
+                return;
+            }
+        }
+        Util.LoadScene(Define.EScene.GameClearScene);
+    }
+
+    public void CheckQuestClear()
+    {
+        foreach(Quest quest in savedQuests)
+        {
+            if(quest.CurNum >= quest.ClearNum)
+            {
+                quest.Clear();
             }
         }
     }
-
-    //void UpdateQuestLog()
-    //{
-    //    questText.text =
-    //        $"{placementSystem.GetBuildingCount()} / { questData.quests[0].ClearNum}";
-    //}
-
-    //void CheckQuestClear()
-    //{
-    //    if (questData.quests[0].ClearNum <= placementSystem.GetBuildingCount())
-    //    {
-    //        // 퀘스트 클리어 
-
-    //    }
-    //}
-
-
-
 }
 
+public class Quest
+{
+    public Quest(string name, int iD, int clearNum, int curNum, bool isClear)
+    {
+        Name = name;
+        ID = iD;
+        ClearNum = clearNum;
+        CurNum = curNum;
+        IsClear = isClear;
+    }
 
+    public string Name { get; private set; }
+    public int ID { get; private set; }
+    public int ClearNum { get; private set; }
+    public int CurNum { get; private set; }
+    public bool IsClear { get; private set; }
 
+    public void Add()
+    {
+        CurNum += 1;
+    }
 
+    public void Clear()
+    {
+        IsClear = true;
+    }
+}

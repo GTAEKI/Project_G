@@ -78,6 +78,9 @@ public class PlacementState : IBuildingState
 
         Managers.BaseMap.AddToList(sbo);
         Managers.Scrap.RemoveScrap(database.objectData[selectedObjectIndex].BuildingPrice);
+        Managers.Quest.UpdateQuestState(ID);
+        Managers.Quest.CheckAllQuestClear();
+        Managers.Quest.CheckQuestClear();
         Managers.Sound.Play(Define.ESound.Effect, $"Placement");
     }
 
