@@ -23,6 +23,11 @@ public class BaseMapManager
         return count;
     }
 
+    public void SavedDataClear()
+    {
+        SavedBuildingObjects.Clear();
+    }
+
 
     public List<int> GetSavedObejctID()
     {

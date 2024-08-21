@@ -20,7 +20,11 @@ public class UI_Button_GameReset : UI_MouseInteraction
     {
         Managers.Round.ResetRound();
         Managers.HeroSpawn.ResetSpawnArea();
+        Managers.BaseMap.SavedDataClear();
+        Managers.Quest.QuestClear();
         Util.LoadScene(Define.EScene.TitleScene);
+
+        
     }
 
     protected override void Register()

@@ -59,9 +59,15 @@ public class QuestManager
         {
             if(quest.CurNum >= quest.ClearNum)
             {
-                quest.Clear();
+                quest.CheckClear();
             }
         }
+    }
+
+    public void QuestClear()
+    {
+        savedQuests.Clear();
+        isAllQuestClear = false;
     }
 }
 
@@ -87,8 +93,9 @@ public class Quest
         CurNum += 1;
     }
 
-    public void Clear()
+    public void CheckClear()
     {
         IsClear = true;
     }
+
 }
