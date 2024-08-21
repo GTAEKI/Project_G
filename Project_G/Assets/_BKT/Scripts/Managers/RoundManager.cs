@@ -5,30 +5,32 @@ using UnityEngine;
 
 public class RoundManager
 {
-    public class GameDifficulty
+    public class RoundSetting
     {
-        public GameDifficulty(int _maxEnemyCount, float _enemyDifficultyMultiple) 
+        public RoundSetting(int _maxEnemyCount, float _enemyDifficultyMultiple, int scrapCount)
         {
             maxEnemyCount = _maxEnemyCount;
             enemyDifficultyMultiple = _enemyDifficultyMultiple;
+            this.scrapCount = scrapCount;
         }
 
         public int maxEnemyCount;
         public float enemyDifficultyMultiple;
+        public int scrapCount;
     }
 
-    private List<GameDifficulty> rounds = new List<GameDifficulty>();
+    private List<RoundSetting> rounds = new List<RoundSetting>();
     public int CurrentRound { get; private set; } = 0;
 
     public RoundManager() 
     {
-        rounds.Add(new GameDifficulty(20, 1f));
-        rounds.Add(new GameDifficulty(25, 1.1f));
-        rounds.Add(new GameDifficulty(30, 1.2f));
-        rounds.Add(new GameDifficulty(35, 1.3f));
+        rounds.Add(new RoundSetting(20, 1f, 500));
+        rounds.Add(new RoundSetting(30, 1.1f, 700));
+        rounds.Add(new RoundSetting(40, 1.2f, 1000));
+        rounds.Add(new RoundSetting(50, 1.3f, 1500));
     }
 
-    public GameDifficulty GetCurrentRoundDifficulty() 
+    public RoundSetting GetCurrentRoundSetting() 
     {
         return rounds[CurrentRound];
     }

@@ -26,7 +26,6 @@ public class UI_Button_NextRound : UI_MouseInteraction
 
     protected override void OnPointerClick(PointerEventData eventData)
     {
-        Managers.Round.NextRound();
         Util.LoadScene(Define.EScene.BattleScene);
     }
 

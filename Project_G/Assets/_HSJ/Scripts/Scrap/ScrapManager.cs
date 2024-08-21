@@ -12,7 +12,7 @@ public class ScrapManager
     private bool scrapUIActive;
     public ScrapManager()
     {
-        Scrap = 10000;
+        Scrap = 1000;
         ScrapTxt = Scrap.ToString();
     }
 

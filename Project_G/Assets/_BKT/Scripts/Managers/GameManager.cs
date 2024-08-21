@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager
@@ -26,7 +23,7 @@ public class GameManager
     {
         if (IsGameEnded == false)
         {
-            int winReward = 200;
+            int winReward = Managers.Round.GetCurrentRoundSetting().scrapCount;
 
             UI_WinResult ui_win = Managers.UI.Get<UI_WinResult>();
             ui_win.gameObject.SetActive(true);
@@ -35,6 +32,7 @@ public class GameManager
             Managers.HeroSpawn.OnSetUsedSpawnArea();
 
             Managers.Scrap.AddScrap(winReward);
+            Managers.Round.NextRound();
             OnGameWin?.Invoke();
             Result();
         }
@@ -62,7 +60,7 @@ public class GameManager
         Managers.Controller.Clear();
         Managers.Map.Clear();
         Managers.Pool.Clear();
-        Managers.Projectile.Clear();
+        Managers.Projectile.Clear();        
         Clear();
 
     }

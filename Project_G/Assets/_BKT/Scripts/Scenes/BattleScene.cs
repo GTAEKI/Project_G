@@ -58,7 +58,7 @@ public class BattleScene : InitBase
 
         Hero hero = Managers.Obj.Spawn<Hero>(transform.position);
         Managers.Map.MoveTo(hero, Managers.Map.World2Cell(hero.transform.position),hero.CreatureType, true);
-        _maxEnemy = Managers.Round.GetCurrentRoundDifficulty().maxEnemyCount;
+        _maxEnemy = Managers.Round.GetCurrentRoundSetting().maxEnemyCount;
         coEnemyRespawn = StartCoroutine(CoCreateEnemy());
 
         Managers.Controller.Get<CinemachineController>().SwitchCamera(Define.EVirtualCamera.GameViewCamera, Managers.Game.GameStart);

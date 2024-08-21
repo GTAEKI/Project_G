@@ -1,6 +1,7 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QuestChecker : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class QuestChecker : MonoBehaviour
     private GameObject questRoot;
     [SerializeField]
     private Mission[] missions;
+    [SerializeField]
+    private GameObject panel;
+    private Image image;
     private int[] curNums;
 
     // if quests count and missions count are different, it occurs error. Refactoring needed 
@@ -21,6 +25,8 @@ public class QuestChecker : MonoBehaviour
     void Init()
     {
         missions = questRoot.GetComponentsInChildren<Mission>();
+        image = panel.GetComponent<Image>();
+
         SetMissionId();
         SetQuestProgress();
         CheckSavedData();
@@ -33,7 +39,10 @@ public class QuestChecker : MonoBehaviour
         }
     }
 
-
+    void Update()
+    {
+        ChangePanelAlpha();
+    }
 
     void SetQuestProgress()
     {
@@ -61,8 +70,7 @@ public class QuestChecker : MonoBehaviour
 
     // Need Refactoring 
     void CountQuestNum(List<int> tempIDs)
-    {
-        
+    {        
         int length = tempIDs.Count;
 
         for (int i = 0; i < length; i++)
@@ -89,22 +97,30 @@ public class QuestChecker : MonoBehaviour
         }
     }
 
-    //void UpdateQuestLog()
-    //{
-    //    questText.text =
-    //        $"{placementSystem.GetBuildingCount()} / { questData.quests[0].ClearNum}";
-    //}
 
-    //void CheckQuestClear()
-    //{
-    //    if (questData.quests[0].ClearNum <= placementSystem.GetBuildingCount())
-    //    {
-    //        // 퀘스트 클리어 
+    void ChangePanelAlpha()
+    {
+        if(Managers.Quest.isAllQuestClear == false)
+        {
+            return;
+        }
+        panel.SetActive(true);
+        StartCoroutine(ChangeAlpha());
+    }
 
-    //    }
-    //}
-
-
+    IEnumerator ChangeAlpha()
+    {
+        Managers.Quest.isAllQuestClear = false;
+        Color c = new Color(0f, 0f, 0f, 0f);
+        image.color = c;
+        while (c.a < 1f)
+        {
+            c.a += Time.deltaTime * 0.5f;
+            image.color = c;
+            yield return null;
+        }
+        Util.LoadScene(Define.EScene.GameClearScene);
+    }
 
 }
 

@@ -2535,7 +2535,7 @@ PrefabInstance:
     - target: {fileID: 1512174008774696075, guid: ac8981b3c0053a346b048b3d511d33ca,
         type: 3}
       propertyPath: moveSpeed
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1512174008774696075, guid: ac8981b3c0053a346b048b3d511d33ca,
         type: 3}
@@ -16168,6 +16168,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 907625149192209007, guid: 9f95f52df7b8abc43854e44be0a25a42,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 907625149192209007, guid: 9f95f52df7b8abc43854e44be0a25a42,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -14
+      objectReference: {fileID: 0}
     - target: {fileID: 3547870467729963716, guid: 9f95f52df7b8abc43854e44be0a25a42,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -16182,6 +16192,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599551501485802848, guid: 9f95f52df7b8abc43854e44be0a25a42,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599551501485802848, guid: 9f95f52df7b8abc43854e44be0a25a42,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3796323690950288888, guid: 9f95f52df7b8abc43854e44be0a25a42,
         type: 3}
@@ -16217,6 +16237,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BattleMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 5379285429982520037, guid: 9f95f52df7b8abc43854e44be0a25a42,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5379285429982520037, guid: 9f95f52df7b8abc43854e44be0a25a42,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373581417737657798, guid: 9f95f52df7b8abc43854e44be0a25a42,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373581417737657798, guid: 9f95f52df7b8abc43854e44be0a25a42,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

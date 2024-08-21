@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class QuestManager
 {
     public List<Quest> savedQuests;
+    public bool isAllQuestClear = false;
     public QuestManager()
     {
         savedQuests = new();
@@ -15,7 +17,6 @@ public class QuestManager
     {
         Quest quest = new Quest(data.Name, data.ID, data.ClearNum, data.CurNum, data.IsClear);
         savedQuests.Add(quest);
-        
     }
 
     public bool CheckQuestEmpty()
@@ -48,8 +49,9 @@ public class QuestManager
                 return;
             }
         }
-        Util.LoadScene(Define.EScene.GameClearScene);
+        isAllQuestClear = true;
     }
+
 
     public void CheckQuestClear()
     {

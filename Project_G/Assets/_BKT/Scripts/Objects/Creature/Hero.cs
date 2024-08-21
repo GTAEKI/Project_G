@@ -115,5 +115,6 @@ public class Hero : Creature, IDamageable
         Managers.Sound.Play(ESound.Effect, $"AttackedHero{rand}");
 
         animator.SetTrigger("Attacked");
+
     }
 }
