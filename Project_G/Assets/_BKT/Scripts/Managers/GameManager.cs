@@ -4,10 +4,12 @@ using UnityEngine;
 public class GameManager
 {
     public bool IsGameEnded { get; private set; } = true;
+    public bool IsGameWin { get; private set; }
 
     public void GameStart() 
     {
         IsGameEnded = false;
+        IsGameWin = false;
         Managers.Projectile.Clear();
     }
 
@@ -23,6 +25,7 @@ public class GameManager
     {
         if (IsGameEnded == false)
         {
+            IsGameWin = true;
             int winReward = Managers.Round.GetCurrentRoundSetting().scrapCount;
 
             UI_WinResult ui_win = Managers.UI.Get<UI_WinResult>();

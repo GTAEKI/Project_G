@@ -20,8 +20,11 @@ public class UI_Button_NextRound : UI_MouseInteraction
 
     private void OnEnable()
     {
-        if(Managers.Round.HasNextRound() == false)
+        if (Managers.Round.HasNextRound() == false && Managers.Game.IsGameWin) 
+        {
+            Managers.Round.RoundAllClear();
             gameObject.SetActive(false);
+        }
     }
 
     protected override void OnPointerClick(PointerEventData eventData)
