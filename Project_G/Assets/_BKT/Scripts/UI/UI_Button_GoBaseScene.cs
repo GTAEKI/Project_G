@@ -16,6 +16,7 @@ public class UI_Button_GoBaseScene : UI_MouseInteraction
 
     protected override void OnPointerClick(PointerEventData eventData)
     {
+        Managers.Game.Result();
         Util.LoadScene(Define.EScene.BaseScene);
     }
 

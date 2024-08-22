@@ -46,22 +46,22 @@ public class GunshipBarrel : MonoBehaviour
         gameInput.OnBulletChange_Left += ChangeBullet_Left;
         gameInput.OnBulletChange_Right += ChangeBullet_Right;
     }
-    
+
+    private float fireSoundCooldown = 0.1f;
+    private float lastFireSoundTime = 0f;
 
     void Update()
     {
         transform.position = GetScreenToWorldPosition();
 
-        if (Managers.Game.IsGameEnded == false && gameInput.GetIsAttack())
+        if (!Managers.Game.IsGameEnded && gameInput.GetIsAttack())
         {
             GameInput_Fire();
 
-            // BKT 임시 Test
-            count += 1;
-            if (count >= 4)
+            if (Time.time - lastFireSoundTime >= fireSoundCooldown)
             {
                 Managers.Sound.Play(ESound.Effect, "GunShoot");
-                count = 0;
+                lastFireSoundTime = Time.time;
             }
         }
     }

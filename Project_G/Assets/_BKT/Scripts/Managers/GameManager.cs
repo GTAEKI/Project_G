@@ -56,6 +56,9 @@ public class GameManager
     public event Action OnGameResult;
     public void Result() 
     {
+        if (IsGameEnded == true)
+            return;
+
         IsGameEnded = true;
 
         OnGameResult?.Invoke();
