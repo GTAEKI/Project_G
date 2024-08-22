@@ -64,6 +64,18 @@ public class QuestManager
         }
     }
 
+    public bool IsQuestClear(int iD)
+    {
+        foreach(Quest q in savedQuests)
+        {
+            if(q.ID == iD && q.CurNum >= q.ClearNum)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void QuestClear()
     {
         savedQuests.Clear();

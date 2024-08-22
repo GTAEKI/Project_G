@@ -12,10 +12,14 @@ public class ScrapManager
     private bool scrapUIActive;
     public ScrapManager()
     {
+        Init();
+    }
+
+    public void Init()
+    {
         Scrap = 10000;
         ScrapTxt = Scrap.ToString();
     }
-
     public int GetCurrentScrap()
     {
         return Scrap;

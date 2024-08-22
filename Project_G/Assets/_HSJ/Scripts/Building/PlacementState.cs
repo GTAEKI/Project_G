@@ -53,7 +53,8 @@ public class PlacementState : IBuildingState
     {
         bool placemetValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
         bool priceValidity = CheckPriceValidity();
-        if(placemetValidity == false || priceValidity == false)
+        bool limitValidity = CheckPlacementLimit(selectedObjectIndex);
+        if(placemetValidity == false || priceValidity == false || limitValidity == false)
         {
             Managers.Sound.Play(Define.ESound.Effect, $"Error1");
             return;
@@ -94,6 +95,14 @@ public class PlacementState : IBuildingState
     {
         bool isAffordable = database.objectData[selectedObjectIndex].BuildingPrice <= Managers.Scrap.Scrap ? true: false;
         return isAffordable;
+    }
+
+    private bool CheckPlacementLimit(int selectedObjectID)
+    {
+        bool isPlaceable = Managers.Quest.IsQuestClear(selectedObjectID);
+
+        return isPlaceable;
+           
     }
     public void UpdateState(Vector3Int gridPosition)
     {
