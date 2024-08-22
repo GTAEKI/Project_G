@@ -20,7 +20,7 @@ public class UI_Button_NextRound : UI_MouseInteraction
 
     private void OnEnable()
     {
-        if (Managers.Round.HasNextRound() == false && Managers.Game.IsGameWin) 
+        if (Managers.Round.HasNextRound() == false && Managers.Game.IsGameWin == true) 
         {
             Managers.Round.RoundAllClear();
             gameObject.SetActive(false);
@@ -29,6 +29,9 @@ public class UI_Button_NextRound : UI_MouseInteraction
 
     protected override void OnPointerClick(PointerEventData eventData)
     {
+        if(Managers.Game.IsGameWin == true)
+            Managers.Round.NextRound();
+
         Util.LoadScene(Define.EScene.BattleScene);
     }
 

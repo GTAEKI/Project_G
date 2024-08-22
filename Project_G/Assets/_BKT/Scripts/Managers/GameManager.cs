@@ -35,7 +35,6 @@ public class GameManager
             Managers.HeroSpawn.OnSetUsedSpawnArea();
 
             Managers.Scrap.AddScrap(winReward);
-            Managers.Round.NextRound();
             OnGameWin?.Invoke();
             Result();
         }
@@ -56,6 +55,9 @@ public class GameManager
     public event Action OnGameResult;
     public void Result() 
     {
+        if (IsGameEnded == true)
+            return;
+
         IsGameEnded = true;
 
         OnGameResult?.Invoke();
