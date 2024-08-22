@@ -18,6 +18,7 @@ public class UI_Button_GameReset : UI_MouseInteraction
 
     protected override void OnPointerClick(PointerEventData eventData)
     {
+        Managers.Game.GameResultReset();
         Managers.Round.ResetRound();
         Managers.HeroSpawn.ResetSpawnArea();
         Managers.BaseMap.SavedDataClear();

@@ -29,9 +29,6 @@ public class UI_Button_NextRound : UI_MouseInteraction
 
     protected override void OnPointerClick(PointerEventData eventData)
     {
-        if(Managers.Game.IsGameWin == true)
-            Managers.Round.NextRound();
-
         Util.LoadScene(Define.EScene.BattleScene);
     }
 

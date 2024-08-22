@@ -91,7 +91,10 @@ public class BattleScene : InitBase
 
     public void EndGame()
     {
-        StopCoroutine(coEnemyRespawn);
+        if (coEnemyRespawn != null) 
+        {
+            StopCoroutine(coEnemyRespawn);
+        }
     }
 
     void OnDestroy()
