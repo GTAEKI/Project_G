@@ -7,7 +7,7 @@ using static Define;
 public class TargetBuilding : Building,IDamageable
 {
     private UI_WorldSpace_Hp UI_Building_Hp { get; set; }
-    public float Hp { get; private set; } = 200f;
+    public float Hp { get; private set; } = 150f;
     public bool IsMissionStart { get; private set; } = false;
     private float _missionProgress = 0f;
 
