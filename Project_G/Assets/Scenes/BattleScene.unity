@@ -2683,6 +2683,11 @@ PrefabInstance:
       propertyPath: projectileManager
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6366005983621539239, guid: ac8981b3c0053a346b048b3d511d33ca,
+        type: 3}
+      propertyPath: <BulletType>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 983788782626218963, guid: ac8981b3c0053a346b048b3d511d33ca, type: 3}
@@ -9609,19 +9614,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2153380265656085602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5924745079228893856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ControlPath: <Mouse>/leftButton
 --- !u!1001 &2225353598721313524
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15844,7 +15836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameInput: {fileID: 34533808}
   gunshipBarrel: {fileID: 1432466339}
-  BtnImg: {fileID: 0}
+  BtnImg: {fileID: 143591925610793360}
   White: {r: 0.99215686, g: 0.99607843, b: 0.99607843, a: 1}
   Red: {r: 0.70980394, g: 0.08627451, b: 0.08235294, a: 1}
   Yellow: {r: 0.99607843, g: 0.99607843, b: 0.41960785, a: 1}
@@ -16043,7 +16035,6 @@ GameObject:
   - component: {fileID: 8520889542844395632}
   - component: {fileID: 143591925610793360}
   - component: {fileID: 7606417706588130973}
-  - component: {fileID: 2153380265656085602}
   - component: {fileID: 3538704512430289007}
   m_Layer: 5
   m_Name: Weapon_WBtn

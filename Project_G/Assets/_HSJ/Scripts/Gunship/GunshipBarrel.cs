@@ -17,7 +17,6 @@ public class GunshipBarrel : MonoBehaviour
     private float bulletSpeed = 100f;
     private const float bulletDelay = 0.1f;
 
-    [field: SerializeField]
     public EColorType BulletType { get; private set; }
 
     [SerializeField]
@@ -25,7 +24,7 @@ public class GunshipBarrel : MonoBehaviour
 
     int count = 0;
 
-    void Start()
+    void Awake()
     {
         Init();
     }
@@ -107,7 +106,6 @@ public class GunshipBarrel : MonoBehaviour
         BulletType -= 1;
     }
 
-    // Enum 순서 바꾸기 
     void ChangeBullet_Right(object sender, System.EventArgs e)
     {
         if(BulletType >= EColorType.Yellow)

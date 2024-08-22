@@ -66,7 +66,7 @@ public static class Define
 
     public enum EColorType
     {
-        None,
+        //None,
         White,
         Red,
         Yellow,

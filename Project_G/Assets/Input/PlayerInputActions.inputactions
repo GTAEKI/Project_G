@@ -34,21 +34,21 @@
                 },
                 {
                     "name": "BulletChangeLeft",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "60bb9ac3-e644-42f6-ac80-a73d05727023",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "BulletChangeRight",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "28e81b56-3b8f-48ad-a74b-67a3780b0cad",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -152,12 +152,6 @@
                     "isPartOfComposite": false
                 }
             ]
-        },
-        {
-            "name": "UI",
-            "id": "9c803deb-9bfb-482d-85a3-d41afd344844",
-            "actions": [],
-            "bindings": []
         }
     ],
     "controlSchemes": []

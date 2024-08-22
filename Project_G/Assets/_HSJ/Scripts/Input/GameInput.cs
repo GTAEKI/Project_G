@@ -25,14 +25,16 @@ public class GameInput : MonoBehaviour
     {
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
+        
+        playerInputActions.Player.BulletChangeLeft.started += ChangeBulletLeftPerformed;
+        playerInputActions.Player.BulletChangeRight.started += ChangeBulletRightPerformed;
+
 
         playerInputActions.Player.Fire.started += FirePerformed;
         playerInputActions.Player.Fire.canceled += FireCanceled;
 
-        playerInputActions.Player.BulletChangeLeft.started += ChangeBulletLeftPerformed;
-        playerInputActions.Player.BulletChangeRight.started += ChangeBulletRightPerformed;
-
     }
+
 
     private void Update()
     {

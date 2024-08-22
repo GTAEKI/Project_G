@@ -23,21 +23,19 @@ public class Weapon_Btn : MonoBehaviour
     void Awake()
     {
         BtnImg = GetComponent<Image>();
+        
     }
 
     void Start()
     {
         gameInput.OnBulletChange_Left += ChangeWeaponColor;
         gameInput.OnBulletChange_Right += ChangeWeaponColor;
-    }   
+    }
 
     private void GetColorType(EColorType type)
     {
         switch(type)
         {
-            case EColorType.White:
-                BtnImg.color = White;   
-                break;
             case EColorType.Red:
                 BtnImg.color = Red;
                 break;
