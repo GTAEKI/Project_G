@@ -11,6 +11,8 @@ public class Enemy : Creature
     public Define.EColorType ColorType { get; protected set; }
     protected UI_WorldSpace_Hp UI_EnemyHp { get; set; }
     private bool TriggerBuilding { get; set; }
+    protected float hpMultiple;
+    protected float powerMultiple;
 
     public override bool Init()
     {
@@ -18,7 +20,8 @@ public class Enemy : Creature
             return false;
 
         CreatureType = Define.ECreatureType.Enemy;
-
+        hpMultiple = Managers.Round.GetCurrentRoundSetting().enemyHpMultiple;
+        powerMultiple = Managers.Round.GetCurrentRoundSetting().enemyPowerMultiple;
         return true;
     }
 

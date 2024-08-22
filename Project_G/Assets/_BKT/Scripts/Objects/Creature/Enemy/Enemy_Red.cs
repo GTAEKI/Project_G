@@ -24,9 +24,8 @@ public class Enemy_Red : Enemy
     public override void SetInfo()
     {
         base.SetInfo();
-        float multiple = Managers.Round.GetCurrentRoundSetting().enemyDifficultyMultiple;
-        SetHp(_R_HP * multiple);
-        Speed = _R_Speed * multiple;
-        Power = _R_Power * multiple;
+        SetHp(_R_HP * hpMultiple);
+        Power = _R_Power * powerMultiple;
+        Speed = _R_Speed;
     }
 }

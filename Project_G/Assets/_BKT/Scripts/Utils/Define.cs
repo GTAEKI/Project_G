@@ -83,7 +83,8 @@ public static class Define
         SpawnPoint1 = 1, 
         SpawnPoint2 = 2,
         SpawnPoint3 = 3,
-        EndCount = 4,
+        SpawnPoint4 = 4,
+        EndCount = 5,
     }
 
     public enum ESound
