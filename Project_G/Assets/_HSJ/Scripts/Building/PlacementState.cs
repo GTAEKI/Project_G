@@ -77,7 +77,7 @@ public class PlacementState : IBuildingState
             gridPosition,
             database.objectData[selectedObjectIndex].Prefab);
 
-        Managers.BaseMap.AddToList(sbo);
+        Managers.BaseMap.AddToList(sbo,selectedData);
         Managers.Scrap.RemoveScrap(database.objectData[selectedObjectIndex].BuildingPrice);
         Managers.Quest.UpdateQuestState(ID);
         Managers.Quest.CheckAllQuestClear();
@@ -86,7 +86,8 @@ public class PlacementState : IBuildingState
 
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
     {
-        GridData selectedData = database.objectData[selectedObjectIndex].BuildingType == 0 ? floorData : buildingData;
+        GridData selectedData = database.objectData[selectedObjectIndex].BuildingType == 0 ? floorData : Managers.BaseMap.SavedBuildingData;
+        //GridData selectedData = database.objectData[selectedObjectIndex].BuildingType == 0 ? floorData : buildingData;
         
         return selectedData.CanPlaceObjectAt(gridPosition, database.objectData[selectedObjectIndex].Size);
     }
@@ -101,13 +102,20 @@ public class PlacementState : IBuildingState
     {
         bool isPlaceable = Managers.Quest.IsQuestClear(selectedObjectID);
 
-        return isPlaceable;
-           
+        return isPlaceable;           
     }
+
+    private bool CheckPlacemetnOut(Vector3Int gridPosition, int selectedObjectIndex)
+    {
+
+
+        return false;
+    }
+
+
     public void UpdateState(Vector3Int gridPosition)
     {
         bool placemetValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
-
         previewSystem.UpdatePosition(grid.CellToWorld(gridPosition), placemetValidity);
     }
 

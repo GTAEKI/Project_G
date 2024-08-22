@@ -5,21 +5,23 @@ using UnityEngine;
 public class BaseMapManager
 {
     public List<SavedObject> SavedBuildingObjects { get; private set; }
-    
+    public GridData SavedBuildingData { get; private set; }
     public BaseMapManager()
     {
         SavedBuildingObjects = new();
+        SavedBuildingData = new();
     }
 
 
-    public void AddToList(SavedObject savedObject)
+    public void AddToList(SavedObject savedObject, GridData gridData)
     {
         SavedBuildingObjects.Add(savedObject);
+        SavedBuildingData = gridData;
     }
 
     public int GetListLength()
     {
-        int count = SavedBuildingObjects.Count;        
+        int count = SavedBuildingObjects.Count;
         return count;
     }
 
@@ -42,8 +44,7 @@ public class BaseMapManager
     {
         public int ID { get; private set; }
         public Vector3Int GridPos { get; private set; }
-        public GameObject Prefab { get; private set; }
-
+        public GameObject Prefab { get; private set; }        
         public SavedObject(int ID, Vector3Int pos, GameObject prefab)
         {
             this.ID = ID;

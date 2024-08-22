@@ -53,7 +53,6 @@ public class PreviewSystem : MonoBehaviour
                 Color color = materials[i].color;
                 color.a = 0.1f;
                 materials[i].color = color;
-                //materials[i] = previewMaterialInstance;
             }
             renderer.materials = materials;
         }

@@ -7,7 +7,6 @@ public class ObjectPlacer : MonoBehaviour
 {
     private List<GameObject> placedGameObject = new List<GameObject>();
 
-
     public int PlaceObject(GameObject prefab, Vector3 position)
     {
         GameObject newObject = Instantiate(prefab);
@@ -19,7 +18,7 @@ public class ObjectPlacer : MonoBehaviour
     public void PlaceSavedObject(GameObject prefab, Vector3 position)
     {
         GameObject newObject = Instantiate(prefab);
-        newObject.transform.position = position;        
+        newObject.transform.position = position;    
     }
     
 }
