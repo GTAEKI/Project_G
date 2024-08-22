@@ -9350,7 +9350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab3c33969c6f6a44a850b7ae963b9d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxMissionValue: 20
+  _maxMissionValue: 30
 --- !u!114 &1925839312
 MonoBehaviour:
   m_ObjectHideFlags: 0

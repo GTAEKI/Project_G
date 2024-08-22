@@ -30,11 +30,11 @@ public class RoundManager
 
     public RoundManager()
     {
-        rounds.Add(new RoundSetting(25, 1f, 1f, 1f, 500));
-        rounds.Add(new RoundSetting(30, 1.5f, 1.1f, 1.1f, 700));
-        rounds.Add(new RoundSetting(35, 2f, 1.2f, 1.2f, 800));
-        rounds.Add(new RoundSetting(40, 3f, 1.3f, 1.3f, 1000));
-        rounds.Add(new RoundSetting(45, 4f, 1.4f, 1.4f, 1200));
+        rounds.Add(new RoundSetting(30, 1f, 1f, 1f, 400));
+        rounds.Add(new RoundSetting(35, 1.8f, 1.1f, 1.1f, 600));
+        rounds.Add(new RoundSetting(40, 2f, 1.2f, 1.2f, 800));
+        rounds.Add(new RoundSetting(45, 2.2f, 1.3f, 1.3f, 1000));
+        rounds.Add(new RoundSetting(45, 2.5f, 1.4f, 1.4f, 1200));
     }
 
     public RoundSetting GetCurrentRoundSetting() 
