@@ -4,10 +4,16 @@ using UnityEngine;
 public class GameManager
 {
     public bool IsGameEnded { get; private set; } = true;
-    public bool IsGameWin { get; private set; }
+    public bool IsGameWin { get; private set; } = false;
 
     public void GameStart() 
     {
+        if (IsGameWin == true) 
+        {
+            Managers.Round.NextRound();
+            Debug.Log($"현재 라운드는 {Managers.Round.CurrentRound}입니다.");
+        }
+
         IsGameEnded = false;
         IsGameWin = false;
         Managers.Projectile.Clear();
@@ -55,9 +61,6 @@ public class GameManager
     public event Action OnGameResult;
     public void Result() 
     {
-        if (IsGameEnded == true)
-            return;
-
         IsGameEnded = true;
 
         OnGameResult?.Invoke();
@@ -75,6 +78,11 @@ public class GameManager
         OnSelectHeroSpawnPoint = null;
         OnGameWin = null;
         OnGameLose = null;
+    }
+
+    public void GameResultReset() 
+    {
+        IsGameWin = false;
     }
 
 }

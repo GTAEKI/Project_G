@@ -23,6 +23,6 @@ public class GameViewCamera : InitBase
 
     private void OnDestroy()
     {
-        //Managers.Game.OnSelectHeroSpawnPoint -= MovePosition;
+        Managers.Game.OnSelectHeroSpawnPoint -= MovePosition;
     }
 }
