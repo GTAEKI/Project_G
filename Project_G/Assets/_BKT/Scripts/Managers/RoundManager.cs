@@ -29,9 +29,9 @@ public class RoundManager
     public RoundManager() 
     {
         rounds.Add(new RoundSetting(20, 1f, 1f, 500));
-        rounds.Add(new RoundSetting(20, 1.5f, 1.1f, 700));
-        rounds.Add(new RoundSetting(25, 2f, 1.2f,800));
-        rounds.Add(new RoundSetting(30, 3f, 1.3f,1000));
+        rounds.Add(new RoundSetting(25, 1.5f, 1.1f, 700));
+        rounds.Add(new RoundSetting(30, 2f, 1.2f,800));
+        rounds.Add(new RoundSetting(35, 3f, 1.3f,1000));
         rounds.Add(new RoundSetting(40, 4f, 1.4f, 1200));
     }
 

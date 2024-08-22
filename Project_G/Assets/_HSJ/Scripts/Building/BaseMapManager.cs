@@ -5,18 +5,22 @@ using UnityEngine;
 public class BaseMapManager
 {
     public List<SavedObject> SavedBuildingObjects { get; private set; }
-    public GridData SavedBuildingData { get; private set; }
+    public GridData SavedOccupiedData { get; private set; }
     public BaseMapManager()
     {
         SavedBuildingObjects = new();
-        SavedBuildingData = new();
+        SavedOccupiedData = new();
     }
 
 
-    public void AddToList(SavedObject savedObject, GridData gridData)
+    public void AddBuildingToList(SavedObject savedObject)
     {
-        SavedBuildingObjects.Add(savedObject);
-        SavedBuildingData = gridData;
+        SavedBuildingObjects.Add(savedObject);        
+    }
+
+    public void AddToOccupiedList(GridData gridData)
+    {        
+        SavedOccupiedData = gridData;
     }
 
     public int GetListLength()
@@ -28,6 +32,7 @@ public class BaseMapManager
     public void SavedDataClear()
     {
         SavedBuildingObjects.Clear();
+        SavedOccupiedData.Clear();
     }
 
 

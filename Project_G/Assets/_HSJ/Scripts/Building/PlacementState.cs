@@ -64,7 +64,7 @@ public class PlacementState : IBuildingState
         int index 
             = objectPlacer.PlaceObject(database.objectData[selectedObjectIndex].Prefab, grid.CellToWorld(gridPosition));
 
-        GridData selectedData = database.objectData[selectedObjectIndex].BuildingType == 0 ? floorData : buildingData;
+        GridData selectedData = database.objectData[selectedObjectIndex].BuildingType == 0 ? floorData : Managers.BaseMap.SavedOccupiedData;
         selectedData.AddObject(gridPosition,
             database.objectData[selectedObjectIndex].Size,
             database.objectData[selectedObjectIndex].ID,
@@ -77,7 +77,9 @@ public class PlacementState : IBuildingState
             gridPosition,
             database.objectData[selectedObjectIndex].Prefab);
 
-        Managers.BaseMap.AddToList(sbo,selectedData);
+
+        if (selectedData == buildingData) { Managers.BaseMap.AddToOccupiedList(selectedData); }  
+        Managers.BaseMap.AddBuildingToList(sbo);
         Managers.Scrap.RemoveScrap(database.objectData[selectedObjectIndex].BuildingPrice);
         Managers.Quest.UpdateQuestState(ID);
         Managers.Quest.CheckAllQuestClear();
@@ -86,7 +88,7 @@ public class PlacementState : IBuildingState
 
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
     {
-        GridData selectedData = database.objectData[selectedObjectIndex].BuildingType == 0 ? floorData : Managers.BaseMap.SavedBuildingData;
+        GridData selectedData = database.objectData[selectedObjectIndex].BuildingType == 0 ? floorData : Managers.BaseMap.SavedOccupiedData;
         //GridData selectedData = database.objectData[selectedObjectIndex].BuildingType == 0 ? floorData : buildingData;
         
         return selectedData.CanPlaceObjectAt(gridPosition, database.objectData[selectedObjectIndex].Size);

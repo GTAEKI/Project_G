@@ -834,7 +834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hero_Hp: 100
-  _hero_Speed: 3000
+  _hero_Speed: 300
 --- !u!54 &6647507921324951963
 Rigidbody:
   m_ObjectHideFlags: 0

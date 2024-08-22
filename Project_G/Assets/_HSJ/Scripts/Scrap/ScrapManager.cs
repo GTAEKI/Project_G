@@ -17,7 +17,7 @@ public class ScrapManager
 
     public void Init()
     {
-        Scrap = 10000;
+        Scrap = 500;
         ScrapTxt = Scrap.ToString();
     }
     public int GetCurrentScrap()

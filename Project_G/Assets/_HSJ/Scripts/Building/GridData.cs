@@ -48,6 +48,11 @@ public class GridData
         return true;
     }
 
+    public void Clear()
+    {
+        placedObjects.Clear();
+    }
+
 
 }
 
